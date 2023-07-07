@@ -1,0 +1,217 @@
+.card1 {
+    z-index: 0;
+    border: none;
+    position: relative;
+  }
+  .redio-button{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: -27px;
+  }
+  .redio-button-span{
+    margin-top: -27px;
+    font-size: 20px;
+    margin-left: 23px;
+    font-weight: 700;
+  }
+#heading {
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: 600;
+    color: #222;
+    padding-bottom: 24px;
+    font-family: var(--title-font);
+    text-align: center;
+  }
+  
+  #msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px;
+  }
+  .inputwid{
+    width: 25px;
+    margin-left: 15px;
+    
+  }
+  .backbgcart{
+    background: #f2a5a20a;
+  }
+  .backbgcart1{
+    background: #f2a5a230;
+  }
+  #msform fieldset {
+    background: #f2a5a21f;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative;
+    padding: 20px;
+  }
+  
+  .form-card {
+    text-align: left;
+  }
+  
+fieldset:not(:first-of-type) {
+    display: none;
+  }
+  
+  input,
+  textarea {
+    padding: 8px 15px 8px 15px;
+    border: 1px solid #f2a5a252;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2c3e50;
+    background-color: #ffffffa3;
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  
+  #msform .action-button {
+    width: 135px;
+    background: #f2a5a2;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    /* padding: 10px 5px; */
+    margin: 10px 0px 10px 5px;
+    float: right;
+    border-radius: 7px;
+    transition: all 0.5s;
+  }
+  
+  #msform .action-button:hover,
+  #msform .action-button:focus {
+    background-color: transparent;
+    border: 1px solid #f2a5a2;
+    color: #f2a5a2;
+  }
+  
+  #msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px 10px 0px;
+    float: right;
+  }
+  
+  #msform .action-button-previous:hover,
+  #msform .action-button-previous:focus {
+    background-color: #000000;
+  }
+  
+  #progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+  }
+  
+  #progressbar .active {
+    color: #222;
+  }
+  
+  #progressbar li {
+    list-style-type: none;
+    font-size: 15px;
+    width: 33%;
+    float: left;
+    position: relative;
+    font-weight: 400;
+  }
+  
+  #progressbar #account:before {
+    font-family: FontAwesome;
+    content: "";
+  }
+  
+  #progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "";
+  }
+  
+  #progressbar #payments:before {
+    font-family: FontAwesome;
+    content: "";
+  }
+  
+  #progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "";
+  }
+  
+  #progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: #ffdedd;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+  }
+  
+  #progressbar li:after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: #ffdedd;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+  }
+  
+  #progressbar li:first-child::after {
+    content: "";
+    width: 65%;
+    height: 2px;
+    background: #ffdedd;
+    position: absolute;
+    left: 100px;
+    top: 25px;
+    z-index: -1;
+  }
+  
+  #progressbar li:last-child::after {
+    content: "";
+    width: 50%;
+    height: 2px;
+    background: #ffdedd;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+  }
+  
+  #progressbar li.active:before,
+  #progressbar li.active:after {
+    background: #f2a5a2;
+  }
+  
+  .progress {
+    height: 20px;
+  }
+  
+  .progress-bar {
+    background-color: #f2a5a2;
+  }
+  

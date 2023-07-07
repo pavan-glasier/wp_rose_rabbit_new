@@ -1,0 +1,224 @@
+.footer-widget {
+  margin-bottom: 45px;
+}
+
+.footer-widget .widget_title {
+  margin-bottom: 36px;
+  padding-bottom: 15px;
+  border: none;
+  font-size: 19px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: var(--title-font);
+}
+
+.footer-widget .widget_title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--theme-color);
+}
+
+.footer-widget .recent-post {
+  align-items: center;
+  border-bottom: 1px solid rgba(154, 86, 58, 0.38);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-widget .recent-post:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.footer-widget .recent-post .media-img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.footer-widget .recent-post .media-img img {
+  transform: scale(1);
+  transition: all ease 0.4s;
+}
+
+.footer-widget .recent-post .media-body {
+  border: none;
+  padding: 0;
+}
+
+.footer-widget .recent-post .post-title {
+  font-size: 18px;
+  color: var(--title-color);
+  font-weight: 400;
+  letter-spacing: 0;
+  padding-top: 0.3em;
+  font-family: var(--title-font);
+}
+
+.footer-widget .recent-post:hover .media-img img {
+  transform: scale(1.15);
+}
+
+.footer-widget .recent-post-meta a {
+  color: var(--body-color);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.footer-widget .recent-post-meta a i {
+  position: relative;
+  top: -1px;
+}
+
+.footer-widget .recent-post-meta a:hover {
+  color: var(--theme-color);
+}
+
+.footer-widget.widget_nav_menu {
+  margin-bottom: 55px;
+}
+
+.footer-widget.widget_nav_menu ul {
+  margin-top: -0.13em;
+}
+
+.footer-widget.widget_nav_menu ul ul {
+  margin-top: 0;
+}
+
+.footer-widget.widget_nav_menu a {
+  width: -moz-max-content;
+  width: max-content;
+  display: block;
+  border: none;
+  max-width: 100%;
+  padding: 0 0 0 13px;
+  color: var(--body-color);
+  margin-bottom: 23px;
+  text-transform: uppercase;
+}
+
+.footer-widget.widget_nav_menu a:before {
+  content: "";
+  top: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--theme-color);
+}
+
+.footer-widget.widget_nav_menu a:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--theme-color);
+}
+
+.footer-widget.widget_nav_menu li > span {
+  width: auto;
+  height: auto;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--body-color);
+  line-height: 1;
+}
+
+.footer-widget.widget_nav_menu li:last-child a {
+  margin-bottom: 0;
+}
+
+.footer-info {
+  color: #a3a2a2;
+  font-weight: 500;
+  margin-top: -0.3em;
+  line-height: 32px;
+}
+
+.footer-number {
+  font-weight: 500;
+  font-size: 16px;
+  color: #717070;
+}
+
+.footer-number a {
+  color: #a3a2a2;
+}
+
+.footer-number a:hover {
+  color: var(--theme-color);
+}
+
+.footer-time {
+  font-size: 18px;
+  font-weight: 500;
+  color: #a3a2a2;
+  margin: 0;
+}
+
+.footer-time .time {
+  color: var(--title-color);
+}
+.footer-logo {
+  margin-bottom: 28px;
+}
+.footer-layout1,
+.footer-layout4 {
+  background-color: #222222;
+  --body-color: #bebebe;
+  --title-color: #ffffff;
+}
+
+.footer-layout1 .vs-logo {
+  text-align: center;
+}
+
+.footer-layout1 .footer-top {
+  background-color: #222222;
+  border-bottom: 1px solid rgb(242 165 162 / 55%);
+}
+
+.footer-layout1 .footer-top .row {
+  --bs-gutter-x: 0;
+}
+
+.footer-layout1 .footer-top [class*="col-"] {
+  padding: 40px 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-layout1 .footer-top [class*="col-"]:not(:last-child) {
+  border-color: rgb(242 165 162 / 55%);
+  border-style: solid;
+  border-width: 0 1px 0 0;
+}
+
+.footer-layout1 .copyright-wrap {
+  padding: 26px 0;
+  background-color: #161616;
+}
+.social-style3 a,
+.social-style2 a {
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	font-size: 18px;
+	color: #fff;
+	border: 1.8px solid currentColor;
+	margin-right: 8px;
+	border-radius: 50%;
+	transition: all ease 0.4s;
+}
+
+.social-style3 a:hover,
+.social-style2 a:hover {
+	border-color: var(--theme-color);
+}

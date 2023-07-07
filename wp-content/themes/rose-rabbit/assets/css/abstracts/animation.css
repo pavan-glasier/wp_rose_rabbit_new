@@ -1,0 +1,188 @@
+@keyframes rotationloader {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotationBackloader {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+@keyframes ripple {
+	0% {
+		transform: scale(1);
+		opacity: 0;
+	}
+
+	30% {
+		opacity: 0.4;
+	}
+
+	100% {
+		transform: scale(1.5);
+		opacity: 0;
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(var(--rotate-angle, 360deg));
+	}
+}
+
+@keyframes slideinup {
+	0% {
+		opacity: 0;
+		transform: translateY(70px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideindown {
+	0% {
+		opacity: 0;
+		transform: translateY(-70px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideinleft {
+	0% {
+		opacity: 0;
+		transform: translateX(-70px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideinright {
+	0% {
+		opacity: 0;
+		transform: translateX(70px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes scaleinright {
+	0% {
+		opacity: 0;
+		transform: scaleX(0);
+	}
+
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes fadein-custom {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes jumpping {
+
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+
+	40% {
+		transform: translate3d(0, var(--jump-y, 20px), var(--jump-x, 0));
+	}
+}
+
+@keyframes moving-x {
+	0% {
+		transform: translate(0px, 0px);
+	}
+
+	50% {
+		transform: translate(-60px, 0);
+	}
+
+	100% {
+		transform: translate(0px, 0px);
+	}
+}
+
+@keyframes moving {
+	0% {
+		transform: translate(0px, 0px);
+	}
+
+	20% {
+		transform: translate(0px, -60px);
+	}
+
+	50% {
+		transform: translate(-60px, -60px);
+	}
+
+	70% {
+		transform: translate(-60px, 0px);
+	}
+
+	100% {
+		transform: translate(0px, 0px);
+	}
+}
+
+@keyframes animatetop {
+	0% {
+		top: -300px;
+		opacity: 0;
+	}
+
+	100% {
+		top: 10px;
+		opacity: 1;
+	}
+}

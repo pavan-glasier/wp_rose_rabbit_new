@@ -1,0 +1,153 @@
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+p a,
+span a {
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+
+.h1,
+h1,
+.h2,
+h2,
+.h3,
+h3,
+.h4,
+h4,
+.h5,
+h5,
+.h6,
+h6 {
+	font-family: var(--title-font);
+	color: var(--title-color);
+	text-transform: none;
+	font-weight: 400;
+	line-height: 1.2;
+	margin: 0 0 15px 0;
+}
+
+.h1,
+h1 {
+	font-size: 48px;
+}
+
+.h2,
+h2 {
+	font-size: 40px;
+}
+
+.h3,
+h3 {
+	font-size: 36px;
+}
+
+.h4,
+h4 {
+	font-size: 30px;
+}
+
+.h5,
+h5 {
+	font-size: 24px;
+}
+
+.h6,
+h6 {
+	font-size: 20px;
+}
+
+
+blockquote p {
+	font-family: inherit;
+	margin-bottom: 0 !important;
+	line-height: 1.5;
+	color: inherit;
+	width: 100%;
+	position: relative;
+	z-index: 3;
+	font-style: italic;
+}
+
+blockquote:before {
+	content: "";
+	font-family: var(--icon-font);
+	position: absolute;
+	right: 70px;
+	bottom: 27px;
+	font-size: 3.5rem;
+	font-weight: 900;
+	line-height: 1;
+	color: var(--theme-color);
+}
+blockquote p {
+	margin-bottom: 0;
+}
+blockquote p a {
+	color: inherit;
+}
+blockquote.vs-quote {
+	border: none;
+	border-top: 2px solid var(--theme-color);
+	border-bottom: 2px solid var(--theme-color);
+	background-color: rgba(0, 0, 0, 0);
+	padding: 27px 40px 27px 40px;
+	margin: 32px 0;
+	text-align: center;
+}
+blockquote.vs-quote:before {
+	display: none;
+}
+
+blockquote.vs-quote p {
+	color: var(--body-color);
+	font-size: 20px;
+}
+
+blockquote.vs-quote cite {
+	padding: 0;
+	color: var(--theme-color);
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+	margin-top: 20px;
+}
+
+blockquote.vs-quote cite:before {
+	display: none;
+}
+
+h2.sec-title2.home-heading {
+    font-size: 60px;
+    font-weight: 600;
+	color: #222;
+}
+.sec-title2 {
+	font-size: 59px;
+	font-weight: 600;
+	color: #222;
+	margin-top: -0.22em;
+}
+.sec__font {
+	font-family: var(--title-font);
+	-webkit-text-fill-color: rgba(0, 0, 0, 0);
+	-webkit-text-stroke: 1px #f2a5a2;
+	font-style: italic;
+	font-size: 65px;
+	margin-top: 1px;
+	font-weight: 800;
+}
+.sec-title1 {
+	/* font-size: 55px; */
+	/* margin-top: -0.25em; */
+	font-size: 55px;
+	margin-top: -0.25em;
+	font-weight: 800;
+	font-style: italic;
+	color: #ae706c;
+}
