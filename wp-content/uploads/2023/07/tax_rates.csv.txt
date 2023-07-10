@@ -1,0 +1,4 @@
+Country code,State code,Postcode / ZIP,City,Rate %,Tax name,Priority,Compound,Shipping,Tax class
+IN,GJ,,,9.0000,CGST,1,0,0,
+IN,,,,18.0000,IGST,1,0,0,
+IN,GJ,,,9.0000,SGST,2,0,0,

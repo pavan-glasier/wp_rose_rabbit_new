@@ -144,6 +144,7 @@
     </div>
 </footer>
 
+<?php if( !is_cart() ):?>
 <!--Login Model-->
 <div id="myModal" class="modal">
     <div class="modal-content">
@@ -154,23 +155,58 @@
         <div class="modal-body woocommerce">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 mt-5 mb-5">
-                        <!-- <form action="#" method="POST" class="ajax-contact form-style6">
-                            <div class="form-group">
-                                <input type="number" class="formwidth" name="name" id="name"
-                                    placeholder="Enter Mobile No*">
+                    <div class="col-lg-12 mt-3 mb-5">
+                        <div class="form-card">
+                            <div class="alert alert-danger" id="error" style="display: none;"></div>
+                            <div class="phone-field">
+                                <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;">
+                                </ul>
+                                <label class="fieldlabels">Mobile Number:</label>
+                                <input type="text" name="number" id="phone-number-input"
+                                    placeholder="Enter Mobile Number" /><span class="position-relative"></span>
+                                <div id="recaptcha-container"></div>
                             </div>
-                            <button class="vs-btn mb-5" type="submit">Submit</button>
-                        </form> -->
-                        <?php echo do_shortcode('[wc_login_form_bbloomer]');?>
-                        
+                            <div class="otp-field d-none">
+                                <ul class="woocommerce-message" id="successRegsiter" role="alert"
+                                    style="display: none;"></ul>
+                                <label class="fieldlabels">OTP:</label>
+                                <div class="otp-flex digit-group inputfield" data-group-name="digits"
+                                    data-autosubmit="false" autocomplete="off">
+                                    <input type="number" pattern="[0-9]*" class="input" value="" inputtype="numeric"
+                                        autocomplete="one-time-code" id="otp-1" required>
+                                    <!-- Autocomplete not to put on other input -->
+                                    <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
+                                        value="" inputtype="numeric" id="otc-2" required>
+                                    <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
+                                        value="" inputtype="numeric" id="otc-3" required>
+                                    <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
+                                        value="" inputtype="numeric" id="otc-4" required>
+                                    <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
+                                        value="" inputtype="numeric" id="otc-5" required>
+                                    <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
+                                        value="" inputtype="numeric" id="otc-6" required>
+                                </div>
+                                <input type="hidden" name="verificationCode" id="verificationCode">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="vs-btn style7 d-none" id="send-otp"
+                                onclick="phoneSendAuth();">Submit</button>
+    
+                            <button type="button" class="vs-btn style7 d-none" id="otp-verify" name="next"
+                                onclick="loginCodeverify();" value="Next">Submit</button>
+                        </div>
+
+                        <?php //echo do_shortcode('[wc_login_form_bbloomer]');?>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<?php endif; ?>
 <?php wp_footer(); ?>
 </body>
+
 </html>

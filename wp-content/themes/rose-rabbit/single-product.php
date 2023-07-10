@@ -105,72 +105,6 @@ get_header(); ?>
                             <p><?php echo get_the_content();?></p>
                         </div>
                         <?php endif; ?>
-                        <!-- <div class="row">
-                     <div class="col-lg-12">
-                        <div id="right-side">
-                           <div class="question-container">
-                              <div class="question">
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
-                                 <img src="https://raw.githubusercontent.com/ViktoriiaZaichuk/faq-accordion-card-main/48bb14e632a5bd5d9190da88b45d21622dd2ed14/img/icon-arrow-down.svg" alt="arrow down" class="arrow">
-                              </div>
-                              <div class="hidden">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis itaque
-                                    fugit harum velit voluptatibus, consequatur modi obcaecati quia aperiam
-                                    cumque?
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="question-container">
-                              <div class="question">
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
-                                 <img src="https://raw.githubusercontent.com/ViktoriiaZaichuk/faq-accordion-card-main/48bb14e632a5bd5d9190da88b45d21622dd2ed14/img/icon-arrow-down.svg" alt="arrow down" class="arrow">
-                              </div>
-                              <div class="hidden">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis itaque
-                                    fugit harum velit voluptatibus, consequatur modi obcaecati quia aperiam
-                                    cumque?
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="question-container">
-                              <div class="question">
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
-                                 <img src="https://raw.githubusercontent.com/ViktoriiaZaichuk/faq-accordion-card-main/48bb14e632a5bd5d9190da88b45d21622dd2ed14/img/icon-arrow-down.svg" alt="arrow down" class="arrow">
-                              </div>
-                              <div class="hidden">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis itaque
-                                    fugit harum velit voluptatibus, consequatur modi obcaecati quia aperiam
-                                    cumque?
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="question-container">
-                              <div class="question">
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
-                                 <img src="https://raw.githubusercontent.com/ViktoriiaZaichuk/faq-accordion-card-main/48bb14e632a5bd5d9190da88b45d21622dd2ed14/img/icon-arrow-down.svg" alt="arrow down" class="arrow">
-                              </div>
-                              <div class="hidden">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis itaque
-                                    fugit harum velit voluptatibus, consequatur modi obcaecati quia aperiam
-                                    cumque?
-                                 </p>
-                              </div>
-                           </div>
-                           <div class="question-container">
-                              <div class="question">
-                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. ?</p>
-                                 <img src="https://raw.githubusercontent.com/ViktoriiaZaichuk/faq-accordion-card-main/48bb14e632a5bd5d9190da88b45d21622dd2ed14/img/icon-arrow-down.svg" alt="arrow down" class="arrow">
-                              </div>
-                              <div class="hidden">
-                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis itaque
-                                    fugit harum velit voluptatibus, consequatur modi obcaecati quia aperiam
-                                    cumque?
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div> -->
                     </div>
                 </div>
             </div>
@@ -239,38 +173,6 @@ get_header(); ?>
         <div class="container">
             <div class="row gx-xl-0 pt_120 pt_1201 ">
                 <div class="tf__service_review_input mt_50 xs_mb_25 form-width">
-                    <!-- <div class="hedingflex">
-                        <h3>Review</h3>
-                        <div class="comment-form-rating">
-                            <label for="rating">Your Rating&nbsp;<span class="required">*</span>
-                            </label>
-                            <p class="stars">
-                                <span>
-                                    <a class="star-1" href="#">1</a>
-                                    <a class="star-2" href="#">2</a>
-                                    <a class="star-3" href="#">3</a>
-                                    <a class="star-4" href="#">4</a>
-                                    <a class="star-5" href="#">5</a>
-                                </span>
-                            </p>
-                        </div>
-                    </div> -->
-                    
-                    <!-- <form action="#" class="ajax-contact form-style6">
-                        <div class="form-group">
-                            <input type="text" class="formwidth" name="name" id="name" placeholder="Your Name*">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="formwidth" name="email" id="email" placeholder="Your Email*">
-                        </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" class="formwidth" id="message" placeholder="Message*"></textarea>
-                        </div>
-                        <button class="vs-btn" type="submit">Send Message</button>
-                        <p class="form-messages"></p>
-                    </form> -->
                     <?php wc_get_template_part('single', 'product-reviews'); ?>
                </div>
             </div>

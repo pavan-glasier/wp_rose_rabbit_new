@@ -228,10 +228,22 @@
                                 <!--Start header cart / profile-->
                                 <div class="col-auto">
                                     <div class="header-icons">
-                                        <button id="myBtn" class="bar-btn d-xl-inline-block">
-                                            <!-- <i class="far fa-user" aria-hidden="true"></i> -->
-                                            <img src="<?php echo get_option( 'user_icon_upload', site_url('/wp-content/uploads/2023/05/User_alt_light.svg') );?>" alt="profile" width="30">
-                                        </button>
+                                        <?php 
+                                        if ( is_user_logged_in() ) { ?>
+                                            <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="bar-btn d-xl-inline-block">
+                                                <img src="<?php echo get_option( 'user_icon_upload', site_url('/wp-content/uploads/2023/05/User_alt_light.svg') );?>" alt="profile" width="30">
+                                            </a>
+                                        <?php } else { ?>
+                                            <?php if( is_cart() ){ ?>
+                                            <button class="bar-btn d-xl-inline-block" onClick="(function(){jQuery('#phone-number-input').focus();return false;})();return false;">
+                                                <img src="<?php echo get_option( 'user_icon_upload', site_url('/wp-content/uploads/2023/05/User_alt_light.svg') );?>" alt="profile" width="30">
+                                            </button>
+                                            <?php } else{ ?>
+                                            <button id="myBtn" class="bar-btn d-xl-inline-block">
+                                                <img src="<?php echo get_option( 'user_icon_upload', site_url('/wp-content/uploads/2023/05/User_alt_light.svg') );?>" alt="profile" width="30">
+                                            </button>
+                                            <?php } ?>
+                                        <?php } ?>
                                         <?php echo do_shortcode('[woo_cart_count]'); ?>
                                         <button class="vs-menu-toggle d-inline-block d-lg-none" type="button">
                                             <i class="fal fa-bars"></i>

@@ -232,13 +232,11 @@ jQuery( document ).ready(function() {
             }
         }
 
-        jQuery('.quantity-plus').on('click', function(e){
-            console.log('e :>> ', e);
+        jQuery('.quantity-plus').on('click, touchstart', function(e){
             incrementValue(e);
         })
 
-        jQuery('.quantity-minus').on('click', function(e){
-            console.log('e :>> ', e);
+        jQuery('.quantity-minus').on('click, touchstart', function(e){
             decrementValue(e);
         });
     }

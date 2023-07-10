@@ -421,14 +421,11 @@ function createOneCCAddressSyncCron()
             Constants::STATUS => Constants::PROCESSING,
             Constants::UPDATED_AT => time(),
             Constants::CREATED_AT => time(),
-            Constants::MESSAGE => '',
             Constants::CRON_STATUS => 'created'];
-        rzpLogInfo("createOneCCAddressSyncCron:426 - Adding option: ONE_CC_ADDRESS_SYNC_CRON_HOOK");
         add_option(
             Constants::ONE_CC_ADDRESS_SYNC_CRON_HOOK,
             $data,
         );
-        rzpLogInfo("createOneCCAddressSyncCron:432 - Successfully Added option: ONE_CC_ADDRESS_SYNC_CRON_HOOK");
     }
 }
 
@@ -494,14 +491,6 @@ function updateAddressSyncCronData(string $status, string $message = '', $data =
     {
         $data = get_option(Constants::ONE_CC_ADDRESS_SYNC_CRON_HOOK);
     }
-    if ($data === false) {
-        $data = [
-            Constants::STATUS => Constants::PROCESSING,
-            Constants::UPDATED_AT => time(),
-            Constants::MESSAGE => '',
-            Constants::CREATED_AT => time(),
-            Constants::CRON_STATUS => 'created'];
-    }
     if ($status === $data[Constants::STATUS] && $message === $data[Constants::MESSAGE] && $cronStatus === $data[Constants::CRON_STATUS])
     {
         return;
@@ -516,9 +505,8 @@ function updateAddressSyncCronData(string $status, string $message = '', $data =
     }
     $data[Constants::MESSAGE] = $message;
     $data[Constants::UPDATED_AT] = time();
-    rzpLogInfo("updateAddressSyncCronData:530 - Updating option: ONE_CC_ADDRESS_SYNC_CRON_HOOK");
     update_option(Constants::ONE_CC_ADDRESS_SYNC_CRON_HOOK, $data);
-    rzpLogInfo("updateAddressSyncCronData:532 -  Successfully Updated Option: ONE_CC_ADDRESS_SYNC_CRON_HOOK");
+    rzpLogInfo("updateAddressSyncCronData: successfully updated");
 }
 
 function one_cc_address_sync_cron_exec()

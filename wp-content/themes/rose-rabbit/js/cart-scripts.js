@@ -427,7 +427,7 @@ let result = "";
 const submitButton = document.getElementById("otp-verify");
 let in1 = document.getElementById('otp-1'),
     ins = document.querySelectorAll('input[type="number"]'),
-	 splitNumber = function(e) {
+	splitNumber = function(e) {
          let data = e.data || e.target.value; // Chrome doesn't get the e.data, it's always empty, fallback to value then.
 		if ( ! data ) return; // Shouldn't happen, just in case.
 		if ( data.length === 1 ) return; // Here is a normal behavior, not a paste action.
@@ -446,51 +446,54 @@ let in1 = document.getElementById('otp-1'),
 		}
 	};
 
-ins.forEach(function(input) {
-	input.addEventListener('keyup', function(e){
-		if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-			return;
-		}
-		
-		if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
-			this.previousElementSibling.select();
-            result --;
-		} else if (e.keyCode !== 8 && this.nextElementSibling) {
-			this.nextElementSibling.select();
-            if(result < 5 ){
-                result ++;
+if( ins ){
+    ins.forEach(function(input) {
+        input.addEventListener('keyup', function(e){
+            if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
+                return;
             }
-		}
-        else{
-            if(result == 5 ){
-                result ++;
+            
+            if ( (e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT" ) {
+                this.previousElementSibling.select();
+                result --;
+            } else if (e.keyCode !== 8 && this.nextElementSibling) {
+                this.nextElementSibling.select();
+                if(result < 5 ){
+                    result ++;
+                }
             }
-        }
-		if ( e.target.value.length > 1 ) {
-			splitNumber(e);
-		}
+            else{
+                if(result == 5 ){
+                    result ++;
+                }
+            }
+            if ( e.target.value.length > 1 ) {
+                splitNumber(e);
+            }
+            
+            if(result > 5 ){
+                submitButton.classList.remove("d-none");
+                submitButton.classList.add("d-inline-block");
+            }
+            else{
+                submitButton.classList.add("d-none");
+                submitButton.classList.remove("d-inline-block");
+            }
+        });
         
-        if(result > 5 ){
-            submitButton.classList.remove("d-none");
-            submitButton.classList.add("d-inline-block");
-        }
-        else{
-            submitButton.classList.add("d-none");
-            submitButton.classList.remove("d-inline-block");
-        }
-	});
-    
-	input.addEventListener('focus', function(e) {
-		if ( this === in1 ) return;
-		
-		if ( in1.value == '' ) {
-			in1.focus();
-		}
-		
-		if ( this.previousElementSibling.value == '' ) {
-			this.previousElementSibling.focus();
-		}
-	});
-});
-
-in1.addEventListener('input', splitNumber);
+        input.addEventListener('focus', function(e) {
+            if ( this === in1 ) return;
+            
+            if ( in1.value == '' ) {
+                in1.focus();
+            }
+            
+            if ( this.previousElementSibling.value == '' ) {
+                this.previousElementSibling.focus();
+            }
+        });
+    });
+}
+if(in1){
+    in1.addEventListener('input', splitNumber);
+}

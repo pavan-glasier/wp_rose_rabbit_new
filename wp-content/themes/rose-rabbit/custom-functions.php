@@ -571,26 +571,6 @@ add_shortcode('login_form_wc', 'login_form_woocommerce');
 
 
 
-add_shortcode('wc_login_form_bbloomer', 'bbloomer_separate_login_form');
-
-function bbloomer_separate_login_form()
-{
-	if (is_user_logged_in())
-		return '<p>You are already logged in</p>';
-	ob_start();
-	do_action('woocommerce_before_customer_login_form');
-	woocommerce_login_form(array('redirect' => wc_get_page_permalink('myaccount')));
-	return ob_get_clean();
-}
-// add_shortcode( 'wc_login_form', 'wcblogs_sep_login_form' );
-// function wcblogs_sep_login_form() {
-//    if ( is_admin() ) return;
-//    if ( is_user_logged_in() ) return; 
-//    ob_start();
-//    woocommerce_login_form( array( 'redirect' => 'your-url' ) );
-//    return ob_get_clean();
-// }
-
 
 // remove item form cart
 add_action('wp_footer', 'remove_cart_item_form_cart_script', 100);
@@ -610,7 +590,6 @@ jQuery(document).on('click', '.remove-product', function(e) {
             cursor: 'none'
         }
     });
-    console.log('cart_item_key :>> ', cart_item_key);
     jQuery.ajax({
         type: 'POST',
         dataType: 'json',
@@ -649,7 +628,10 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 window.onload = function() {
-    render();
+	let recaptchaContainer = document.getElementById('recaptcha-container');
+	if(recaptchaContainer){
+		render();
+	}
 };
 
 function render() {
@@ -689,17 +671,39 @@ function codeverify() {
 	})
     coderesult.confirm(codes).then(function(result) {
         let user = result.user;
-		jQuery("#billing_phone").val(user.phoneNumber);
+		let phoneNumber = user.phoneNumber;
+		jQuery("#billing_phone").val(phoneNumber);
 		jQuery("#billing_phone").prop('readonly', true);
-		jQuery("#billing_phone").prop('disabled', true);
 		jQuery("#successRegsiter").html("Verified!");
         jQuery("#successRegsiter").show();
-		setTimeout(() => {
-			jQuery("#successRegsiter").html("");
-			jQuery("#successRegsiter").hide();
-			jQuery("#otp-verify").next().click();
-			jQuery("#otp-verify").html('Next');
-		}, 1000);
+		
+		jQuery.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+			data: {
+				action: "login_user_by_phone_number",
+				phone_number: phoneNumber,
+			},
+			success: function(response) {
+				if(response.status){
+					let users = response.user;
+					jQuery.each(users, function(key, value) {
+						jQuery("#"+key).val(value[0]);
+					});
+				}
+				setTimeout(() => {
+					jQuery("#successRegsiter").html("");
+					jQuery("#successRegsiter").hide();
+					jQuery("#otp-verify").next().click();
+					jQuery("#otp-verify").html('Next');
+				}, 1000);
+			},
+			error:function(error){
+				console.log('error :>> ', error);
+			}
+		});
+
     }).catch(function(error) {
         jQuery("#error").text(error.message);
         jQuery("#error").show();
@@ -833,32 +837,6 @@ function woocommerce_cart_items()
 }
 
 
- /*
-// chechout form
-function add_custom_checkout_field($fields) {
-	$new_field = array(
-        'custom_field' => array(
-            'label'       => __('Custom Field', 'your-domain'),
-            'placeholder' => __('Enter custom field', 'your-domain'),
-            'required'    => true,
-            'class'       => array('form-row-wide'),
-            'clear'       => true,
-        ),
-    ); 
-	?>
-<div class="custom-field">
-    <label for="custom_field"><?php _e('Custom Field', 'your-domain'); ?> <span class="required">*</span></label>
-    <input type="text" class="input-text" name="custom_field" id="custom_field"
-        placeholder="<?php _e('Enter custom field', 'your-domain'); ?>" required>
-</div>
-
-<?php $fields['billing']['billing_last_name']['after'] = $new_field;
-	// print_r($fields);
-    return $fields;
-}
-add_filter('woocommerce_checkout_fields', 'add_custom_checkout_field');
-*/ 
-
 function enqueue_cart_scripts() {
     // if (is_cart()) {
 		wp_enqueue_script('cart-scripts', get_template_directory_uri() . '/js/cart-scripts.js', array('jquery'), '1.0', true);
@@ -871,50 +849,6 @@ function enqueue_cart_scripts() {
     // }
 }
 add_action('wp_enqueue_scripts', 'enqueue_cart_scripts');
-
-
-
-// billing address store
-// function submit_customer_billing_details() {
-//     // Check if the form is submitted
-//     if (isset($_POST['submit_billing_details'])) {
-//         // Perform validation for each billing field
-//         $errors = array();
-
-//         // Example: Validate billing first name
-//         $billing_first_name = sanitize_text_field($_POST['billing_first_name']);
-//         if (empty($billing_first_name)) {
-//             $errors['billing_first_name'] = 'Billing first name is required.';
-//         }
-//         // Repeat the above step for other billing fields
-
-//         // If there are validation errors, return the error messages
-//         if (!empty($errors)) {
-//             $response = array(
-//                 'status' => 'error',
-//                 'message' => 'Validation errors.',
-//                 'errors' => $errors
-//             );
-//             wp_send_json($response);
-//         }
-
-//         // Get the current user ID
-//         $user_id = get_current_user_id();
-
-//         // Store the billing details in the database
-//         update_user_meta($user_id, 'billing_first_name', $billing_first_name);
-//         // Repeat the above step for other billing fields
-
-//         // Return a success response
-//         $response = array(
-//             'status' => 'success',
-//             'message' => 'Customer billing details submitted and stored successfully.'
-//         );
-//         wp_send_json($response);
-//     }
-// }
-// add_action('wp_ajax_submit_customer_billing_details', 'submit_customer_billing_details');
-// add_action('wp_ajax_nopriv_submit_customer_billing_details', 'submit_customer_billing_details');
 
 
 function register_user_with_billing_details() {
@@ -986,12 +920,24 @@ function register_user_with_billing_details() {
         $username = sanitize_user(str_replace(' ', '', $billing_first_name . $billing_last_name ));
         // Create a random password
         $password = wp_generate_password();
-		$user = get_user_by( 'email', $billing_email );
+		$user_phone = str_replace("+91", "", $billing_phone);
+		$user = get_user_by( 'login', 'user_'.$user_phone );
 		if($user){
 			$user_id = $user->ID;
+			if( empty( $user->user_email) ){
+				wp_update_user( array( 'ID' => $user_id, 'user_email' => $billing_email ) );
+			}
 		}
 		else{
-			$user_id = wp_create_user($username, $password, $billing_email );
+			// $user_id = wp_create_user($username, $password, $billing_email );
+			$user_id = wp_insert_user([
+				'user_login' => $username, // Use email as the username
+				'user_pass' => $password, // Generate a random password
+				'user_email' => $billing_email,
+				'first_name' => $billing_first_name,
+				'last_name' => $billing_last_name,
+				'role' => 'customer' // Set the user role as a customer
+			]);
 		}
         // Create the new user
         // Set the user's first name and last name
@@ -1001,28 +947,32 @@ function register_user_with_billing_details() {
         update_user_meta($user_id, 'billing_last_name', $billing_last_name);
         update_user_meta($user_id, 'billing_email', $billing_email);
         update_user_meta($user_id, 'billing_phone', $billing_phone);
-        update_user_meta($user_id, 'user_phone', $billing_phone);
+        update_user_meta($user_id, 'user_phone', $user_phone);
         update_user_meta($user_id, 'billing_company', $billing_company);
         update_user_meta($user_id, 'billing_address_1', $billing_address_1);
         update_user_meta($user_id, 'billing_address_2', $billing_address_2);
-        update_user_meta($user_id, 'billing_state', $billing_state);
         update_user_meta($user_id, 'billing_country', $billing_country);
-        update_user_meta($user_id, 'billing_postcode', $billing_postcode);
+        update_user_meta($user_id, 'billing_state', $billing_state);
         update_user_meta($user_id, 'billing_city', $billing_city);
+        update_user_meta($user_id, 'billing_postcode', $billing_postcode);
 
 		// shipping address
         update_user_meta($user_id, 'shipping_first_name', $billing_first_name);
 		update_user_meta($user_id, 'shipping_last_name', $billing_last_name);
 		update_user_meta($user_id, 'shipping_phone', $billing_phone);
-		update_user_meta($user_id, 'shipping_city', $billing_city);
 		update_user_meta($user_id, 'shipping_address_1', $billing_address_1);
         update_user_meta($user_id, 'shipping_address_2', $billing_address_2);
 		update_user_meta($user_id, 'shipping_company', $billing_company);
+		update_user_meta($user_id, 'shipping_country', $billing_country);
+        update_user_meta($user_id, 'shipping_state', $billing_state);
+        update_user_meta($user_id, 'shipping_city', $billing_city);
+        update_user_meta($user_id, 'shipping_postcode', $billing_postcode);
 		
         // Repeat the above step for other billing fields
         // Return a success response
-		wp_new_user_notification($user_id, $password);
-		$arr=array(
+		// wp_new_user_notification($user_id, $password);
+		wp_new_user_notification($user_id, $password, 'user');
+		$arr = array(
 			"status" => true,
 			"message" => 'User billing details stored successfully.',
 			"user" => $user
@@ -1034,29 +984,20 @@ function register_user_with_billing_details() {
 add_action('wp_ajax_register_user_with_billing_details', 'register_user_with_billing_details');
 add_action('wp_ajax_nopriv_register_user_with_billing_details', 'register_user_with_billing_details');
 
+// function auto_login_after_order($order_id) {
+//     $order = wc_get_order($order_id);
+//     $user_id = $order->get_customer_id();
 
-
-
-
-// Display phone number field in user profile
-function custom_user_profile_fields($user) {
-    ?>
-    <h3><?php esc_html_e('Phone Number', 'rose_and_rabbit'); ?></h3>
-    <table class="form-table">
-        <tr>
-            <th><label for="user_phone"><?php esc_html_e('Phone Number', 'rose_and_rabbit'); ?></label></th>
-            <td>
-                <input type="text" name="user_phone" id="user_phone" value="<?php echo esc_attr(get_the_author_meta('user_phone', $user->ID)); ?>" class="regular-text" />
-            </td>
-        </tr>
-    </table>
-    <?php
-}
-add_action('show_user_profile', 'custom_user_profile_fields');
-add_action('edit_user_profile', 'custom_user_profile_fields');
+//     if ($user_id > 0) {
+//         wp_set_auth_cookie($user_id);
+//         wp_set_current_user($user_id);
+//         do_action('wp_login', $order->get_billing_email());
+//     }
+// }
+// add_action('woocommerce_thankyou', 'auto_login_after_order', 10, 1);
 
 function add_phone_user_table( $column ) {
-    $column['phone'] = 'Phone';
+    $column['phone'] = 'Phone Number';
     return $column;
 }
 add_filter( 'manage_users_columns', 'add_phone_user_table' );
@@ -1064,9 +1005,97 @@ add_filter( 'manage_users_columns', 'add_phone_user_table' );
 function add_phone_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
         case 'phone' :
-            return get_the_author_meta( 'user_phone', $user_id );
+            return get_the_author_meta( 'user_phone', $user_id )?'+91 '.get_the_author_meta( 'user_phone', $user_id ):'';
         default:
     }
     return $val;
 }
 add_filter( 'manage_users_custom_column', 'add_phone_user_table_row', 10, 3 );
+
+
+
+// login user by phone number
+
+add_action('wp_footer', 'login_by_phone_number_script', 100);
+function login_by_phone_number_script(){ ?>
+<script>
+	function loginCodeverify() {
+		const input = document.querySelectorAll(".input");
+		jQuery("#otp-verify").html('Verifying...');
+		let codes = "";
+		input.forEach((element) => {
+			codes += element.value;
+		})
+		coderesult.confirm(codes).then(function(result) {
+			let user = result.user;
+			let phoneNumber = user.phoneNumber;
+			jQuery.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+				data: {
+					action: "login_user_by_phone_number",
+					phone_number: phoneNumber,
+				},
+				success: function(response) {
+					if( response.status ){
+						jQuery("#successRegsiter").html("Verified!");
+						jQuery("#successRegsiter").show();
+						window.location.href = "<?php echo wc_get_page_permalink('myaccount');?>";
+						setTimeout(() => {
+							jQuery("#successRegsiter").html("");
+							jQuery("#successRegsiter").hide();
+							jQuery("#otp-verify").html('Submit');
+						}, 1000);
+					}
+				},
+				error:function(error){
+					console.log('error :>> ', error);
+				}
+			});
+		}).catch(function(error) {
+			console.log('error :>> ', error);
+			jQuery("#error").text(error.message);
+			jQuery("#error").show();
+			jQuery("#otp-verify").html('Submit');
+		});
+	}
+</script>
+<?php }
+function login_user_by_phone_number() {
+    global $wpdb;
+	$phone_number = str_replace("+91", "", $_POST['phone_number']);
+    $user_meta_table = $wpdb->prefix . 'usermeta';
+    $user_id = $wpdb->get_var(
+        $wpdb->prepare(
+            "SELECT user_id
+            FROM $user_meta_table
+            WHERE meta_key = 'user_phone' AND meta_value = %s",
+            $phone_number
+        )
+    );
+    if ($user_id) {
+        $user = get_userdata($user_id);
+		wp_set_auth_cookie($user_id);
+		wp_set_current_user($user_id);
+        echo json_encode( array( 'status' => true, 'user' => get_user_meta($user_id) ) );
+		exit();
+    } else{
+		$password = wp_generate_password();
+		$user_id = wp_insert_user([
+			'user_login' => 'user_'.$phone_number, // Use email as the username
+			'user_pass' => $password, // Generate a random password
+			'role' => 'customer' // Set the user role as a customer
+		]);
+		update_user_meta($user_id, 'user_phone', $phone_number);
+		$user = get_userdata($user_id);
+		wp_set_auth_cookie($user_id);
+		wp_set_current_user($user_id);
+        echo json_encode( array( 'status' => true, 'user' => $user ) );
+		exit();
+	}
+    // echo json_encode( array( 'status' => false, 'user' => $user ) );
+	// exit();
+}
+add_action('wp_ajax_login_user_by_phone_number', 'login_user_by_phone_number');
+add_action('wp_ajax_nopriv_login_user_by_phone_number', 'login_user_by_phone_number');

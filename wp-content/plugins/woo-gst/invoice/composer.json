@@ -1,0 +1,7 @@
+{
+    "require": {
+        "dompdf/dompdf": "^0.8.2",
+        "phenx/php-font-lib": "^0.5.1",
+        "phenx/php-svg-lib": "^0.3.2"
+    }
+}

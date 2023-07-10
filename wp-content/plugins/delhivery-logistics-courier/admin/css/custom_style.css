@@ -1,0 +1,1694 @@
+body {
+ font-family: 'Open Sans', sans-serif;
+ height: 100vh;
+ width: 100%;
+}
+
+.main-shopify-wrapper .container-fluid {
+ padding: 0 40px;
+}
+.shopify-nav-wrapper {
+ position: sticky;
+ border: 1px solid #d8d8d8;
+ top: 0;
+ background: #fff;
+ z-index: 1;
+}
+/*+++++++++++++++ shopify info msg +++++++++++++++*/
+.shopify-info-msg {
+display: inline-flex;
+justify-content: space-around;
+background:#2a85b2;
+align-items: center;
+color: #fff;
+margin: 0;
+padding: 8px 8px;
+clear: both;
+font-size: 12px;
+border-radius: 2.8px;
+font-weight: 600;
+}
+.shopify-info-msg img {
+height: 16px;
+display: inline-block;
+width: 16px;
+margin-right: 6px;
+}
+.shopify-info-msg p {
+display: inline-block;
+margin-bottom: 0;
+}
+/*********************** start next or previous button css *************************/
+.footer-wrapper-order {
+ width: 100%;
+ display: flex;
+ justify-content: flex-end;
+ margin: 24px 16px 20px;
+}
+.btn-active {
+ background: #16729d !important;
+ color: #ffff !important;
+ border: 1px solid #16729d !important;
+}
+.footer-wrapper-order a{
+ border-radius: 3px;
+ border: solid 1px #c9c9c9;
+ background-color: #ffffff;
+ font-size: 13px;
+ font-weight: 600;
+ line-height: 1.23;
+ text-align: center;
+ color: #16729d;
+ padding: 14px 40px;
+ text-transform: uppercase;
+ text-decoration: none !important;
+}
+.btn-disabled {
+ border: 1px solid #d1d4d5;
+ opacity: 0.5;
+ cursor: no-drop;
+ background: #d1d4d5 !important;
+ color: #16729d;
+}
+.mr-15{
+ margin-right: 15px;
+}
+/*********************** end next or previous button css *************************/
+
+/********************************************* common-buttons and heading css **********************************/
+
+.waybill-btn {
+ border-radius: 3px;
+ border: solid 1px #c9c9c9;
+ background-color: #ffffff;
+ font-size: 13px;
+ font-weight: 600;
+ line-height: 1.23;
+ text-align: center;
+ color: #16729d;
+ padding: 10px 18px;
+ margin: 0;
+ text-transform: uppercase;
+}
+
+.waybill-btn:hover {
+ color: #16729d;
+ text-decoration: none;
+ background: #F5F6F6;
+}
+
+.waybill-btn:focus {
+ color: #16729d;
+ box-shadow: none;
+ border: solid 1px #d1d4d5;
+ background-color: #ecf0f1;
+}
+
+.waybill-btn:active {
+ color: #16729d;
+ box-shadow: none;
+ border: solid 1px #d1d4d5;
+ background-color: #ecf0f1;
+}
+
+.btn-submit,
+.btn-reset {
+ border-radius: 3px;
+ padding: 16px 42px;
+ font-size: 14px;
+ font-weight: 600;
+ line-height: 1.11;
+ text-align: center;
+ border: none;
+ margin-left: 15px;
+ text-transform: uppercase;
+}
+
+.btn-submit {
+ color: #ffffff;
+ background-color: #ef4136;
+ text-transform: uppercase;
+}
+
+.btn-submit:hover {
+ box-shadow: 0 0 4px 0 #ffa9a3;
+ background-color: #fa4a3f;
+}
+
+.btn-submit:not(:disabled):not(.disabled):active {
+ box-shadow: 0 1px 4px 0 #de9893;
+ background-color: #e43227;
+ border: none;
+}
+
+.btn-submit:not(:disabled):not(.disabled):active:focus {
+ box-shadow: none;
+}
+
+.btn-submit:focus {
+ box-shadow: none;
+}
+
+.btn-reset {
+ color: #16729d;
+}
+
+/* .cancel-button {
+
+ margin-top: 24px;
+ margin-bottom: 20px;
+} */
+
+.button-right {
+ margin-top: 16px;
+ margin-bottom: 20px;
+}
+
+.btn-reset:hover {
+ color: #16729d;
+ box-shadow: none;
+ text-decoration: none;
+ background: #F5F6F6;
+}
+
+.btn-reset:focus {
+ text-decoration: none;
+}
+
+.btn-reset:active {
+ color: #16729d;
+ box-shadow: none;
+ text-decoration: none;
+ background: #F5F6F6;
+}
+
+.comman-heading {
+ font-size: 20px;
+ font-weight: 600;
+ color: #262727;
+ margin: 0;
+}
+
+.table-top-section>* {
+ display: inline-block;
+ vertical-align: middle;
+}
+
+.table-top-section {
+ margin: 20px 0px 20px;
+ line-height: 2.2;
+}
+
+.loadmore-wrapper {
+ display: none;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+ color: #FFD4D5;
+ background-color: #FF9295;
+ border-color: #FF9295;
+ cursor: no-drop;
+}
+
+
+/********************************* End common-buttons and heading css *******************************************/
+.wallet-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.tooltip-data {
+    text-decoration: underline;
+    color: #87888b;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+img.wallet-img {
+    width: auto !important;
+    margin-right: 5px;
+}
+a:focus{
+box-shadow: none !important;}
+
+/********************************** Start Common-icon css *******************************************************/
+
+.gray-icon {
+ font-size: 18px;
+ color: #A9A9A9;
+}
+
+.gray-icon:hover {
+ color: #262727;
+}
+
+.refresh-icon {
+ color: #2e80a7;
+ margin: 10px;
+}
+
+
+/**********************************End Common-icon css *********************************************************/
+
+
+/********************************* Start detail css ************************************************************/
+
+.main-wrapper h1 {
+ font-size: 30px;
+ color: #262727;
+ font-weight: bold;
+ margin: 0;
+ line-height: normal;
+}
+
+.app-section {
+ margin-top: 20px;
+}
+
+.main-wrapper h2 {
+ font-size: 25px;
+ color: #262727;
+ font-weight: normal;
+ margin: 0;
+ line-height: normal;
+}
+
+.app-gst-detail {
+ padding: 20px 0px 0;
+}
+
+.gst-wrapper h2 {
+ font-size: 18px;
+ font-weight: 600;
+ color: #262727;
+ line-height: 35px;
+}
+
+.serial-number {
+ height: 35px;
+ width: 35px;
+ border: 1px solid #dadada;
+ text-align: center;
+ border-radius: 30px;
+ font-weight: 600;
+ color: #e74141;
+ font-size: 14px;
+ line-height: 33px;
+ float: left;
+}
+
+.detail {
+ border-radius: 4px;
+ border: dotted 2px #d6d6d6;
+ background-color: #f7f7f7;
+ padding: 17px 16px;
+ margin: 6px 0 12px;
+}
+
+.d-h1 {
+ font-size: 12px;
+ font-weight: bold;
+ color: #000000;
+ text-transform: uppercase;
+}
+
+.d-h2 {
+ font-size: 14px;
+ font-weight: normal;
+ color: #262727;
+}
+
+.d-span {
+ font-weight: 600;
+}
+
+.d-span1 {
+ font-size: 14px;
+ font-weight: 600;
+ letter-spacing: normal;
+ color: #ff3131;
+}
+
+.d-span1:hover {
+ color: #ff3131;
+ text-decoration: underline;
+}
+
+.gst-wrapper {
+ margin-left: 60px;
+}
+
+.logo {
+ background: #fff;
+ position: relative;
+ padding: 20px 0px 20px;
+}
+
+.logo-img {
+ text-align: right;
+}
+
+.logo img {
+ width: 125px;
+}
+
+
+/************************************End detail css ***********************************************************/
+
+
+/************************************ common Form fields css ***************************************************/
+
+.form-group {
+ margin-bottom: 24px;
+}
+
+.form-control:focus {
+ background-color: #fff;
+ outline: 0;
+ box-shadow: none;
+}
+
+.form-wrapper label {
+ font-size: 16px;
+ color: rgba(0, 0, 0, 0.6);
+ margin-bottom: 10px;
+ font-weight: normal;
+}
+
+.form-wrapper .form-control {
+ border-radius: 3.8px;
+ color: #000000;
+ height: 50px !important;
+ border: 1px solid #bababa;
+ font-size: 18px;
+ z-index: 0;
+}
+
+span.span-color {
+ color: #d0021b;
+ margin-left: 4px;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+ margin: 0;
+}
+
+input[type=number] {
+ -moz-appearance: textfield;
+}
+
+
+/************************************ End common Form fields css ***********************************************/
+
+
+/************************************* Start FAQ-CSS ***********************************************************/
+
+a.collapsed .glyphicon.glyphicon-up {
+ display: none;
+}
+
+a .glyphicon.glyphicon-up {
+ display: inline-block;
+ color: #3a3a3a;
+ float: right;
+}
+
+a.collapsed .glyphicon.glyphicon-down {
+ display: inline-block;
+ color: #3a3a3a;
+ float: right;
+}
+
+a .glyphicon.glyphicon-down {
+ display: none;
+}
+
+.glyphicon.glyphicon-down {
+ margin: 4px 16px;
+}
+
+.glyphicon.glyphicon-up {
+ margin: 4px 16px;
+}
+
+a.faq-accordion {
+ text-decoration: none;
+ font-size: 16px;
+ display: block;
+ border: none;
+ width: 100%;
+ text-align: left;
+ cursor: pointer;
+ outline: none;
+ font-weight: 600;
+ color: #262727;
+}
+
+.faq-wrapper .card-header {
+ /* height: 54px; */
+ border-radius: 2px;
+ /* border-bottom: none; */
+ background-color: #ffffff;
+ padding: 16px;
+ margin-bottom: 0;
+ border: solid 1px #d7d9da;
+}
+
+.faq-wrapper .card {
+ border-radius: 2px;
+ border: none;
+ background-color: #ffffff;
+}
+
+.faq-wrapper .card-header:first-child {
+ border-radius: none;
+}
+
+.faq-wrapper .card-body {
+ font-size: 14px;
+ color: #262727;
+ border: 1px solid rgba(0, 0, 0, .125);
+ border-top: 0px;
+}
+
+.faq-wrapper .card {
+ margin-top: 12px;
+}
+
+.faq-wrapper .card-body {
+ padding: 16px;
+}
+
+.faq-wrapper .show {
+ box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.07);
+}
+
+
+/***********************************************End FAQ-CSS ****************************************************/
+
+
+/************************************************ Start selected drop down-css **********************************/
+
+.custom-select {
+ display: inline-block;
+ height: 50px !important;
+ width: 100%;
+ padding: 10px 0px;
+ color: #61676e;
+ background: none;
+ vertical-align: middle;
+ border-radius: 3.8px;
+ border: 1px solid #bababa;
+ -webkit-appearance: none;
+ font-size: 17.5px;
+}
+
+.custom-select select {
+ display: none;
+}
+
+.select-selected:after {
+ position: absolute;
+ content: "";
+ top: 24px;
+ right: 10px;
+ width: 0;
+ height: 0;
+ border: 6px solid transparent;
+ border-color: black transparent transparent transparent;
+ margin-right: 7px;
+}
+
+.select-selected.select-arrow-active:after {
+ border-color: transparent transparent black transparent;
+ top: 16px;
+ margin-right: 7px;
+}
+
+.select-items div,
+.select-selected {
+ cursor: pointer;
+ font-size: 17.5px;
+ color: #000000;
+ user-select: none;
+ padding: 0px 16px;
+}
+
+.select-items {
+ position: absolute;
+ top: 49px;
+ left: 0;
+ right: 0;
+ z-index: 1;
+ border-radius: 2px;
+ box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+ background-color: #f7f7f7;
+ border: 1px solid #bababa;
+ /* border-top: none; */
+ border-top-left-radius: 0;
+ border-top-right-radius: 0;
+}
+
+.select-hide {
+ display: none;
+}
+
+.select-items div:hover {
+ background-color: #edefef;
+}
+
+.select-items div {
+ font-size: 14px;
+ /* font-weight: normal; */
+ color: #262727;
+ cursor: pointer;
+ user-select: none;
+ padding: 6px 16px;
+ height: 32px;
+ line-height: 1.43;
+ /* border: 1px solid #bababa; */
+ border-top: none;
+}
+
+.same-as-selected {
+ font-weight: 600;
+}
+
+.custom-select {
+ position: relative;
+}
+
+select[data-selected='val']+.select-selected {
+ color: #000000;
+}
+
+
+/*************************************************** End selected drop down-css *************************************/
+
+
+/*************************************************** Start common table css *****************************************/
+
+.data-card .table thead th {
+ white-space: nowrap;
+ font-size: 14px;
+ color: #262727;
+ font-weight: 600;
+}
+
+tbody {
+ border-bottom: 1px solid #dee2e6;
+}
+
+.data-card tbody tr {
+ font-size: 14px;
+ color: #262727;
+ font-weight: normal;
+}
+
+span.no-of-items {
+ opacity: 0.5;
+ font-size: 16px;
+ color: #262727;
+}
+
+.table-borderless tbody+tbody,
+.table-borderless td,
+.table-borderless th,
+.table-borderless thead th {
+ border: 0;
+}
+
+
+/****************************************** End common table css ***********************************************/
+
+
+/*************************************** Badge css ************************************************/
+
+span.badge.badge-outline-success {
+ border-radius: 2px;
+ border: solid 1px #02a275;
+ text-transform: uppercase;
+ background: #fff;
+ font-size: 10px;
+ font-weight: 600;
+ line-height: 1.4;
+ color: #02a275;
+}
+
+span.badge.badge-outline-danger {
+ border-radius: 2px;
+ border: solid 1px #d53757;
+ text-transform: uppercase;
+ background: #fff;
+ font-size: 10px;
+ font-weight: 600;
+ line-height: 1.4;
+ letter-spacing: normal;
+ color: #d53757;
+}
+
+
+/*************************************** Badge css ************************************************/
+
+
+/****************************************** Start waybill-no-without-list and no-data css ********************************/
+
+.waybill-without-list-wrapper h2 {
+ opacity: 0.7;
+ font-size: 16px;
+ text-align: center;
+ color: #262727;
+}
+
+.waybill-without-list-wrapper h1.comman-heading {
+ margin: 16px 0 8px;
+}
+
+.waybill-without-list-wrapper img {
+ width: 100px;
+ height: 88px;
+}
+
+.waybill-without-list-wrapper {
+ width: 100%;
+ height: calc(100% - 50px);
+ display: flex;
+ justify-content: center;
+ flex-direction: column;
+ align-items: center;
+}
+
+.waybill-without-list-wrapper .waybill-btn {
+ margin: 40px 0 20px;
+}
+
+
+/******************************************End waybill-no-without-list and no data css *****************************/
+
+
+/******************************************Start Warehouse css *******************************/
+
+.data-card .warehouse-table.table thead th:nth-child(6) {
+ min-width: 280px;
+}
+
+.data-card .warehouse-table.table thead th:nth-child(10) {
+ min-width: 280px;
+}
+
+.data-card .warehouse-table.table thead th:nth-child(11) {
+ min-width: 280px;
+}
+
+.text-grey {
+ color: #87888b;
+ font-size: 14px;
+ margin: 0;
+}
+
+a.text-black {
+ color: #262727;
+}
+
+.warehouse-table p {
+ margin: 0;
+ line-height: 1;
+}
+
+
+/******************************************End warehouse css ***********************************************************/
+
+
+/*****************************************StartPagenation css*******************************************************/
+
+.pagination-wrapper ul.pagination {
+ padding: 10px;
+}
+
+.pagination-wrapper .page-item .page-link {
+ position: relative;
+ display: block;
+ padding: 3px 7px;
+ margin-left: 4px;
+ line-height: 1.25;
+ background-color: #fff;
+ font-size: 12px;
+ color: #7e8282;
+ font-weight: 600;
+ border: solid 1.5px transparent;
+}
+
+.pagination-wrapper .page-item:hover {
+ z-index: 0;
+ color: #313333;
+ ;
+ text-decoration: none;
+ background-color: #fff;
+ border-color: #fff;
+ ;
+ border-radius: 0px;
+ border: 0;
+ background-color: #ffffff;
+ font-weight: 600;
+}
+
+.pagination-wrapper .page-item .page-link:focus {
+ box-shadow: none;
+}
+
+.pagination-wrapper {
+ /* float: right; */
+ margin: 24px 16px 20px;
+}
+
+
+/* .page-link:focus, :active {
+ border: 1px solid #2e80a7;
+ box-shadow: none;
+} */
+
+.pagination-wrapper .page-item .page-link:focus {
+ border-radius: 2px;
+ border: solid 1.5px #2e80a7;
+ color: #313333;
+}
+
+.pagination-wrapper .page-item .page-link.active {
+ border-radius: 2px;
+ border: solid 1.5px #2e80a7;
+ color: #313333;
+}
+
+.color-darkgray {
+ color: rgba(0, 0, 0, 0.6);
+}
+
+.pagination-wrapper .page-item .page-link:focus .color-darkgray {
+ color: #313333;
+}
+
+.comman-btn-div {
+ width: 100%;
+ text-align: right;
+}
+
+.comman-btn-div>div {
+ display: inline-block;
+}
+
+
+/***************************************** End Pagenation css *************************************************/
+
+
+/***************************************** start Loadmore-btn css **********************************************/
+
+.loadmore-btn {
+ border-radius: 3px;
+ border: solid 1px #c9c9c9;
+ background-color: #ffffff;
+ font-size: 13px;
+ font-weight: 600;
+ line-height: 1.23;
+ text-align: center;
+ color: #16729d;
+ padding: 14px 18px;
+ margin: 0;
+ text-transform: uppercase;
+}
+
+.loadmore-btn:hover {
+ color: #16729d;
+ text-decoration: none;
+ background: #F5F6F6;
+}
+
+.loadmore-btn:focus {
+ color: #16729d;
+ box-shadow: none;
+ border: solid 1px #d1d4d5;
+ background-color: #ecf0f1;
+}
+
+.loadmore-btn:active {
+ color: #16729d;
+ box-shadow: none;
+ border: solid 1px #d1d4d5;
+ background-color: #ecf0f1;
+}
+
+
+/***************************************** End Loadmore css *************************************************/
+
+
+/******************************************Start modal and table modal css ************************************/
+
+.shopify-modal .modal-header {
+ padding: 0 16px;
+ border-bottom: 0;
+}
+
+.shopify-modal .modal-header .close {
+ padding: 20px 10px;
+ margin: 0;
+ font-size: 28px;
+ font-weight: 300;
+ color: #262727;
+}
+
+.shopify-modal .data-card .table thead th {
+ white-space: normal;
+ font-size: 14px;
+ max-width: 125px !important;
+ color: #262727;
+ font-weight: 600;
+}
+
+.shopify-modal .modal-body {
+ padding-top: 0;
+}
+
+.shopify-modal .data-card .table thead tr td {
+ white-space: normal;
+ font-size: 14px;
+ color: #262727;
+ font-weight: normal;
+ max-width: 50px !important;
+ text-align: center;
+}
+
+.shopify-modal .modal-header .close:focus {
+ outline: none;
+ box-shadow: none;
+}
+
+
+/******************************************End modal css **************************************************************/
+
+
+/****************************************** Start check-box css ********************************************************/
+
+.checkbox {
+ position: relative;
+ margin-right: 29px;
+ margin-bottom: 12px;
+ cursor: pointer;
+ user-select: none;
+}
+
+.checkbox input {
+ position: absolute;
+ opacity: 0;
+ cursor: pointer;
+ height: 0;
+ width: 0;
+}
+
+.checkmark.all-select-checkbox {
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 16px;
+ width: 16px;
+ border-radius: 1px;
+ border: solid 2px #d0d0d0;
+ background-color: #ffffff;
+}
+
+.checkmark {
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 16px;
+ width: 16px;
+ border-radius: 1px;
+ border: solid 1px #d0d0d0;
+ background-color: #ffffff;
+}
+
+.checkbox:hover input~.checkmark {
+ background-color: #fff;
+}
+
+.checkbox input:checked~.checkmark {
+ border: 1px solid #2e80a7;
+ border-radius: 2px;
+ background-color: #2e80a7;
+}
+
+.checkmark:after {
+ content: "";
+ position: absolute;
+ display: none;
+}
+
+.checkbox input:checked~.checkmark:after {
+ display: block;
+}
+
+.checkbox .checkmark:after {
+ left: 50%;
+ top: 5.4px;
+ width: 6px;
+ height: 10px;
+ transform: translate(-50%, -50%) rotate(45deg) !important;
+ border: solid white;
+ border-width: 0 2px 2px 0;
+}
+
+
+/****************************************** End check-box css ********************************************************/
+
+
+/****************************************** Start My orders css ************************************************************/
+
+.data-card .my-order-table.table thead th:nth-child(3) {
+ min-width: 240px;
+}
+
+.data-card .my-order-table.table thead th:nth-child(11) {
+ min-width: 195px;
+}
+
+.data-card .my-order-table.table thead th:nth-child(12) {
+ min-width: 240px;
+}
+
+.data-card .my-order-table.table thead th:nth-child(8) {
+ min-width: 150px;
+}
+
+.data-card .my-order-table.table thead th:nth-child(9) {
+ min-width: 150px;
+}
+
+a .gray-icon {
+ text-align: justify;
+ width: 32px;
+}
+
+a .gray-icon {
+ text-decoration: none;
+}
+
+.btn-reset.order-btn {
+ font-size: 11px;
+ font-weight: 600;
+ height: 30px;
+ text-transform: uppercase;
+ margin: 0;
+ padding: 0 10px;
+}
+
+
+/******************************************End My orders css ************************************************************/
+/****************************************** start tab css *******************************************************************/
+
+.nav-link-tab {
+ text-decoration: none;
+ padding: 12px 0px 10px;
+ border-radius: 0;
+}
+
+.nav-tab {
+ display: flex;
+ -ms-flex-wrap: wrap;
+ flex-wrap: wrap;
+ padding-left: 0;
+ margin-bottom: 0;
+ list-style: none;
+}
+
+.nav-link-tab {
+ display: block;
+}
+
+.shopify-nav-wrapper {
+ border-bottom: 1px solid #d8d8d8;
+}
+
+.shopify-nav-tabs .nav-tab {
+ justify-content: space-between;
+}
+
+.nav-link-tab.active,
+.show>.nav-link-tab {
+ color: #262727;
+ font-size: 14px;
+ font-weight: 600;
+ display: inline-block;
+ border-bottom: 2px solid #ef4136;
+ background-color: #fff;
+ border-radius: 0;
+ padding: 12px 0px 10px;
+}
+
+ .nav-link-tab:focus,
+.nav-link-tab:hover {
+ text-decoration: none;
+ color: #262727;
+}
+
+.main-shopify-wrapper {
+ margin-bottom: 20px;
+}
+
+.shopify-nav-tabs-responsive {
+ display: none;
+}
+/************************************************** start Loader css *************************************************/
+
+.loader {
+ width: 40px;
+ height: 40px;
+ border-radius: 100%;
+ position: relative;
+ margin: 0 auto;
+}
+
+#loader-1:before,
+#loader-1:after {
+ content: "";
+ position: absolute;
+ top: -10px;
+ left: -10px;
+ width: 100%;
+ height: 100%;
+ border-radius: 100%;
+ border: 8px solid transparent;
+ border-top-color: #ef4136;
+}
+
+#loader-1:before {
+ z-index: 100;
+ animation: spin 1s infinite;
+}
+
+#loader-1:after {
+ border: 8px solid #FFD4D5;
+}
+
+@keyframes spin {
+ 0% {
+ -webkit-transform: rotate(0deg);
+ -ms-transform: rotate(0deg);
+ -o-transform: rotate(0deg);
+ transform: rotate(0deg);
+ }
+ 100% {
+ -webkit-transform: rotate(360deg);
+ -ms-transform: rotate(360deg);
+ -o-transform: rotate(360deg);
+ transform: rotate(360deg);
+ }
+}
+
+.shopify-loader {
+ position: fixed;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ z-index: 1;
+}
+
+
+/**************************************** end Loader css ***********************************************************/
+
+
+/**************************************** start error or sucess msg css *****************************************/
+
+.form-inp-err {
+ color: red;
+}
+
+
+/* #woocommerce_errors{
+ color:red;
+} */
+
+.error .shopify-error {
+ display: inline-flex;
+ justify-content: space-around;
+ background: #d53757;
+ align-items: center;
+ color: #fff;
+ margin: 0;
+ padding: 8px 8px;
+ clear: both;
+ font-size: 12px;
+ border-radius: 2.8px;
+ font-weight: 600;
+}
+
+.error .shopify-error img {
+ height: 16px;
+ display: inline-block;
+ width: 16px;
+ margin-right: 6px;
+}
+
+.error .shopify-error p {
+ display: inline-block;
+ margin-bottom: 0;
+}
+
+div#message {
+ margin-bottom: 20px;
+}
+
+.shopify-sucess-msg {
+ display: inline-flex;
+ justify-content: space-around;
+ background: #02a275;
+ align-items: center;
+ color: #fff;
+ margin: 0;
+ padding: 8px 8px;
+ clear: both;
+ font-size: 12px;
+ border-radius: 2.8px;
+ font-weight: 600;
+}
+
+.shopify-sucess-msg img {
+ height: 16px;
+ display: inline-block;
+ width: 16px;
+ margin-right: 6px;
+}
+
+.shopify-sucess-msg p {
+ display: inline-block;
+ margin-bottom: 0;
+}
+
+
+/**************************************** end error or sucess msg css ***********************************************************/
+/***************************************** responsive header tabs css **************************************************/
+
+.owl-carousel .owl-stage{
+ display: flex !important;
+ justify-content: space-between;
+ /* justify-content: space-evenly; */
+}
+
+.owl-item{
+ width: auto !important;
+}
+
+.owl-prev.disabled {
+ display: none;
+}
+.owl-nav {
+ position: relative;
+ bottom: 45px;
+}
+
+.owl-prev {
+ font-size: 20px;
+ position: absolute;
+ top: 0px;
+ left: -25px;
+}
+
+.owl-next {
+ font-size: 20px;
+ top: 0px;
+ right: -25px;
+ position: absolute;
+}
+.owl-carousel.owl-theme.owl-loaded.owl-drag {
+ padding: 0 25px;
+}
+/***************************************** end responsive header tabs css **************************************************/
+
+
+.form-control:disabled,
+.form-control[readonly] {
+ background-color: #c4cdd524;
+ opacity: 1;
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current {
+ background: #2e80a7!important;
+ box-shadow: #2e80a7 0 1px 3px 0 inset!important;
+ color: #fff;
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div.xdsoft_current,
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current:hover {
+ background: #2e80a7!important;
+ box-shadow: #2e80a7 0 1px 3px 0 inset!important;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
+ color: #2e80a7;
+}
+
+.xdsoft_datetimepicker .xdsoft_calendar td:hover,
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box>div>div:hover {
+ color: #000000 !important;
+ background: #e1e5e5 !important;
+}
+
+.datepicker-cal-icon.gray-icon {
+ float: right;
+ position: relative;
+ top: -33px;
+ right: 15px;
+}
+.main-shopify-wrapper.hidden-lg{
+ display:none;
+
+}
+i.fas.fa-print.print-icon {
+ margin-right: 8px;
+}
+
+.icon-font-15
+{
+ font-size: 15px;
+}
+
+.login-box {
+
+ border-radius: 1px;
+ box-shadow: -20px 10px 24px 0 rgba(0, 0, 0, 0.05);
+ border: solid 1px #ebebeb;
+ background-color: #fbfbfb;
+ padding: 25px;
+}
+
+.login-header {
+ font-size: 30px;
+ padding: 24px 0px 30px;
+ margin: 0px 0px 18px 0px;
+ color: #000000;
+ line-height: 41px;
+ font-weight: 600;
+}
+
+.login-title {
+ font-size: 24px;
+ font-weight: 600;
+ line-height: 30px;
+ vertical-align: bottom;
+ color: #262727;
+}
+
+.login-subtitle {
+ font-size: 16px;
+ font-weight: 300;
+ color: #8e8e8e;
+ padding: 5.5px;
+ vertical-align: bottom;
+ padding-left: 9px;
+}
+.forget-password-link a {
+line-height: 3;
+float: right;
+color: #3ea1d7;
+font-weight: 600;
+}
+
+.or-block {
+ width: 50px;
+ border-radius: 50%;
+ background-color: #ffffff;
+ border: 1px solid #ebebeb;
+ padding: 15px;
+ height: 50px;
+ position: absolute;
+ top: 43%;
+ right: -26px;
+ z-index: 1;
+}
+.or-block p{
+ color: rgba(38, 39, 39, 0.3);
+ font-size:18px;
+ margin-bottom:0px;
+ line-height:18px;
+ 
+}
+.main-form-container {
+ padding: 0;
+ width: 50%;
+ position: relative;
+}
+.new-user-block {
+ border-radius: 1px;
+ box-shadow: 10px 4px 24px 0 rgba(0, 0, 0, 0.06);
+ background-color: #ffffff;
+ padding: 42px 53px 80px;
+ margin-top: 0;
+ width: 46%;
+ }
+
+.new-user-title {
+ color: #262727;
+ font-size: 24px;
+ font-weight: 600;
+ margin: 0 0 40px;
+}
+
+.new-user-subtitle {
+ font-size: 26px;
+ font-weight: bold;
+ color: #262727;
+ margin: 20px 0px 16px;
+}
+.new-user-caption {
+ font-size: 20px;
+ color: #8e8e8e;
+ margin: 0;
+}
+
+.new-user-caption a {
+ font-weight: 600;
+ color: #3da1d7;
+}
+
+.login-page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.login-page img {
+    width: 100%;
+}
+
+
+.fill-details {
+ font-size: 14px;
+ font-weight: 600;
+ margin-bottom: 30px;
+}
+.footer-link {
+ padding: 20px;
+ text-align: center;
+ font-weight: 700;
+}
+.footer-link a {
+ font-weight: 600;
+ color: #3ea1d7;
+}
+/********************************** new work sccs 16-april-2020 *********************************************************/
+.waybill-btn.waybill-select { 
+ height: 38px !important;
+ width: 100%;
+ }
+.data-card .my-order-table.table thead th:nth-child(4) {
+ min-width: 230px;
+}
+.data-card .my-order-table.table thead th:nth-child(2) {
+ min-width: 210px;
+}
+ 
+
+.data-card .my-order-table.table thead th:nth-child(7) {
+ min-width: 175px;
+}
+
+.data-card .table.warehouse-table thead th:nth-child(2) {
+ min-width: 230px;
+}
+.data-card .table.warehouse-table thead th:nth-child(7) {
+min-width: 280px;
+}
+.data-card .table.warehouse-table thead th:nth-child(12) {
+min-width: 180px;
+}
+.waybill-btn {
+height: 38px;
+}
+
+.waybill-btn:focus {
+outline: none;
+}
+
+
+/*********************************************** Responsive Css **********************************************************/
+
+@media only screen and (max-width: 1024px) {
+    
+ .main-shopify-wrapper .container-fluid {
+ padding: 0 16px;
+ }
+ 
+}
+@media only screen and (max-width: 767px){
+ .main-form-container {
+ width: 100%;
+ }
+ .new-user-block {
+ width: 100%;
+ margin-top: 20px;
+ }
+ .form-wrapper .form-control {
+ width: 100%;
+ }
+ .or-block {
+ display: none;
+ }
+ .login-header {
+ font-size: 25px;
+ padding: 15px 0px 10px;
+ }
+ .logo img {
+ width: 150px;
+ }
+}
+
+@media only screen and (max-width: 420px) {
+.login-page {
+		display: none;
+}
+ .btn.btn-link.btn-reset {
+ width: 100%;
+ }
+ .data-card .my-order-table.table thead th:nth-child(3) {
+ min-width: 200px;
+ }
+ 
+ .table-top-section>* {
+ display: inline-block;
+ float: left !important;
+ margin: 2px 10px;
+ margin-left: 0;
+ }
+ span.no-of-items {
+ line-height: 28px;
+ }
+ form.form-wrapper {
+ clear: both;
+ }
+ .table-top-section {
+ float: left;
+ width: 100%;
+ }
+ .pagination-wrapper {
+ display: none !important;
+ }
+ .loadmore-wrapper {
+ display: block;
+ }
+ .main-wrapper h1 {
+ font-size: 26px;
+ }
+ .main-wrapper h2 {
+ font-size: 20px;
+ }
+ .app-section {
+ padding-top: 0px;
+ margin: 0px;
+ }
+ .gst-wrapper h2 {
+ font-size: 16px;
+ }
+ .detail {
+ padding: 12px 16px;
+ margin: 6px 0 8px;
+ }
+ tbody {
+ border-bottom: none;
+ }
+ 
+ .button-right {
+ float: none !important;
+ display: flex;
+ flex-flow: column;
+ }
+ .btn-submit {
+ order: 1;
+ margin-left: 0;
+ }
+ .btn-reset {
+ margin-left: 0;
+ margin-top: 10px;
+ order: 2;
+ }
+ .shopify-modal .modal.fade.my-order-modal.show {
+ top: 50%;
+ transform: translateY(-50%);
+ }
+ .tooltip.fade.show.bs-tooltip-left {
+ z-index: 0;
+ }
+ 
+ .cancel-button.float-right {
+ float: none !important;
+ display: flex;
+ flex-flow: column;
+ }
+ .cancel-button.float-right {
+ margin-top: 0;
+ }
+ .comman-btn-div>.cancel-button {
+ display: block !important;
+ text-align: center;
+ }
+ .comman-btn-div>.cancel-button>button {
+ display: block;
+ text-align: center;
+ width: 100%;
+ }
+ .comman-btn-div {
+ padding: 0 16px;
+ }
+ .shopify-nav-tabs-responsive {
+ display: block;
+ }
+ .shopify-nav-tabs {
+ display: none;
+ }
+ .nav-link-tab.active, .show>.nav-link-tab {
+ padding: 18px 8px 18px;
+ font-size: 16px;
+ }
+ .nav-link-tab {
+ padding: 18px 0px 18px;
+ font-size: 16px;
+ }
+ .or-block {
+ top: 93%;
+ left: 40%;
+ }
+ .login-box {
+ padding: 25px 25px;
+ }
+ .new-user-block {
+ box-shadow: 0px 4px 24px 0 rgba(0, 0, 0, 0.06);
+ padding: 25px 25px;
+ margin-top: 0px;
+ }
+
+ .row-button {
+ margin-left: 0px;
+ }
+}
+
+@media only screen and (max-width: 414px) {
+ .owl-carousel.owl-theme.owl-loaded.owl-drag {
+ padding: 0px 25px;
+ }
+ .owl-prev {
+ left: -25px;
+ }
+ .owl-next {
+ right: -25px;
+ 
+ }
+}
+@media only screen and (max-width: 375px){
+.owl-carousel.owl-theme.owl-loaded.owl-drag {
+ padding: 0px 35px;
+}
+}
+@media only screen and (max-width: 360px) {
+ .owl-carousel.owl-theme.owl-loaded.owl-drag {
+ padding: 0 30px;
+ }
+ .owl-prev {
+ left: -30px;
+ }
+ 
+ .owl-next {
+ right: -30px;
+ 
+ }
+}
+
+@media only screen and (min-width: 1510px) {
+ .new-user-block {
+ margin: 0;
+ height: 100%;
+ }
+}
+
+
+
+#wpfooter {
+ display: none !important;
+}
+.faq-wrapper .card {
+ padding: 0;
+ min-width: 100%;
+}
+
+
+/*+++++++++++++++++++ order page selected box css +++++++++++++++++++++++++++*/
+
+.order-buttons-wrapper .custom-select {
+	height: 38px !important;
+	width: 160px;
+	
+}
+
+.order-buttons-wrapper .select-selected {
+	font-size: 14px;
+}
+
+.order-buttons-wrapper .select-selected:after {
+	top: 18px;
+}
+
+.order-buttons-wrapper .select-selected.select-arrow-active:after {
+	top: 10px;
+}
+
+.order-buttons-wrapper .select-items {
+	top: 36px;
+}
+ /*++++++++++++++++++++  Css Use only wordpress +++++++++++++++++++++++*/
+
+#wpfooter {
+	display: none !important;
+   }
+   .faq-wrapper .card {
+	padding: 0;
+	min-width: 100%;
+   }
+
+input[type=checkbox]:disabled {
+    opacity: 0 !important;
+}
+div.error p {
+    margin: 0 !important;
+}
+
+div.error {
+    border: none !important;
+    background: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+.waybill-btn:focus {
+    text-decoration: none;
+}

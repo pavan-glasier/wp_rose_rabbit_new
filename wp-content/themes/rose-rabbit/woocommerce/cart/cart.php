@@ -59,7 +59,7 @@ do_action( 'woocommerce_before_cart' );
                                                 </div>
                                                 <div class="alert alert-danger" id="error" style="display: none;"></div>
                                                 <div class="phone-field">
-                                                <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;"></ul>
+                                                    <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;"></ul>
                                                     <label class="fieldlabels">Mobile Number:</label>
                                                     <input type="text" name="number" id="phone-number-input" placeholder="Enter Mobile Number" /><span class="position-relative"></span>
                                                     <div id="recaptcha-container"></div>
@@ -69,12 +69,6 @@ do_action( 'woocommerce_before_cart' );
                                                     <label class="fieldlabels">OTP:</label>
                                                     <div class="otp-flex digit-group inputfield" data-group-name="digits"
                                                         data-autosubmit="false" autocomplete="off">
-                                                            <!-- <input type="number" maxlength="1" class="input" />
-                                                            <input type="number" maxlength="1" class="input" />
-                                                            <input type="number" maxlength="1" class="input" />
-                                                            <input type="number" maxlength="1" class="input" />
-                                                            <input type="number" maxlength="1" class="input" />
-                                                            <input type="number" maxlength="1" class="input last" /> -->
                                                             <input type="number" pattern="[0-9]*"  class="input" value="" inputtype="numeric" autocomplete="one-time-code" id="otp-1" required>
                                                             <!-- Autocomplete not to put on other input -->
                                                             <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  class="input" value="" inputtype="numeric" id="otc-2" required>
