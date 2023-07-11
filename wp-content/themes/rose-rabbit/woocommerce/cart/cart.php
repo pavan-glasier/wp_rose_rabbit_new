@@ -62,7 +62,7 @@ do_action( 'woocommerce_before_cart' );
                                                     <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;"></ul>
                                                     <label class="fieldlabels">Mobile Number:</label>
                                                     <input type="text" name="number" id="phone-number-input" placeholder="Enter Mobile Number" /><span class="position-relative"></span>
-                                                    <div id="recaptcha-container"></div>
+                                                    
                                                 </div>
                                                 <div class="otp-field d-none">
                                                     <ul class="woocommerce-message" id="successRegsiter" role="alert" style="display: none;"></ul>

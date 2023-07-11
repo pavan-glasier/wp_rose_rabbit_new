@@ -16,40 +16,69 @@
     <div class="footer-top">
         <div class="container">
             <div class="row align-items-stretch">
-
                 <div class="col-md-4 d-lg-flex">
-                    <?php if( have_rows('social_media', 'option') ): ?>
                     <div class="social-style2">
-                        <?php while( have_rows('social_media', 'option') ): the_row(); ?>
-                        <a href="<?php echo get_sub_field('url'); ?>">
-                            <?php echo get_sub_field('icon'); ?>
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_facebook' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_facebook', '' );?>">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <?php endwhile; ?>
+                        <?php endif; ?>
+
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_twitter' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_twitter', '' );?>">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <?php endif; ?>
+
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_instagram' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_instagram', '' );?>">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <?php endif; ?>
+
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_linkedin' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_linkedin', '' );?>">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                        <?php endif; ?>
+
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_pinterest' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_pinterest', '' );?>">
+                            <i class="fab fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                        <?php endif; ?>
+
+                        <!--  -->
+                        <?php if( get_theme_mod( 'social_media_youtube' ) ): ?>
+                        <a href="<?php echo get_theme_mod( 'social_media_youtube', '' );?>">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <?php endif; ?>
+
                     </div>
-                    <?php endif; ?>
                 </div>
 
                 <div class="col-md-5 col-lg-4">
-                    <?php if( get_sub_field('footer_logo', 'option') ): ?>
+                    <?php if( get_option( 'footer_logo' ) ): ?>
                     <div class="vs-logo">
                         <a href="<?php echo home_url('/'); ?>">
-                            <img src="<?php echo get_sub_field('footer_logo', 'option')['url']; ?>"
-                                alt="<?php echo get_sub_field('footer_logo', 'option')['alt']; ?>">
+                            <?php echo wp_get_attachment_image( get_option( 'footer_logo' ), 'full' );?>
                         </a>
                     </div>
                     <?php endif; ?>
                 </div>
 
                 <div class="col-md-7 col-lg-4">
-                    <?php if( have_rows('newsletter', 'option') ): ?>
-                    <?php while( have_rows('newsletter', 'option') ): the_row(); ?>
-                    <?php if( !empty( get_sub_field('select_form') ) ): ?>
+                    <?php if( !empty( get_theme_mod('newsletter_form') ) ): ?>
                     <div class="form-style1">
-                        <h3 class="form-title"><?php echo get_sub_field('heading');?></h3>
-                        <?php echo do_shortcode('[contact-form-7 id="'.get_sub_field('select_form').'"]'); ?>
+                        <h3 class="form-title"><?php echo get_theme_mod( 'newsletter_heading', '' );?></h3>
+                        <?php echo do_shortcode('[contact-form-7 id="'.get_theme_mod( 'newsletter_form', '0' ).'"]'); ?>
                     </div>
-                    <?php endif; ?>
-                    <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
 
@@ -143,8 +172,9 @@
         </div>
     </div>
 </footer>
-
-<?php if( !is_cart() ):?>
+<div id="recaptcha-container"></div>
+<?php
+if( !is_cart() ): ?>
 <!--Login Model-->
 <div id="myModal" class="modal">
     <div class="modal-content">
@@ -208,5 +238,4 @@
 <?php endif; ?>
 <?php wp_footer(); ?>
 </body>
-
 </html>

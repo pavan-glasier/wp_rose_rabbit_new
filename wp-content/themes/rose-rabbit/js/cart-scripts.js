@@ -3,6 +3,8 @@ jQuery( document ).ready(function() {
     function alljQueries(){
         // let product = addtocart_sidebar.product;
         // let cart_position = addtocart_sidebar.basekt_position;
+
+        // added_to_cart trigger
         jQuery("body").on("added_to_cart",function() {
             jQuery.ajax({
                 type : "post",
@@ -56,9 +58,8 @@ jQuery( document ).ready(function() {
                 }
             });
         });
-        
     
-        /* Remove Product */
+        /* Remove cart item */
         jQuery(".tit .mcsfw_remove").click( function (e) {
             e.preventDefault();
             let jQuerythisbutton = jQuery(this);
@@ -85,7 +86,7 @@ jQuery( document ).ready(function() {
             });
         });
 
-    
+        // add to cart item by click sidebar cart product 
         jQuery('.product_slide_cart').on('click', function (e) {
             e.preventDefault();
             let jQuerythisbutton = jQuery(this),
@@ -115,7 +116,7 @@ jQuery( document ).ready(function() {
             return false;
         });
 
-        
+        // single page product add to cart
         jQuery('.single_add_to_cart_button').on('click', function (e) {
             e.preventDefault();
             let $thisbutton = jQuery(this),
@@ -156,47 +157,47 @@ jQuery( document ).ready(function() {
             return false;
         });
     
+        // open cart sidebar
         jQuery(".cart_icon, .cart-menu-icon").on("click",function(){
             jQuery(".cart-sidemenu-wrapper").addClass("shows");
             jQuery(".popup_overlay").addClass("display");
         });
 
+        // close cart sidebar
         jQuery("#close-btn").click(function(){
             jQuery(".cart-sidemenu-wrapper").removeClass("shows");
             jQuery(".popup_overlay").removeClass("display");
         });
 
+        // close cart sidebar by click on continue shopping btn
         jQuery(".btn_return_shop, .mcsfw_continue_shopping_btn").click(function(){
             jQuery(".cart-sidemenu-wrapper").removeClass("shows");
             jQuery(".popup_overlay").removeClass("display");
         });
 
-
+        // close cart sidebar by click on sidebar overlay
         jQuery(".popup_overlay").click(function(){
             // jQuery( document.body ).trigger( '#close-btn' );
             jQuery("#close-btn").trigger('click');
         });
 
-
-        
-
+        // increment product quantity function
         function incrementValue(e) {
             e.preventDefault();
             let fieldName = jQuery(e.target).data('field');
             let parent = jQuery(e.target).closest('div');
             let currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val());
             let product_key = parent.find('input[name=' + fieldName + ']').attr('pro_qty_key');
-            console.log('object :>> ', product_key);
             
             if (!isNaN(currentVal)) {
                 parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
                 updateQty((currentVal + 1), product_key);
             } else {
                 parent.find('input[name=' + fieldName + ']').val(1);
-                // updateQty(1, product_key);
             }
         }
-        
+
+        // decrement product quantity function
         function decrementValue(e) {
             e.preventDefault();
             let fieldName = jQuery(e.target).data('field');
@@ -213,11 +214,13 @@ jQuery( document ).ready(function() {
             }
         }
 
+        // click on quantity plus button
         jQuery('.quantity-plus').on('click', function(e){
             console.log('e :>> ', e);
             incrementValue(e);
         })
 
+        // click on quantity minus button
         jQuery('.quantity-minus').on('click', function(e){
             console.log('e :>> ', e);
             decrementValue(e);
@@ -226,6 +229,7 @@ jQuery( document ).ready(function() {
     alljQueries();
 });
 
+// update quantity function
 function updateQty(qty, product_key){
     jQuery.ajax({
         type : "post",
@@ -249,6 +253,7 @@ function updateQty(qty, product_key){
     });
 }
 
+// click on quantity plus and minus button on cart page
 jQuery(document).on( 'click', 'button.plus, button.minus', function() {
     let qty = jQuery( this ).parent( '.quantity' ).find( '.qty' );
     let val = parseFloat(qty.val());
@@ -274,50 +279,10 @@ jQuery(document).on( 'click', 'button.plus, button.minus', function() {
     }
 });
 
-
+// click on starts on single product page
 jQuery('.woocommerce p.stars a').click(function(e){ e.preventDefault();
     jQuery( '.dis-none' ).removeClass( 'dis-none' );
 });
-
-// jQuery('#send-otp').click( function(e) {
-    // e.preventDefault();
-    // jQuery('.otp-field').removeClass('d-none');
-    // jQuery(this).addClass('d-none');
-    // jQuery(this).next().removeClass('d-none');
-// });
-
-
-// let result = "";
-// let verificationCode = jQuery("#verificationCode");
-// jQuery('.digit-group').find('input').each(function() {
-
-// 	jQuery(this).attr('maxlength', 1);
-// 	jQuery(this).on('keyup', function(e) {
-// 		let parent = jQuery(jQuery(this).parent());
-//         const keyPressed = jQuery(this).val();
-//         result += keyPressed;
-//         if( result.length > 6) return false
-//         // console.log('result :>> ', result );
-//         // jQuery("#verificationCode").val(result);
-//         if(e.keyCode === 8 || e.keyCode === 37) {
-//             let prev = parent.find('input#' + jQuery(this).data('previous'));
-//             if(prev.length) {
-//                 jQuery(prev).select();
-//             }
-//         } else if((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode === 39) {
-//             let next = parent.find('input#' + jQuery(this).data('next'));
-//             if(next.length) {
-//                 jQuery(next).select();
-//             } else {
-//                 if(parent.data('autosubmit')) {
-//                     parent.submit();
-//                 }
-//             }
-//         }
-//         verificationCode.val(result);
-//         console.log('verificationCode :>> ', verificationCode);
-// 	});
-// });
 
 
 // input phone number validation
@@ -354,7 +319,6 @@ jQuery(document).ready(function($) {
         event.preventDefault(); // Prevent form submission
         // Collect the billing details form data
         let noticesWrapper = $('.woocommerce-error');
-        
         let billing_first_name = $('#billing_first_name').val();
         let billing_last_name = $('#billing_last_name').val();
         let billing_company = $('#billing_company').val();

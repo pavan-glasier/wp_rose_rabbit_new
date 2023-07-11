@@ -12,5 +12,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /rose_and_rabbit/index.php [L]
 </IfModule>
-
 # END WordPress

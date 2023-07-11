@@ -339,6 +339,146 @@ add_filter('get_the_archive_title_prefix', '__return_empty_string');
 function rose_and_rabbit_load_wp_customizer($wp_customize)
 {
 	// customizer code
+	// START SOCIAL MEDIA
+	// add section for social media links
+	$wp_customize->add_section(
+		"social_media_section",
+		array(
+			"title" => "Social Media Section",
+			"description" => "This is the social media section",
+		)
+	);
+
+	// $social_media_section = $wp_customize->get_section('social_media_section');
+	// add setting for FACEBOOK
+	$wp_customize->add_setting(
+		"social_media_facebook",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for FACEBOOK
+	$wp_customize->add_control(
+		"social_media_facebook",
+		array(
+			"label" => "Facebook",
+			"description" => "Please fill the facebook url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+
+
+	// add setting for TWITTER
+	$wp_customize->add_setting(
+		"social_media_twitter",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for TWITTER
+	$wp_customize->add_control(
+		"social_media_twitter",
+		array(
+			"label" => "Twitter",
+			"description" => "Please fill the twitter url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+
+	// add setting for INSTAGRAM
+	$wp_customize->add_setting(
+		"social_media_instagram",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for INSTAGRAM
+	$wp_customize->add_control(
+		"social_media_instagram",
+		array(
+			"label" => "Instagram",
+			"description" => "Please fill the instagram url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+
+	// add setting for LINKEDIN
+	$wp_customize->add_setting(
+		"social_media_linkedin",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for LINKEDIN
+	$wp_customize->add_control(
+		"social_media_linkedin",
+		array(
+			"label" => "Linkedin",
+			"description" => "Please fill the linkedin url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+
+	// add setting for PINTEREST
+	$wp_customize->add_setting(
+		"social_media_pinterest",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for PINTEREST
+	$wp_customize->add_control(
+		"social_media_pinterest",
+		array(
+			"label" => "Pinterest",
+			"description" => "Please fill the pinterest url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+
+	// add setting for YOUTUBE
+	$wp_customize->add_setting(
+		"social_media_youtube",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for YOUTUBE
+	$wp_customize->add_control(
+		"social_media_youtube",
+		array(
+			"label" => "Youtube",
+			"description" => "Please fill the youtube url",
+			"section" => "social_media_section",
+			"type" => "text"
+		)
+	);
+	// END SOCIAL MEDIA
+	
+
 	// add section
 	$wp_customize->add_section(
 		"sec_copyright",
@@ -414,10 +554,11 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 
 
 	//add header section
-	$wp_customize->add_section('rose_and_rabbit_header_section', array(
-		'title' => 'Theme Header',
-		'priority' => 11
-	)
+	$wp_customize->add_section('rose_and_rabbit_header_section', 
+		array(
+			'title' => 'Theme Header',
+			'priority' => 11
+		)
 	);
 
 	// add header setting
@@ -425,21 +566,23 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 	$array = array("0" => "Select Menu");
 	$merge_locations = array_merge($array, $locations);
 	// Add a setting for the custom post selection
-	$wp_customize->add_setting('rose_and_rabbit_header', array(
-		'default' => '0',
-		'capability' => 'edit_theme_options',
-		'sanitize_callback' => 'sanitize_text_field',
-		'type' => 'theme_mod',
-	)
+	$wp_customize->add_setting('rose_and_rabbit_header', 
+		array(
+			'default' => '0',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
 	);
 
 	// Add a control for the custom post selection
-	$wp_customize->add_control('rose_and_rabbit_header', array(
-		'label' => 'Select Menu',
-		'section' => 'rose_and_rabbit_header_section',
-		'type' => 'select',
-		'choices' => $merge_locations,
-	)
+	$wp_customize->add_control('rose_and_rabbit_header', 
+		array(
+			'label' => 'Select Menu',
+			'section' => 'rose_and_rabbit_header_section',
+			'type' => 'select',
+			'choices' => $merge_locations,
+		)
 	);
 
 	// add setting/field for header user icon
@@ -487,19 +630,109 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 			)
 		)
 	);
+
+
+	//add footer section
+	$wp_customize->add_section('rose_and_rabbit_footer_section', 
+		array(
+			'title' => 'Theme Footer',
+			'priority' => 12
+		)
+	);
+	
+	// add setting/field for footer logo
+	$wp_customize->add_setting(
+		'footer_logo',
+		array(
+			'default' => '',
+			'capability' => 'edit_theme_options',
+			'type' => 'option',
+			'transport'     => 'refresh',
+
+		)
+	);
+	// add control for footer logo
+	$wp_customize->add_control(
+		new WP_Customize_Cropped_Image_Control(
+			$wp_customize,
+			'footer_logo',
+			array(
+				'label' => __('Footer Logo', 'rose_and_rabbit'),
+				'section' => 'rose_and_rabbit_footer_section',
+				'settings' => 'footer_logo',
+				'flex_width'  => true,
+				'flex_height' => false,
+				'width'       => 1920,
+				'height'      => 1080,
+			)
+		)
+	);
+
+	// 
+	// add setting/field for NEWSLETTER
+	$wp_customize->add_setting(
+		"newsletter_heading",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add control for NEWSLETTER
+	$wp_customize->add_control(
+		"newsletter_heading",
+		array(
+			"label" => "Newsletter Heading",
+			"section" => "rose_and_rabbit_footer_section",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the heading",
+			)
+		)
+	);
+
+	$wp_customize->add_setting(
+		'newsletter_form', 
+		array(
+			'default' => '0',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$cf7 = get_posts(array(
+		'post_type'     => 'wpcf7_contact_form',
+		'numberposts'   => -1
+	));
+	$formArray = array("0" => "Newsletter Form");
+	foreach($cf7 as $key){
+		$formArray[$key->ID] = $key->post_title;
+	}
+	// $merge_locations = array_merge($array, $cf7);
+	$wp_customize->add_control(
+		'newsletter_form', 
+		array(
+			'label' => 'Newsletter Form',
+			'section' => 'rose_and_rabbit_footer_section',
+			'type' => 'select',
+			'choices' => $formArray,
+		)
+	);
 }
 add_action("customize_register", "rose_and_rabbit_load_wp_customizer");
 
 
 
 
-
+// Add plus button quantity input on cart page
 add_action('woocommerce_after_quantity_input_field', 'rose_and_rabbit_display_quantity_plus');
 function rose_and_rabbit_display_quantity_plus() {
 	echo '<button type="button" data-field="quantity" class="plus qty-btn"><i class="fal fa-plus" aria-hidden="true"></i></button>';
 }
 
-
+// Add minus button quantity input on cart page
 add_action('woocommerce_before_quantity_input_field', 'rose_and_rabbit_display_quantity_minus');
 function rose_and_rabbit_display_quantity_minus() {
 	echo '<label> QUANTITY: </label><button type="button" data-field="quantity" class="minus qty-btn"><i class="fal fa-minus" aria-hidden="true"></i></button>';
@@ -510,34 +743,7 @@ function rose_and_rabbit_display_quantity_minus() {
 add_action('wp_footer', 'rose_and_rabbit_add_cart_quantity_plus_minus', 10);
 function rose_and_rabbit_add_cart_quantity_plus_minus()
 {
-	if (!is_product() && !is_cart()) return;
-// 	wc_enqueue_js("
-//       jQuery(document).on( 'click', 'button.plus, button.minus', function() {
-//          var qty = jQuery( this ).parent( '.quantity' ).find( '.qty' );
-//          var val = parseFloat(qty.val());
-//          var max = parseFloat(qty.attr( 'max' ));
-//          var min = parseFloat(qty.attr( 'min' ));
-//          var step = parseFloat(qty.attr( 'step' ));
-//          if ( jQuery( this ).is( '.plus' ) ) {
-//             if ( max && ( max <= val ) ) {
-//                qty.val( max ).change();
-//             } else {
-//                qty.val( val + step ).change();
-//             }
-// 			console.log('object----', parseFloat(qty.val()));
-// 			updateQty(parseFloat(qty.val()), 'a5bfc9e07964f8dddeb95fc584cd965d')
-// 			jQuery(document.body).trigger('updated_cart_totals');
-//          } else {
-//             if ( min && ( min >= val ) ) {
-//                qty.val( min ).change();
-//             } else if ( val > 1 ) {
-//                qty.val( val - step ).change();
-//             }
-// 			jQuery(document.body).trigger('updated_cart_totals');
-//          }
-//       });
-//    ");
-
+	// if (!is_product() && !is_cart()) return;
 	wc_enqueue_js("
 	  jQuery('.woocommerce p.stars a').click(function(e){ e.preventDefault();
 		jQuery( '.dis-none' ).removeClass( 'dis-none' );
@@ -628,33 +834,40 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 window.onload = function() {
-	let recaptchaContainer = document.getElementById('recaptcha-container');
-	if(recaptchaContainer){
-		render();
-	}
+    let recaptchaContainer = document.getElementById('recaptcha-container');
+    if (recaptchaContainer) {
+        render();
+    }
 };
 
 function render() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    recaptchaVerifier.render();
-}
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+		'size': 'invisible',
+	});
+    // recaptchaVerifier.render();
+	recaptchaVerifier.render().then((widgetId) => {
+		window.recaptchaWidgetId = widgetId;
+	});
 
+}
 function phoneSendAuth() {
     let number = jQuery("#phone-number-input").val();
-	let numberwithcode = '+91'+number;
-    firebase.auth().signInWithPhoneNumber(numberwithcode, window.recaptchaVerifier).then(function(confirmationResult) {
+    let numberwithcode = '+91' + number;
+	const appVerifier = window.recaptchaVerifier
+    // firebase.auth().signInWithPhoneNumber(numberwithcode, window.recaptchaVerifier).then(function(confirmationResult) {
+    firebase.auth().signInWithPhoneNumber(numberwithcode, appVerifier).then(function(confirmationResult) {
         window.confirmationResult = confirmationResult;
         coderesult = confirmationResult;
         console.log(coderesult);
-		jQuery("#sentSuccess").html("OTP Sent Successfully.");
+        jQuery("#sentSuccess").html("OTP Sent Successfully.");
         jQuery("#sentSuccess").show();
-		jQuery('.otp-field').removeClass('d-none');
-		jQuery('#send-otp').addClass('d-none');
-		setTimeout(() => {
-			jQuery("#sentSuccess").html("");
-			jQuery("#sentSuccess").hide();
-		}, 1000)
-		
+        jQuery('.otp-field').removeClass('d-none');
+        jQuery('#send-otp').addClass('d-none');
+        setTimeout(() => {
+            jQuery("#sentSuccess").html("");
+            jQuery("#sentSuccess").hide();
+        }, 1000)
+
     }).catch(function(error) {
         jQuery("#error").text(error.message);
         jQuery("#error").show();
@@ -663,51 +876,51 @@ function phoneSendAuth() {
 }
 
 function codeverify() {
-	const input = document.querySelectorAll(".input");
-	jQuery("#otp-verify").html('Verifying...');
-	let codes = "";
-	input.forEach((element) => {
-		codes += element.value;
-	})
+    const input = document.querySelectorAll(".input");
+    jQuery("#otp-verify").html('Verifying...');
+    let codes = "";
+    input.forEach((element) => {
+        codes += element.value;
+    })
     coderesult.confirm(codes).then(function(result) {
         let user = result.user;
-		let phoneNumber = user.phoneNumber;
-		jQuery("#billing_phone").val(phoneNumber);
-		jQuery("#billing_phone").prop('readonly', true);
-		jQuery("#successRegsiter").html("Verified!");
+        let phoneNumber = user.phoneNumber;
+        jQuery("#billing_phone").val(phoneNumber);
+        jQuery("#billing_phone").prop('readonly', true);
+        jQuery("#successRegsiter").html("Verified!");
         jQuery("#successRegsiter").show();
-		
-		jQuery.ajax({
-			type: 'POST',
-			dataType: 'json',
-			url: '<?php echo admin_url( 'admin-ajax.php' );?>',
-			data: {
-				action: "login_user_by_phone_number",
-				phone_number: phoneNumber,
-			},
-			success: function(response) {
-				if(response.status){
-					let users = response.user;
-					jQuery.each(users, function(key, value) {
-						jQuery("#"+key).val(value[0]);
-					});
-				}
-				setTimeout(() => {
-					jQuery("#successRegsiter").html("");
-					jQuery("#successRegsiter").hide();
-					jQuery("#otp-verify").next().click();
-					jQuery("#otp-verify").html('Next');
-				}, 1000);
-			},
-			error:function(error){
-				console.log('error :>> ', error);
-			}
-		});
+
+        jQuery.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+            data: {
+                action: "login_user_by_phone_number",
+                phone_number: phoneNumber,
+            },
+            success: function(response) {
+                if (response.status) {
+                    let users = response.user;
+                    jQuery.each(users, function(key, value) {
+                        jQuery("#" + key).val(value[0]);
+                    });
+                }
+                setTimeout(() => {
+                    jQuery("#successRegsiter").html("");
+                    jQuery("#successRegsiter").hide();
+                    jQuery("#otp-verify").next().click();
+                    jQuery("#otp-verify").html('Next');
+                }, 1000);
+            },
+            error: function(error) {
+                console.log('error :>> ', error);
+            }
+        });
 
     }).catch(function(error) {
         jQuery("#error").text(error.message);
         jQuery("#error").show();
-		jQuery("#otp-verify").html('Next');
+        jQuery("#otp-verify").html('Next');
     });
 }
 </script>
@@ -789,36 +1002,35 @@ function woocommerce_cart_items()
 								esc_attr($_product->get_sku()),
 								esc_attr($cart_item_key)
 							), $cart_item_key); ?>
-        </div>
+        	</div>
 
-        <span class="sideml">
-            <?php echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key); // PHPCS: XSS ok.?>
-        </span>
-        <div class="actions qountbtn">
+			<span class="sideml">
+				<?php echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key); // PHPCS: XSS ok.?>
+			</span>
+			<div class="actions qountbtn">
             <?php
-							if ($_product->is_sold_individually()) {
-								$min_quantity = 1;
-								$max_quantity = 1;
-							} else {
-								$min_quantity = 0;
-								$max_quantity = $_product->get_max_purchase_quantity();
-							}
-							$product_quantity = woocommerce_quantity_input(
-								array(
-									// 'input_name' => "cart[{$cart_item_key}][qty]",
-									'input_name' => "quantity",
-									'pro_qty_key' => $cart_item_key,
-									'input_value' => $cart_item['quantity'],
-									'max_value' => $max_quantity,
-									'min_value' => $min_quantity,
-									'product_name' => $_product->get_name(),
-								),
-								$_product,
-								false
-							);
-							?>
-            <?php 
-							echo apply_filters('woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item); // PHPCS: XSS ok. ?>
+				if ($_product->is_sold_individually()) {
+					$min_quantity = 1;
+					$max_quantity = 1;
+				} else {
+					$min_quantity = 0;
+					$max_quantity = $_product->get_max_purchase_quantity();
+				}
+				$product_quantity = woocommerce_quantity_input(
+					array(
+						// 'input_name' => "cart[{$cart_item_key}][qty]",
+						'input_name' => "quantity",
+						'pro_qty_key' => $cart_item_key,
+						'input_value' => $cart_item['quantity'],
+						'max_value' => $max_quantity,
+						'min_value' => $min_quantity,
+						'product_name' => $_product->get_name(),
+					),
+					$_product,
+					false
+				);
+				
+			echo apply_filters('woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item); // PHPCS: XSS ok. ?>
             <p class="sideprice">
                 <?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // PHPCS: XSS ok. ?>
             </p>
@@ -1005,12 +1217,49 @@ add_filter( 'manage_users_columns', 'add_phone_user_table' );
 function add_phone_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
         case 'phone' :
-            return get_the_author_meta( 'user_phone', $user_id )?'+91 '.get_the_author_meta( 'user_phone', $user_id ):'';
+            return get_the_author_meta( 'user_phone', $user_id )?'+91'.str_replace("+91", "", get_the_author_meta( 'user_phone', $user_id )):'';
         default:
     }
     return $val;
 }
 add_filter( 'manage_users_custom_column', 'add_phone_user_table_row', 10, 3 );
+
+// Add custom phone number field to user profile
+function add_custom_phone_field( $user ) { ?>
+    <table class="form-table">
+        <tr class="user-phone-wrap">
+            <th><label for="user_phone"><?php _e( 'Phone Number', 'rose_and_rabbit' ); ?></label></th>
+            <td>
+                <input type="text" name="user_phone" id="user_phone" value="<?php echo esc_attr( get_the_author_meta( 'user_phone', $user->ID ) ); ?>" class="regular-text" /><br />
+                <span class="description"><?php _e( 'Please enter your phone number without country code.', 'rose_and_rabbit' ); ?></span>
+            </td>
+        </tr>
+    </table>
+<?php
+}
+add_action( 'show_user_profile', 'add_custom_phone_field' );
+add_action( 'edit_user_profile', 'add_custom_phone_field' );
+
+// Save custom phone number field
+function save_custom_phone_field( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) {
+        return false;
+    }
+    update_user_meta( $user_id, 'user_phone', sanitize_text_field( $_POST['user_phone'] ) );
+}
+add_action( 'personal_options_update', 'save_custom_phone_field' );
+add_action( 'edit_user_profile_update', 'save_custom_phone_field' );
+// Adjust position of email and phone number fields
+function adjust_user_profile_fields_order() { ?>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#email').closest('tr').after($('#user_phone').closest('tr'));
+        });
+    </script>
+    <?php
+}
+add_action( 'admin_footer', 'adjust_user_profile_fields_order' );
+
 
 
 
@@ -1019,47 +1268,47 @@ add_filter( 'manage_users_custom_column', 'add_phone_user_table_row', 10, 3 );
 add_action('wp_footer', 'login_by_phone_number_script', 100);
 function login_by_phone_number_script(){ ?>
 <script>
-	function loginCodeverify() {
-		const input = document.querySelectorAll(".input");
-		jQuery("#otp-verify").html('Verifying...');
-		let codes = "";
-		input.forEach((element) => {
-			codes += element.value;
-		})
-		coderesult.confirm(codes).then(function(result) {
-			let user = result.user;
-			let phoneNumber = user.phoneNumber;
-			jQuery.ajax({
-				type: 'POST',
-				dataType: 'json',
-				url: '<?php echo admin_url( 'admin-ajax.php' );?>',
-				data: {
-					action: "login_user_by_phone_number",
-					phone_number: phoneNumber,
-				},
-				success: function(response) {
-					if( response.status ){
-						jQuery("#successRegsiter").html("Verified!");
-						jQuery("#successRegsiter").show();
-						window.location.href = "<?php echo wc_get_page_permalink('myaccount');?>";
-						setTimeout(() => {
-							jQuery("#successRegsiter").html("");
-							jQuery("#successRegsiter").hide();
-							jQuery("#otp-verify").html('Submit');
-						}, 1000);
-					}
-				},
-				error:function(error){
-					console.log('error :>> ', error);
-				}
-			});
-		}).catch(function(error) {
-			console.log('error :>> ', error);
-			jQuery("#error").text(error.message);
-			jQuery("#error").show();
-			jQuery("#otp-verify").html('Submit');
-		});
-	}
+function loginCodeverify() {
+    const input = document.querySelectorAll(".input");
+    jQuery("#otp-verify").html('Verifying...');
+    let codes = "";
+    input.forEach((element) => {
+        codes += element.value;
+    })
+    coderesult.confirm(codes).then(function(result) {
+        let user = result.user;
+        let phoneNumber = user.phoneNumber;
+        jQuery.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+            data: {
+                action: "login_user_by_phone_number",
+                phone_number: phoneNumber,
+            },
+            success: function(response) {
+                if (response.status) {
+                    jQuery("#successRegsiter").html("Verified!");
+                    jQuery("#successRegsiter").show();
+                    window.location.href = "<?php echo wc_get_page_permalink('myaccount');?>";
+                    setTimeout(() => {
+                        jQuery("#successRegsiter").html("");
+                        jQuery("#successRegsiter").hide();
+                        jQuery("#otp-verify").html('Submit');
+                    }, 1000);
+                }
+            },
+            error: function(error) {
+                console.log('error :>> ', error);
+            }
+        });
+    }).catch(function(error) {
+        console.log('error :>> ', error);
+        jQuery("#error").text(error.message);
+        jQuery("#error").show();
+        jQuery("#otp-verify").html('Submit');
+    });
+}
 </script>
 <?php }
 function login_user_by_phone_number() {
@@ -1091,7 +1340,7 @@ function login_user_by_phone_number() {
 		$user = get_userdata($user_id);
 		wp_set_auth_cookie($user_id);
 		wp_set_current_user($user_id);
-        echo json_encode( array( 'status' => true, 'user' => $user ) );
+        echo json_encode( array( 'status' => true, 'user' => get_user_meta($user_id) ) );
 		exit();
 	}
     // echo json_encode( array( 'status' => false, 'user' => $user ) );
@@ -1099,3 +1348,13 @@ function login_user_by_phone_number() {
 }
 add_action('wp_ajax_login_user_by_phone_number', 'login_user_by_phone_number');
 add_action('wp_ajax_nopriv_login_user_by_phone_number', 'login_user_by_phone_number');
+
+
+
+// if( current_user_can('administrator') ){
+	// add_filter( 'login_url', 'custom_login_url', PHP_INT_MAX );
+	// function custom_login_url( $login_url ) {
+	// 	$login_url = site_url( 'newlogin.php', 'login' );
+	// 	return $login_url;
+	// }
+// }

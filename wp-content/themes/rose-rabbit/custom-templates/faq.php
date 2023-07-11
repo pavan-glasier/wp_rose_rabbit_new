@@ -12,7 +12,7 @@ get_header(); ?>
             <div class="row align-items-center">
                 <div class="col-ms-12">
                     <div>
-                        <h1 class="breadcumb-title story__tital"><?php echo wp_title('');?></h1>
+                        <h1 class="breadcumb-title story__tital text-first"><?php echo wp_title('');?></h1>
                         <span class="breadcumb-titlespan">
                             <?php echo get_post_field( 'post_content', get_queried_object_id() ); ?>
                         </span>
