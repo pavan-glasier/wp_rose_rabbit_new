@@ -57,15 +57,15 @@ do_action( 'woocommerce_before_cart' );
                                                         <h2 class="steps">Step 1 - 3</h2>
                                                     </div>
                                                 </div>
-                                                <div class="alert alert-danger" id="error" style="display: none;"></div>
+                                                <ul class="woocommerce-error" id="error" role="alert" style="display: none;"></ul>
+                                                <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;"></ul>
+                                                <ul class="woocommerce-message" id="successRegsiter" role="alert" style="display: none;"></ul>
                                                 <div class="phone-field">
-                                                    <ul class="woocommerce-message" id="sentSuccess" role="alert" style="display: none;"></ul>
                                                     <label class="fieldlabels">Mobile Number:</label>
                                                     <input type="text" name="number" id="phone-number-input" placeholder="Enter Mobile Number" /><span class="position-relative"></span>
                                                     
                                                 </div>
                                                 <div class="otp-field d-none">
-                                                    <ul class="woocommerce-message" id="successRegsiter" role="alert" style="display: none;"></ul>
                                                     <label class="fieldlabels">OTP:</label>
                                                     <div class="otp-flex digit-group inputfield" data-group-name="digits"
                                                         data-autosubmit="false" autocomplete="off">
@@ -79,7 +79,6 @@ do_action( 'woocommerce_before_cart' );
                                                         <!-- </div> -->
                                                         <!-- <button class="hide" id="submit" onclick="validateOTP()">Submit</button> -->
                                                     </div>
-                                                    <input type="hidden" name="verificationCode" id="verificationCode">
                                                 </div>
                                             </div>
                                             <button type="button" class="vs-btn style7 d-none" id="send-otp" onclick="phoneSendAuth();">Next</button>

@@ -793,8 +793,9 @@ jQuery(document).on('click', '.remove-product', function(e) {
     product_container.block({
         message: null,
         overlayCSS: {
-            cursor: 'none'
-        }
+			background: '#fcebea',
+			opacity: 0.8
+		}
     });
     jQuery.ajax({
         type: 'POST',
@@ -851,6 +852,14 @@ function render() {
 
 }
 function phoneSendAuth() {
+	msform.block({
+		message: null,
+		overlayCSS: {
+			background: '#fcebea',
+			opacity: 0.8
+		}
+	});
+	const input = document.querySelectorAll(".input");
     let number = jQuery("#phone-number-input").val();
     let numberwithcode = '+91' + number;
 	const appVerifier = window.recaptchaVerifier
@@ -858,70 +867,98 @@ function phoneSendAuth() {
     firebase.auth().signInWithPhoneNumber(numberwithcode, appVerifier).then(function(confirmationResult) {
         window.confirmationResult = confirmationResult;
         coderesult = confirmationResult;
-        console.log(coderesult);
+        console.log("coderesult : >>", coderesult);
+		jQuery("#error").html("");
+		jQuery("#error").hide();
         jQuery("#sentSuccess").html("OTP Sent Successfully.");
         jQuery("#sentSuccess").show();
         jQuery('.otp-field').removeClass('d-none');
         jQuery('#send-otp').addClass('d-none');
+		input[0].focus();
+		msform.unblock();
         setTimeout(() => {
             jQuery("#sentSuccess").html("");
             jQuery("#sentSuccess").hide();
         }, 1000)
 
     }).catch(function(error) {
-        jQuery("#error").text(error.message);
+        jQuery("#error").html(error.message);
         jQuery("#error").show();
+		msform.unblock();
     });
 
 }
 
 function codeverify() {
+	msform.block({
+		message: null,
+		overlayCSS: {
+			background: '#fcebea',
+			opacity: 0.8
+		}
+	});
     const input = document.querySelectorAll(".input");
     jQuery("#otp-verify").html('Verifying...');
     let codes = "";
     input.forEach((element) => {
         codes += element.value;
     })
-    coderesult.confirm(codes).then(function(result) {
-        let user = result.user;
-        let phoneNumber = user.phoneNumber;
-        jQuery("#billing_phone").val(phoneNumber);
-        jQuery("#billing_phone").prop('readonly', true);
-        jQuery("#successRegsiter").html("Verified!");
-        jQuery("#successRegsiter").show();
+	try{
+		coderesult.confirm(codes).then(function(result) {
+			let user = result.user;
+			let phoneNumber = user.phoneNumber;
+			jQuery("#billing_phone").val(phoneNumber);
+			jQuery("#billing_phone").prop('readonly', true);
+			jQuery("#successRegsiter").html("Verified!");
+			jQuery("#successRegsiter").show();
 
-        jQuery.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: '<?php echo admin_url( 'admin-ajax.php' );?>',
-            data: {
-                action: "login_user_by_phone_number",
-                phone_number: phoneNumber,
-            },
-            success: function(response) {
-                if (response.status) {
-                    let users = response.user;
-                    jQuery.each(users, function(key, value) {
-                        jQuery("#" + key).val(value[0]);
-                    });
-                }
-                setTimeout(() => {
-                    jQuery("#successRegsiter").html("");
-                    jQuery("#successRegsiter").hide();
-                    jQuery("#otp-verify").next().click();
-                    jQuery("#otp-verify").html('Next');
-                }, 1000);
-            },
-            error: function(error) {
-                console.log('error :>> ', error);
-            }
-        });
+			jQuery.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+				data: {
+					action: "login_user_by_phone_number",
+					phone_number: phoneNumber,
+				},
+				beforeSend:function(){
+					jQuery("#error").html("");
+					jQuery("#error").hide();
+				},
+				success: function(response) {
+					if (response.status) {
+						let users = response.user;
+						jQuery.each(users, function(key, value) {
+							jQuery("#" + key).val(value[0]);
+						});
+					}
+					setTimeout(() => {
+						msform.unblock();
+						jQuery("#successRegsiter").html("");
+						jQuery("#successRegsiter").hide();
+						jQuery("#otp-verify").next().click();
+						jQuery("#otp-verify").html('Next');
+					}, 1000);
+				},
+				error: function(error) {
+					console.log('error :>> ', error);
+				}
+			});
 
-    }).catch(function(error) {
-        jQuery("#error").text(error.message);
+		}).catch( function(error) {
+			console.log('error :>> ', error);
+			jQuery("#error").html(error.message);
+			jQuery("#error").show();
+			jQuery("#otp-verify").html('Next');
+			msform.unblock();
+		});
+	}
+	catch(error) {
+		console.log('error :>> ', error);
+        jQuery("#error").html(error.message);
         jQuery("#error").show();
         jQuery("#otp-verify").html('Next');
-    });
+		msform.unblock();
+    };
 }
 </script>
 <?php }
@@ -1114,7 +1151,7 @@ function register_user_with_billing_details() {
         // If there are validation errors, return the error messages
 		if ( $errors ) { ?>
 		<?php foreach($errors as $key => $value){ ?>
-		<li><?php echo $value; ?></li>
+		<small id="<?php echo $key;?>_error" class="text-danger"><?php echo $value; ?></small>
 		<?php } 
 			
 			$errors_html= ob_get_contents();

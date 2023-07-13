@@ -291,8 +291,14 @@ let phoneNumberInput = jQuery('#phone-number-input');
 let otpField = jQuery('.otp-field');
 let sendOtpBtn = jQuery('#send-otp');
 let verifyOtpBtn = jQuery('#otp-verify');
+let msform = jQuery('#msform');
+
 // Attach the input event listener
-phoneNumberInput.on('input', function() {
+phoneNumberInput.on('keypress input', function(event) {
+    if (event.which === 13 || event.keyCode === 13) {
+        event.preventDefault(); // Prevent default form submission
+        phoneSendAuth();
+    }
     phoneNumberInput.focus();
     verifyOtpBtn.addClass('d-none');
     // Get the current input value
@@ -312,11 +318,25 @@ phoneNumberInput.on('input', function() {
 
 // billing address store
 jQuery(document).ready(function($) {
+    $('.woocommerce-billing-fields input').keypress(function(event) {
+        if (event.which === 13 || event.keyCode === 13) {
+          event.preventDefault(); // Prevent default form submission
+          console.log('object :>> ');
+          $('#billing_details_submit').click();
+        }
+    });
     // Intercept the form submission event
     $('#billing_details_submit').on('click', function(event) {
+        msform.block({
+            message: null,
+            overlayCSS: {
+                background: '#fcebea',
+                opacity: 0.8
+            }
+        });
         let $this = jQuery(this);
         $this.html('Submitting...');
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
         // Collect the billing details form data
         let noticesWrapper = $('.woocommerce-error');
         let billing_first_name = $('#billing_first_name').val();
@@ -357,6 +377,7 @@ jQuery(document).ready(function($) {
                 $.each(data, function (key, val) {
                     if( key != 'action' || key != 'register_user_on_order' ){
                         $('#'+key).parent().parent().removeClass('woocommerce-invalid');
+                        $('#'+key+'_error').remove();
                     }
                 });
             },
@@ -366,16 +387,22 @@ jQuery(document).ready(function($) {
                 if(obj.status){
                     $this.next().click();
                     noticesWrapper.addClass('d-none');
+                    msform.unblock();
                 }
                 else{
-                    noticesWrapper.removeClass('d-none');
+                    // noticesWrapper.removeClass('d-none');
                     noticesWrapper.html(obj.errors_html);
                     $('.form-row').addClass('woocommerce-validated');
+                    let array = [];
                     $.each(obj.errors, function (key, val) {
+                        $('#'+key).after( $('#'+key+'_error').closest('small') );
                         $('#'+key).parent().parent().removeClass('woocommerce-validated');
                         $('#'+key).parent().parent().addClass('woocommerce-invalid');
-                        $('html, body').animate({ scrollTop: $(".woocommerce-error").offset().top-120}, 'slow');
+                        array.push(key);
+                        // $('html, body').animate({ scrollTop: $(".woocommerce-error").offset().top-120}, 'slow');
                     });
+                    $('#'+array[0]).focus();
+                    msform.unblock();
                 }
                 $this.html('Next');
                 // You can perform additional actions here based on the response
@@ -456,6 +483,13 @@ if( ins ){
                 this.previousElementSibling.focus();
             }
         });
+
+        input.addEventListener('keypress', function(e){
+            if (e.which === 13 || e.keyCode === 13) {
+                e.preventDefault();
+                codeverify();
+            }
+        })
     });
 }
 if(in1){
