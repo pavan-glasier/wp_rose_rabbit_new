@@ -4,8 +4,6 @@
  * 
  */
 get_header(); ?>
-
-
 <main>
     <div class="space-top space-extra-bottom1 bg-gradient-1">
         <div class="container">

@@ -63,7 +63,6 @@ do_action( 'woocommerce_before_cart' );
                                                 <div class="phone-field">
                                                     <label class="fieldlabels">Mobile Number:</label>
                                                     <input type="text" name="number" id="phone-number-input" placeholder="Enter Mobile Number" /><span class="position-relative"></span>
-                                                    
                                                 </div>
                                                 <div class="otp-field d-none">
                                                     <label class="fieldlabels">OTP:</label>
@@ -82,11 +81,8 @@ do_action( 'woocommerce_before_cart' );
                                                 </div>
                                             </div>
                                             <button type="button" class="vs-btn style7 d-none" id="send-otp" onclick="phoneSendAuth();">Next</button>
-                                            
                                             <button type="button" class="vs-btn style7 d-none" id="otp-verify" name="next" onclick="codeverify();" value="Next">Next</button>
                                             <button type="button" class="next vs-btn style7 d-none" name="next" value="Next">Next</button>
-                                            <!-- <input type="button" name="next" class="next action-button" value="Next" /> -->
-
                                         </fieldset>
                                         <fieldset>
                                             <div class="form-card">
@@ -112,15 +108,12 @@ do_action( 'woocommerce_before_cart' );
                                                 </div>
                                                 <input type="hidden" name="register_user_on_order" value="1">
                                             </div>
-                                            <!-- <button type="button" class="previous vs-btn style7 mt-5" name="previous"
-                                                value="Previous">Previous</button> -->
                                             <button type="button" id="billing_details_submit" class="vs-btn style7"
                                                 name="next" value="Next">Next</button>
                                             <button type="button" class="next vs-btn style7 d-none" name="next"
                                                 value="Next">Next</button>
-                                            <!-- <input type="button" name="next" class="next action-button" value="Next" />
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
                                         </fieldset>
+
                                         <fieldset>
                                             <div class="form-card">
                                                 <div class="row">
@@ -131,36 +124,15 @@ do_action( 'woocommerce_before_cart' );
                                                         <h2 class="steps">Step 3 - 3</h2>
                                                     </div>
                                                 </div>
-
                                                 <?php 
-                                                /*
-                                                do_action( 'woocommerce_before_cart_collaterals' ); ?>
-
-                                                <div class="cart-collaterals mb-5">
-                                                    <?php do_action( 'woocommerce_cart_collaterals' ); ?>
-                                                </div>
-                                                
-                                                <?php 
-                                                */
                                                 remove_action('woocommerce_checkout_order_review', 'woocommerce_order_review', 10);
-                                                echo do_action('woocommerce_checkout_order_review');
-                                                // add_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
-                                                ?>
-
-
+                                                echo do_action('woocommerce_checkout_order_review'); ?>
                                             </div>
                                             <button type="button" class="previous vs-btn style7 mt-3" name="previous"
                                                 value="previous">previous</button>
-                                            <!-- <button type="button" class="next vs-btn style7 mb-5" name="next"
-                                                value="Submit">Submit</button> -->
                                             <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
-
                                             <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="vs-btn style7 mt-3 alt' . esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ) . '" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>' ); // @codingStandardsIgnoreLine ?>
-
                                             <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
-
-                                            <!-- <input type="button" name="next" class="next action-button" value="Submit" />
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> -->
                                         </fieldset>
                                     </div>
                                 </div>

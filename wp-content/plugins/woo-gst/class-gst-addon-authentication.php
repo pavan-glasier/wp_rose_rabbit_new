@@ -159,7 +159,6 @@ if ( !class_exists( 'WooGstLicensing' ) ) :
 			        'license_key' => get_option('GST_license_key'),
 			        'version' => GST_VERSION
 			);
-
 			if ( false === ( $response = get_transient( 'GST_transient_response' ) ) ) {
 				$response = wp_remote_get(add_query_arg($api_params, GST_SERVER_URL));
 			}

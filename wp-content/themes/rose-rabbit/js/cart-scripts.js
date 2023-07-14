@@ -321,7 +321,6 @@ jQuery(document).ready(function($) {
     $('.woocommerce-billing-fields input').keypress(function(event) {
         if (event.which === 13 || event.keyCode === 13) {
           event.preventDefault(); // Prevent default form submission
-          console.log('object :>> ');
           $('#billing_details_submit').click();
         }
     });

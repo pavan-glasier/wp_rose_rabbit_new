@@ -138,7 +138,7 @@ if( ! class_exists( 'WooGstInvoice' ) ) :
 					}
 
 					$this->zip_the_folder($pdfroot,$o_id);
-					die();
+					// die();
 					wp_die();
 				}
 				

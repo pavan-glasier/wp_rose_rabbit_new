@@ -7,6 +7,14 @@
  * @package Rose_and_Rabbit
  */
 
+ if( class_exists('WP_Customize_Control') ){
+
+	 /**
+	 * include Customize_Select2_Control
+	 */
+	require get_template_directory() . '/custom-templates/Customize_Select2_Control.php';
+ }
+
 // Custom Admin Color Scheme
 function custom_color_admin_color_scheme()
 {
@@ -557,7 +565,7 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 	$wp_customize->add_section('rose_and_rabbit_header_section', 
 		array(
 			'title' => 'Theme Header',
-			'priority' => 11
+			'priority' => 1
 		)
 	);
 
@@ -630,16 +638,25 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 			)
 		)
 	);
-
-
-	//add footer section
-	$wp_customize->add_section('rose_and_rabbit_footer_section', 
-		array(
-			'title' => 'Theme Footer',
-			'priority' => 12
-		)
-	);
 	
+	// Footer Columns 
+
+    // Add the recursive theme footer panel
+    $wp_customize->add_panel('rose_and_rabbit_footer_section_panel', array(
+        'title' => 'Theme Footer',
+        'description' =>'This panel contains theme footer.',
+        // 'section' => 'rose_and_rabbit_footer_section', // Specify the parent section ID
+		'priority' => 2,
+    ));
+
+    // Add a top footer within the panel
+    $wp_customize->add_section('top_footer_section', array(
+        'title' => 'Top Footer',
+        'description' => 'This is a Top Footer.',
+        'panel' => 'rose_and_rabbit_footer_section_panel', // Specify the parent panel ID
+    ));
+
+
 	// add setting/field for footer logo
 	$wp_customize->add_setting(
 		'footer_logo',
@@ -658,7 +675,7 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 			'footer_logo',
 			array(
 				'label' => __('Footer Logo', 'rose_and_rabbit'),
-				'section' => 'rose_and_rabbit_footer_section',
+				'section' => 'top_footer_section',
 				'settings' => 'footer_logo',
 				'flex_width'  => true,
 				'flex_height' => false,
@@ -667,8 +684,6 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 			)
 		)
 	);
-
-	// 
 	// add setting/field for NEWSLETTER
 	$wp_customize->add_setting(
 		"newsletter_heading",
@@ -684,7 +699,7 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 		"newsletter_heading",
 		array(
 			"label" => "Newsletter Heading",
-			"section" => "rose_and_rabbit_footer_section",
+			"section" => "top_footer_section",
 			"type" => "text",
 			"input_attrs" => array(
 				"placeholder" => "Please enter the heading",
@@ -710,18 +725,435 @@ function rose_and_rabbit_load_wp_customizer($wp_customize)
 	foreach($cf7 as $key){
 		$formArray[$key->ID] = $key->post_title;
 	}
-	// $merge_locations = array_merge($array, $cf7);
 	$wp_customize->add_control(
 		'newsletter_form', 
 		array(
 			'label' => 'Newsletter Form',
-			'section' => 'rose_and_rabbit_footer_section',
+			'section' => 'top_footer_section',
 			'type' => 'select',
 			'choices' => $formArray,
 		)
 	);
+
+	// 
+	$wp_customize->add_section('bottom_footer_section', array(
+        'title' => 'Bottom Footer',
+        'description' => 'This is a Bottom Footer.',
+        'panel' => 'rose_and_rabbit_footer_section_panel', // Specify the parent panel ID
+    ));
+
+	// COLUMN ONE (1)
+	// add column 1 section 
+	$wp_customize->add_section('column_1', array(
+        'title' => 'Column 1',
+        'description' => 'This is a Column 1.',
+        'section' => 'bottom_footer_section',
+        'panel' => 'rose_and_rabbit_footer_section_panel',
+    ));
+
+	// add setting for column width
+	$wp_customize->add_setting('col_1_size', 
+		array(
+			'default' => 'col-md-3',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column column size dropdown control
+	$wp_customize->add_control(new Customize_Select2_Control($wp_customize, 'col_1_size',
+		array(
+			'label' => 'Column Size',
+			'section' => 'column_1',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => array(
+				'col-md-1' => __( 'Col-1' ),
+				'col-md-2' => __( 'Col-2' ),
+				'col-md-3' => __( 'Col-3' ),
+				'col-md-4' => __( 'Col-4' ),
+				'col-md-5' => __( 'Col-5' ),
+				'col-md-6' => __( 'Col-6' ),
+				'col-md-7' => __( 'Col-7' ),
+				'col-md-8' => __( 'Col-8' ),
+				'col-md-9' => __( 'Col-9' ),
+				'col-md-10' => __( 'Col-10' ),
+				'col-md-11' => __( 'Col-11' ),
+				'col-md-12' => __( 'Col-12' ),
+			),
+		)
+		)
+	);
+
+	// add column 1 heading setting
+	$wp_customize->add_setting(
+		"col_1_heading",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add column 1 heading control
+	$wp_customize->add_control(
+		"col_1_heading",
+		array(
+			"label" => "Heading",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_1",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the heading",
+			)
+		)
+	);
+
+	// add column 1 address setting
+	$wp_customize->add_setting('col_1_address', 
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			// "sanitize_callback" => "sanitize_text_field",
+		)
+	);
+	// add column 1 address control
+	$wp_customize->add_control('col_1_address', 
+		array(
+			"label" => "Address",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_1",
+			"type" => "textarea",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the address",
+			)
+		)
+	);
+
+	// add column 1 phone setting
+	$wp_customize->add_setting('col_1_phone', 
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+	// add column 1 phone control
+	$wp_customize->add_control('col_1_phone', 
+		array(
+			"label" => "Phone Number",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_1",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the phone number",
+			)
+		)
+	);
+
+	// add column 1 email setting
+	$wp_customize->add_setting('col_1_email', 
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+	// add column 1 email control
+	$wp_customize->add_control('col_1_email', 
+		array(
+			"label" => "Email",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_1",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the email number",
+			)
+		)
+	);
+
+	// END COLUMN ONE (1)
+
+
+	// COLUMN TWO (2)
+	// add column 2 section 
+	$wp_customize->add_section('column_2', array(
+        'title' => 'Column 2',
+        'description' => 'This is a Column 2.',
+        'section' => 'bottom_footer_section',
+        'panel' => 'rose_and_rabbit_footer_section_panel',
+    ));
+
+	// add setting for column width
+	$wp_customize->add_setting('col_2_size', 
+		array(
+			'default' => 'col-md-3',
+			// 'capability' => 'edit_theme_options',
+			// 'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column column size dropdown control
+	$wp_customize->add_control('col_2_size', 
+		array(
+			'label' => 'Column Size',
+			'section' => 'column_2',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => array(
+				'col-md-1' => __( 'Col-1' ),
+				'col-md-2' => __( 'Col-2' ),
+				'col-md-3' => __( 'Col-3' ),
+				'col-md-4' => __( 'Col-4' ),
+				'col-md-5' => __( 'Col-5' ),
+				'col-md-6' => __( 'Col-6' ),
+				'col-md-7' => __( 'Col-7' ),
+				'col-md-8' => __( 'Col-8' ),
+				'col-md-9' => __( 'Col-9' ),
+				'col-md-10' => __( 'Col-10' ),
+				'col-md-11' => __( 'Col-11' ),
+				'col-md-12' => __( 'Col-12' ),
+			),
+		)
+	);
+
+	// add column 2 heading setting
+	$wp_customize->add_setting(
+		"col_2_heading",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add column 2 heading control
+	$wp_customize->add_control(
+		"col_2_heading",
+		array(
+			"label" => "Heading",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_2",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the heading",
+			)
+		)
+	);
+
+	// add column 2 menu dropdown setting
+	$wp_customize->add_setting('col_2_menu', 
+		array(
+			'default' => '0',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column 2 menu dropdown control
+	$wp_customize->add_control('col_2_menu', 
+		array(
+			'label' => 'Select Menu',
+			'section' => 'column_2',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => $merge_locations,
+		)
+	);
+	// END COLUMN TWO (2)
+
+	// COLUMN THREE (3)
+	// add column 3 section 
+	$wp_customize->add_section('column_3', array(
+        'title' => 'Column 3',
+        'description' => 'This is a Column 3.',
+        'section' => 'bottom_footer_section',
+        'panel' => 'rose_and_rabbit_footer_section_panel',
+    ));
+
+	// add setting for column width
+	$wp_customize->add_setting('col_3_size', 
+		array(
+			'default' => 'col-md-3',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column column size dropdown control
+	$wp_customize->add_control('col_3_size', 
+		array(
+			'label' => 'Column Size',
+			'section' => 'column_3',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => array(
+				'col-md-1' => __( 'Col-1' ),
+				'col-md-2' => __( 'Col-2' ),
+				'col-md-3' => __( 'Col-3' ),
+				'col-md-4' => __( 'Col-4' ),
+				'col-md-5' => __( 'Col-5' ),
+				'col-md-6' => __( 'Col-6' ),
+				'col-md-7' => __( 'Col-7' ),
+				'col-md-8' => __( 'Col-8' ),
+				'col-md-9' => __( 'Col-9' ),
+				'col-md-10' => __( 'Col-10' ),
+				'col-md-11' => __( 'Col-11' ),
+				'col-md-12' => __( 'Col-12' ),
+			),
+		)
+	);
+
+
+	// add column 3 heading setting
+	$wp_customize->add_setting(
+		"col_3_heading",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add column 3 heading control
+	$wp_customize->add_control(
+		"col_3_heading",
+		array(
+			"label" => "Heading",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_3",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the heading",
+			)
+		)
+	);
+
+	// add column 3 menu dropdown setting
+	$wp_customize->add_setting('col_3_menu', 
+		array(
+			'default' => '0',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column 3 menu dropdown control
+	$wp_customize->add_control('col_3_menu', 
+		array(
+			'label' => 'Select Menu',
+			'section' => 'column_3',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => $merge_locations,
+		)
+	);
+	// END COLUMN THREE (3)
+
+
+	// COLUMN FOUR (4)
+	// add column 4 section 
+	$wp_customize->add_section('column_4', array(
+        'title' => 'Column 4',
+        'description' => 'This is a Column 4.',
+        'section' => 'bottom_footer_section',
+        'panel' => 'rose_and_rabbit_footer_section_panel',
+    ));
+
+
+	// add setting for column width
+	$wp_customize->add_setting('col_4_size', 
+		array(
+			'default' => 'col-md-3',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column 4 column size dropdown control
+	$wp_customize->add_control('col_4_size', 
+		array(
+			'label' => 'Column Size',
+			'section' => 'column_4',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => array(
+				'col-md-1' => __( 'Col-1' ),
+				'col-md-2' => __( 'Col-2' ),
+				'col-md-3' => __( 'Col-3' ),
+				'col-md-4' => __( 'Col-4' ),
+				'col-md-5' => __( 'Col-5' ),
+				'col-md-6' => __( 'Col-6' ),
+				'col-md-7' => __( 'Col-7' ),
+				'col-md-8' => __( 'Col-8' ),
+				'col-md-9' => __( 'Col-9' ),
+				'col-md-10' => __( 'Col-10' ),
+				'col-md-11' => __( 'Col-11' ),
+				'col-md-12' => __( 'Col-12' ),
+			),
+		)
+	);
+
+	// add column 4 heading setting
+	$wp_customize->add_setting(
+		"col_4_heading",
+		array(
+			"type" => "theme_mod",
+			"default" => "",
+			"sanitize_callback" => "sanitize_text_field",
+		)
+	);
+
+	// add column 4 heading control
+	$wp_customize->add_control(
+		"col_4_heading",
+		array(
+			"label" => "Heading",
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			"section" => "column_4",
+			"type" => "text",
+			"input_attrs" => array(
+				"placeholder" => "Please enter the heading",
+			)
+		)
+	);
+
+	// add column 4 menu dropdown setting
+	$wp_customize->add_setting('col_4_menu', 
+		array(
+			'default' => '0',
+			'capability' => 'edit_theme_options',
+			'sanitize_callback' => 'sanitize_text_field',
+			'type' => 'theme_mod',
+		)
+	);
+	// add column 4 menu dropdown control
+	$wp_customize->add_control('col_4_menu', 
+		array(
+			'label' => 'Select Menu',
+			'section' => 'column_4',
+			'panel' => 'rose_and_rabbit_footer_section_panel',
+			'type' => 'select',
+			'choices' => $merge_locations,
+		)
+	);
+	// END COLUMN FOUR (4)
+
+
 }
+
 add_action("customize_register", "rose_and_rabbit_load_wp_customizer");
+
+function enqueue_select2() {
+	// Enqueue Select2 library
+	wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+	wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '', true);
+
+	// Enqueue custom JavaScript file
+	wp_enqueue_script('custom-select2', get_template_directory_uri() . '/js/custom-select2.js', array('jquery', 'select2'), '', true);
+}
+add_action('customize_controls_enqueue_scripts', 'enqueue_select2');
+
 
 
 
@@ -793,9 +1225,9 @@ jQuery(document).on('click', '.remove-product', function(e) {
     product_container.block({
         message: null,
         overlayCSS: {
-			background: '#fcebea',
-			opacity: 0.8
-		}
+            background: '#fcebea',
+            opacity: 0.8
+        }
     });
     jQuery.ajax({
         type: 'POST',
@@ -842,40 +1274,40 @@ window.onload = function() {
 };
 
 function render() {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-		'size': 'invisible',
-	});
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        'size': 'invisible',
+    });
     // recaptchaVerifier.render();
-	recaptchaVerifier.render().then((widgetId) => {
-		window.recaptchaWidgetId = widgetId;
-	});
+    recaptchaVerifier.render().then((widgetId) => {
+        window.recaptchaWidgetId = widgetId;
+    });
 
 }
+
 function phoneSendAuth() {
-	msform.block({
-		message: null,
-		overlayCSS: {
-			background: '#fcebea',
-			opacity: 0.8
-		}
-	});
-	const input = document.querySelectorAll(".input");
+    msform.block({
+        message: null,
+        overlayCSS: {
+            background: '#fcebea',
+            opacity: 0.8
+        }
+    });
+    const input = document.querySelectorAll(".input");
     let number = jQuery("#phone-number-input").val();
     let numberwithcode = '+91' + number;
-	const appVerifier = window.recaptchaVerifier
+    const appVerifier = window.recaptchaVerifier
     // firebase.auth().signInWithPhoneNumber(numberwithcode, window.recaptchaVerifier).then(function(confirmationResult) {
     firebase.auth().signInWithPhoneNumber(numberwithcode, appVerifier).then(function(confirmationResult) {
         window.confirmationResult = confirmationResult;
         coderesult = confirmationResult;
-        console.log("coderesult : >>", coderesult);
-		jQuery("#error").html("");
-		jQuery("#error").hide();
+        jQuery("#error").html("");
+        jQuery("#error").hide();
         jQuery("#sentSuccess").html("OTP Sent Successfully.");
         jQuery("#sentSuccess").show();
         jQuery('.otp-field').removeClass('d-none');
         jQuery('#send-otp').addClass('d-none');
-		input[0].focus();
-		msform.unblock();
+        input[0].focus();
+        msform.unblock();
         setTimeout(() => {
             jQuery("#sentSuccess").html("");
             jQuery("#sentSuccess").hide();
@@ -884,80 +1316,79 @@ function phoneSendAuth() {
     }).catch(function(error) {
         jQuery("#error").html(error.message);
         jQuery("#error").show();
-		msform.unblock();
+        msform.unblock();
     });
 
 }
 
 function codeverify() {
-	msform.block({
-		message: null,
-		overlayCSS: {
-			background: '#fcebea',
-			opacity: 0.8
-		}
-	});
+    msform.block({
+        message: null,
+        overlayCSS: {
+            background: '#fcebea',
+            opacity: 0.8
+        }
+    });
     const input = document.querySelectorAll(".input");
     jQuery("#otp-verify").html('Verifying...');
     let codes = "";
     input.forEach((element) => {
         codes += element.value;
     })
-	try{
-		coderesult.confirm(codes).then(function(result) {
-			let user = result.user;
-			let phoneNumber = user.phoneNumber;
-			jQuery("#billing_phone").val(phoneNumber);
-			jQuery("#billing_phone").prop('readonly', true);
-			jQuery("#successRegsiter").html("Verified!");
-			jQuery("#successRegsiter").show();
+    try {
+        coderesult.confirm(codes).then(function(result) {
+            let user = result.user;
+            let phoneNumber = user.phoneNumber;
+            jQuery("#billing_phone").val(phoneNumber);
+            jQuery("#billing_phone").prop('readonly', true);
+            jQuery("#successRegsiter").html("Verified!");
+            jQuery("#successRegsiter").show();
 
-			jQuery.ajax({
-				type: 'POST',
-				dataType: 'json',
-				url: '<?php echo admin_url( 'admin-ajax.php' );?>',
-				data: {
-					action: "login_user_by_phone_number",
-					phone_number: phoneNumber,
-				},
-				beforeSend:function(){
-					jQuery("#error").html("");
-					jQuery("#error").hide();
-				},
-				success: function(response) {
-					if (response.status) {
-						let users = response.user;
-						jQuery.each(users, function(key, value) {
-							jQuery("#" + key).val(value[0]);
-						});
-					}
-					setTimeout(() => {
-						msform.unblock();
-						jQuery("#successRegsiter").html("");
-						jQuery("#successRegsiter").hide();
-						jQuery("#otp-verify").next().click();
-						jQuery("#otp-verify").html('Next');
-					}, 1000);
-				},
-				error: function(error) {
-					console.log('error :>> ', error);
-				}
-			});
+            jQuery.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: '<?php echo admin_url( 'admin-ajax.php' );?>',
+                data: {
+                    action: "login_user_by_phone_number",
+                    phone_number: phoneNumber,
+                },
+                beforeSend: function() {
+                    jQuery("#error").html("");
+                    jQuery("#error").hide();
+                },
+                success: function(response) {
+                    if (response.status) {
+                        let users = response.user;
+                        jQuery.each(users, function(key, value) {
+                            jQuery("#" + key).val(value[0]);
+                        });
+                    }
+                    setTimeout(() => {
+                        msform.unblock();
+                        jQuery("#successRegsiter").html("");
+                        jQuery("#successRegsiter").hide();
+                        jQuery("#otp-verify").next().click();
+                        jQuery("#otp-verify").html('Next');
+                    }, 1000);
+                },
+                error: function(error) {
+                    console.log('error :>> ', error);
+                }
+            });
 
-		}).catch( function(error) {
-			console.log('error :>> ', error);
-			jQuery("#error").html(error.message);
-			jQuery("#error").show();
-			jQuery("#otp-verify").html('Next');
-			msform.unblock();
-		});
-	}
-	catch(error) {
-		console.log('error :>> ', error);
+        }).catch(function(error) {
+            console.log('error :>> ', error);
+            jQuery("#error").html(error.message);
+            jQuery("#error").show();
+            jQuery("#otp-verify").html('Next');
+            msform.unblock();
+        });
+    } catch (error) {
+        console.log('error :>> ', error);
         jQuery("#error").html(error.message);
         jQuery("#error").show();
         jQuery("#otp-verify").html('Next');
-		msform.unblock();
+        msform.unblock();
     };
 }
 </script>
@@ -1039,12 +1470,12 @@ function woocommerce_cart_items()
 								esc_attr($_product->get_sku()),
 								esc_attr($cart_item_key)
 							), $cart_item_key); ?>
-        	</div>
+        </div>
 
-			<span class="sideml">
-				<?php echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key); // PHPCS: XSS ok.?>
-			</span>
-			<div class="actions qountbtn">
+        <span class="sideml">
+            <?php echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key); // PHPCS: XSS ok.?>
+        </span>
+        <div class="actions qountbtn">
             <?php
 				if ($_product->is_sold_individually()) {
 					$min_quantity = 1;
@@ -1150,9 +1581,9 @@ function register_user_with_billing_details() {
 		// wc_add_notice($errors['billing_first_name'], 'error');
         // If there are validation errors, return the error messages
 		if ( $errors ) { ?>
-		<?php foreach($errors as $key => $value){ ?>
-		<small id="<?php echo $key;?>_error" class="text-danger"><?php echo $value; ?></small>
-		<?php } 
+<?php foreach($errors as $key => $value){ ?>
+<small id="<?php echo $key;?>_error" class="text-danger"><?php echo $value; ?></small>
+<?php } 
 			
 			$errors_html= ob_get_contents();
 			ob_end_clean();
@@ -1263,15 +1694,18 @@ add_filter( 'manage_users_custom_column', 'add_phone_user_table_row', 10, 3 );
 
 // Add custom phone number field to user profile
 function add_custom_phone_field( $user ) { ?>
-    <table class="form-table">
-        <tr class="user-phone-wrap">
-            <th><label for="user_phone"><?php _e( 'Phone Number', 'rose_and_rabbit' ); ?></label></th>
-            <td>
-                <input type="text" name="user_phone" id="user_phone" value="<?php echo esc_attr( get_the_author_meta( 'user_phone', $user->ID ) ); ?>" class="regular-text" /><br />
-                <span class="description"><?php _e( 'Please enter your phone number without country code.', 'rose_and_rabbit' ); ?></span>
-            </td>
-        </tr>
-    </table>
+<table class="form-table">
+    <tr class="user-phone-wrap">
+        <th><label for="user_phone"><?php _e( 'Phone Number', 'rose_and_rabbit' ); ?></label></th>
+        <td>
+            <input type="text" name="user_phone" id="user_phone"
+                value="<?php echo esc_attr( get_the_author_meta( 'user_phone', $user->ID ) ); ?>"
+                class="regular-text" /><br />
+            <span
+                class="description"><?php _e( 'Please enter your phone number without country code.', 'rose_and_rabbit' ); ?></span>
+        </td>
+    </tr>
+</table>
 <?php
 }
 add_action( 'show_user_profile', 'add_custom_phone_field' );
@@ -1288,12 +1722,12 @@ add_action( 'personal_options_update', 'save_custom_phone_field' );
 add_action( 'edit_user_profile_update', 'save_custom_phone_field' );
 // Adjust position of email and phone number fields
 function adjust_user_profile_fields_order() { ?>
-    <script>
-        jQuery(document).ready(function($) {
-            $('#email').closest('tr').after($('#user_phone').closest('tr'));
-        });
-    </script>
-    <?php
+<script>
+jQuery(document).ready(function($) {
+    $('#email').closest('tr').after($('#user_phone').closest('tr'));
+});
+</script>
+<?php
 }
 add_action( 'admin_footer', 'adjust_user_profile_fields_order' );
 

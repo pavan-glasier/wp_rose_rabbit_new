@@ -136,7 +136,7 @@ function woo_gst_generate_invoice_number($o_id){
 	$increment = get_option( 'gst_max_invoice' );
 	$num = $o_id;
 
-	if ($order->get_status() === 'processing') {
+	// if ($order->get_status() === 'processing') {
 		if (empty($getin_num)) {
 
 			if(!empty($skip_no)){
@@ -158,7 +158,7 @@ function woo_gst_generate_invoice_number($o_id){
 		} else {
 			$num = $getin_num;
 		}
-	}
+	// }
 	$label = $in_prefix.'_'.$num;
 	add_post_meta( $o_id, 'gst_order_invoice_no', $label, true );
 	return $label;

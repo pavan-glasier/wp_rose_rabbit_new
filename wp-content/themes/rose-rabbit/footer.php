@@ -93,6 +93,7 @@
     <div class="widget-area">
         <div class="container">
             <div class="row justify-content-between">
+                <?php /*
                 <?php while( have_rows('footer_bottom', 'option') ): the_row(); ?>
                 <div class="<?php echo get_sub_field('column_size');?> col-xl-auto">
                     <div
@@ -106,7 +107,6 @@
                         <?php if( empty(get_sub_field('address')) && empty(get_sub_field('phone')) && empty(get_sub_field('email')) ): ?>
                         <?php else: ?>
                         <p class="footer-info">
-
                             <?php if( !empty(get_sub_field('address')) ): ?>
                             <i class="fal fa-map-marker-alt text-theme me-2"></i>
                             <?php echo get_sub_field('address');?><br>
@@ -116,8 +116,7 @@
                             <a href="tel:<?php echo get_sub_field('phone');?>" class="text-inherit">
                                 <i class="fa fa-phone-alt text-theme me-2"></i>
                                 <?php echo get_sub_field('phone');?>
-                            </a>
-                            <br>
+                            </a><br>
                             <?php endif; ?>
 
                             <?php if( !empty(get_sub_field('email')) ): ?>
@@ -126,9 +125,7 @@
                                 <?php echo get_sub_field('email');?>
                             </a>
                             <?php endif; ?>
-
                         </p>
-
                         <?php endif; ?>
                         <?php endwhile; ?>
                         <?php endif; ?>
@@ -149,6 +146,111 @@
                     </div>
                 </div>
                 <?php endwhile; ?>
+                */?>
+
+                <!-- Column One -->
+                <div class="<?php echo get_theme_mod('col_1_size', 'col-md-3');?> col-xl-auto">
+                    <div class="widget footer-widget"> <!-- class - .widget_nav_menu -->
+                        <?php if( !empty( get_theme_mod('col_1_heading') ) ): ?>
+                        <h3 class="widget_title"><?php echo get_theme_mod('col_1_heading');?></h3>
+                        <?php endif; ?>
+
+                        <?php if( empty(get_theme_mod('col_1_address')) && 
+                        empty(get_theme_mod('col_1_phone')) && 
+                        empty(get_theme_mod('col_1_email')) ): ?>
+                        <?php else: ?>
+                        <p class="footer-info">
+                            <?php if( !empty(get_theme_mod('col_1_address')) ): ?>
+                            <i class="fal fa-map-marker-alt text-theme me-2"></i>
+                            <?php echo get_theme_mod('col_1_address');?><br>
+                            <?php endif; ?>
+
+                            <?php if( !empty(get_theme_mod('col_1_phone')) ): ?>
+                            <a href="tel:<?php echo get_theme_mod('col_1_phone');?>" class="text-inherit">
+                                <i class="fa fa-phone-alt text-theme me-2"></i>
+                                <?php echo get_theme_mod('col_1_phone');?>
+                            </a><br>
+                            <?php endif; ?>
+
+                            <?php if( !empty(get_theme_mod('col_1_email')) ): ?>
+                            <a class="text-inherit" href="mailto:<?php echo get_theme_mod('col_1_email');?>">
+                                <i class="fal fa-envelope text-theme me-2"></i>
+                                <?php echo get_theme_mod('col_1_email');?>
+                            </a>
+                            <?php endif; ?>
+                        </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Column Two -->
+                <div class="<?php echo get_theme_mod('col_2_size', 'col-md-3');?> col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <?php if( !empty( get_theme_mod('col_2_heading') ) ): ?>
+                        <h3 class="widget_title"><?php echo get_theme_mod('col_2_heading');?></h3>
+                        <?php endif; ?>
+
+                        <?php if ( has_nav_menu( get_theme_mod('col_2_menu') ) ) : ?>
+                        <div class="menu-all-pages-container footer-menu">
+                            <?php wp_nav_menu(
+                              array(
+                                 'theme_location' => get_theme_mod('col_2_menu'),
+                                 'menu_id'        => 'primary-menu',
+                                 'menu_class'     => 'menu',
+                                 'container'      => 'ul',
+                              )
+                           ); ?>
+                        </div>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+
+                <!-- Column Three -->
+                <div class="<?php echo get_theme_mod('col_3_size', 'col-md-3');?> col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <?php if( !empty( get_theme_mod('col_3_heading') ) ): ?>
+                        <h3 class="widget_title"><?php echo get_theme_mod('col_3_heading');?></h3>
+                        <?php endif; ?>
+
+                        <?php if ( has_nav_menu( get_theme_mod('col_3_menu') ) ) : ?>
+                        <div class="menu-all-pages-container footer-menu">
+                            <?php wp_nav_menu(
+                              array(
+                                 'theme_location' => get_theme_mod('col_3_menu'),
+                                 'menu_id'        => 'primary-menu',
+                                 'menu_class'     => 'menu',
+                                 'container'      => 'ul',
+                              )
+                           ); ?>
+                        </div>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
+
+                <!-- Column Four -->
+                <div class="<?php echo get_theme_mod('col_4_size', 'col-md-3');?> col-xl-auto">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <?php if( !empty( get_theme_mod('col_4_heading') ) ): ?>
+                        <h3 class="widget_title"><?php echo get_theme_mod('col_4_heading');?></h3>
+                        <?php endif; ?>
+
+                        <?php if ( has_nav_menu( get_theme_mod('col_4_menu') ) ) : ?>
+                        <div class="menu-all-pages-container footer-menu">
+                            <?php wp_nav_menu(
+                              array(
+                                 'theme_location' => get_theme_mod('col_4_menu'),
+                                 'menu_id'        => 'primary-menu',
+                                 'menu_class'     => 'menu',
+                                 'container'      => 'ul',
+                              )
+                           ); ?>
+                        </div>
+                        <?php endif; ?>
+
+                    </div>
+                </div>
 
             </div>
         </div>
