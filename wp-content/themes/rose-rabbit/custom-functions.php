@@ -16,8 +16,7 @@
  }
 
 // Custom Admin Color Scheme
-function custom_color_admin_color_scheme()
-{
+function custom_color_admin_color_scheme(){
 	//Get the theme directory
 	$theme_dir = get_stylesheet_directory_uri();
 	//Custom Color
@@ -334,7 +333,7 @@ add_filter('get_the_archive_title_prefix', '__return_empty_string');
 //     $phpmailer->Username   = 'pavan@glasier.in';
 //     $phpmailer->Password   = '4tD3PXKsgTRvb8wF';
 //     $phpmailer->From       = 'pavanvish001@yopmail.com';
-//     $phpmailer->FromName   = 'Rose & Rabbit';
+//	   $phpmailer->FromName   = 'Rose & Rabbit';
 //     // $phpmailer->addReplyTo('pavanvish001@yopmail.com', 'Information');
 // }
 
@@ -1821,11 +1820,75 @@ add_action('wp_ajax_login_user_by_phone_number', 'login_user_by_phone_number');
 add_action('wp_ajax_nopriv_login_user_by_phone_number', 'login_user_by_phone_number');
 
 
+// $user = wp_authenticate( 'RRAdmin', 'WF3P@uUIYmBN6ktrb8' );
+// print_r($user);
 
-// if( current_user_can('administrator') ){
-	// add_filter( 'login_url', 'custom_login_url', PHP_INT_MAX );
-	// function custom_login_url( $login_url ) {
-	// 	$login_url = site_url( 'newlogin.php', 'login' );
-	// 	return $login_url;
-	// }
-// }
+
+function read_csv(){
+	// Specify the path to the CSV file
+	$csvFilePath = 'http://localhost/rose_and_rabbit/wp-content/uploads/2023/07/email.csv';
+	
+	// Open the CSV file
+	$csvFile = fopen($csvFilePath, 'r');
+
+	// Check if the file was opened successfully
+	if ($csvFile) {
+		// Initialize an empty array to store the Excel data
+		$excelData = array();
+		$i = 0;
+		// Read each line of the CSV file until the end
+		while (($data = fgetcsv($csvFile)) !== false) {
+			// Add the data as a row to the Excel data array
+				$c = 0;
+				foreach($data as $col) {
+					$excelData[$i][] = $col;
+					$c++;
+				}
+			$i++;
+		}
+		// Close the CSV file
+		fclose($csvFile);
+
+		// Display the Excel data
+		return $excelData;
+	} else {
+		echo "Failed to open the CSV file.";
+	}
+}
+
+function csv_list(){ ?>
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+<?php
+$csv_data = read_csv();
+$arr = array();
+$k = 0;
+foreach( $csv_data as $data){
+    if (is_array($data)) {
+        $j = 0;
+        foreach ($data as $key => $value) {
+            $savekey = explode(";", $data[0]);
+            $savedata = explode(";", $value);
+                foreach( $savedata as $col ){
+                $arr[$j] = ($savekey[$j]) ? $savekey[$j] : null;
+                $j++;
+            }
+        }
+    } ?>
+<tr>
+<?php
+foreach($arr as $key => $val){
+    if($k == 0) { ?>
+    <th><?php echo $val; ?></th>
+    <?php } else{ ?>
+    <td><?php echo $val; ?></td>
+    <?php } ?>
+<?php } ?>
+</tr>
+<?php
+$k++; }
+?>
+</table>
+</div>
+<?php }
+add_shortcode('csv_list', 'csv_list');

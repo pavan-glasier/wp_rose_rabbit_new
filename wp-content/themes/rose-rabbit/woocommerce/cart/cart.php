@@ -206,6 +206,4 @@ do_action( 'woocommerce_before_cart' );
     </div>
 </section>
 <!--End Cart-->
-
-
 <?php do_action( 'woocommerce_after_cart' ); ?>
