@@ -9,7 +9,7 @@
 
 get_header(); ?>
 <main>
-	<div class="space-top space-extra-bottom1 bg-gradient-1">
+	<div class="space-top space-bottom space-extra-bottom1 bg-gradient-1">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-ms-12">

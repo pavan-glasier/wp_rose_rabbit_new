@@ -8,7 +8,6 @@ if( ! class_exists( 'WC_GST_Checkout' ) ) :
 	class WC_GST_Checkout {
 		
 		function __construct() {
-			
 			// Add one field to checkout page
 			add_action( 'woocommerce_after_order_notes', array( $this,'woo_gst_custom_checkout_field' ) );
 			// Validate and process the custom field

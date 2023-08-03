@@ -75,12 +75,12 @@ jQuery( document ).ready(function() {
                     // jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, jQuerythisbutton]);
                     // jQuery( document.body ).trigger( 'added_to_cart', [ response.fragments, response.cart_hash, jQuerythisbutton ] );
                     let obj = jQuery.parseJSON(response);
-                    console.log('response :>> ', response);
-                    jQuery( document.body ).trigger( 'removed_from_cart', [ response.fragments, response.cart_hash, jQuerythisbutton ] );
+                    // jQuery( document.body ).trigger( 'removed_from_cart', [ response.fragments, response.cart_hash, jQuerythisbutton ] );
                     jQuery(".sidemenu-peid").html(obj.htmlcart);
                     jQuery(".sidebar_cart_count").html(obj.htmlcount);
                     jQuery(".cart-count").html(obj.htmlcount);
-                    alljQueries();
+                    // alljQueries();
+                    jQuery( document.body ).trigger( 'added_to_cart');
         
                 }
             });
@@ -225,33 +225,34 @@ jQuery( document ).ready(function() {
             console.log('e :>> ', e);
             decrementValue(e);
         });
+
     }
     alljQueries();
+    // update quantity function
+    function updateQty(qty, product_key){
+        jQuery.ajax({
+            type : "post",
+            url : addtocart_sidebar.ajaxurl,
+            data : {
+                action: "mcsfw_atcpro_qty_val",
+                qty: qty,
+                product_key:product_key
+            },
+            beforeSend: function() {
+                jQuery(".qty-btn").prop("disabled", true);
+                jQuery( document.body ).trigger( 'update_checkout' );
+            },
+            success: function(data){
+                jQuery( document.body ).trigger( 'added_to_cart', [ data.fragments, data.cart_hash ] );
+                jQuery(".qty-btn").prop("disabled", false);
+            },
+            complete: function() {
+                jQuery(".qty-btn").prop("disabled", false);
+            },
+        });
+    }
 });
 
-// update quantity function
-function updateQty(qty, product_key){
-    jQuery.ajax({
-        type : "post",
-        url : addtocart_sidebar.ajaxurl,
-        data : {
-            action: "mcsfw_atcpro_qty_val",
-            qty: qty,
-            product_key:product_key
-        },
-        beforeSend: function() {
-            jQuery(".qty-btn").prop("disabled", true);
-            jQuery( document.body ).trigger( 'update_checkout' );
-        },
-        success: function(data){
-            jQuery( document.body ).trigger( 'added_to_cart', [ data.fragments, data.cart_hash ] );
-            jQuery(".qty-btn").prop("disabled", false);
-        },
-        complete: function() {
-            jQuery(".qty-btn").prop("disabled", false);
-        },
-    });
-}
 
 // click on quantity plus and minus button on cart page
 jQuery(document).on( 'click', 'button.plus, button.minus', function() {
@@ -268,14 +269,14 @@ jQuery(document).on( 'click', 'button.plus, button.minus', function() {
        } else {
           qty.val( val + step ).change();
        }
-       updateQty(parseFloat(qty.val()), product_key)
+    //    updateQty(parseFloat(qty.val()), product_key)
     } else {
        if ( min && ( min >= val ) ) {
           qty.val( min ).change();
        } else if ( val > 1 ) {
           qty.val( val - step ).change();
        }
-       updateQty(parseFloat(qty.val()), product_key)
+    //    updateQty(parseFloat(qty.val()), product_key)
     }
 });
 
@@ -486,11 +487,21 @@ if( ins ){
         input.addEventListener('keypress', function(e){
             if (e.which === 13 || e.keyCode === 13) {
                 e.preventDefault();
-                codeverify();
+                if( addtocart_sidebar.is_cart ){
+                    codeverify();
+                }
+                else{
+                    loginCodeverify();
+                }
+
             }
         })
     });
 }
 if(in1){
     in1.addEventListener('input', splitNumber);
+}
+
+if( addtocart_sidebar.is_cart ){
+    jQuery("#billing_phone").prop('readonly', true);
 }

@@ -1,0 +1,30 @@
+2023-08-03T10:02:54+00:00 CRITICAL Uncaught Error: Call to a member function get_tax_class() on null in E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php:225
+Stack trace:
+#0 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(651): WC_Cart_Totals->get_items_from_cart()
+#1 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(143): WC_Cart_Totals->calculate_item_totals()
+#2 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(134): WC_Cart_Totals->calculate()
+#3 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1401): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1360): WC_Cart->calculate_totals()
+#5 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\add-to-cart-item-sidebar\inc\sidebar-frontend.php(1100): WC_Cart->set_quantity('4e732ced3463d06...', '1')
+#6 E:\xampp\htdocs\rose_and_rabbit\wp-includes\class-wp-hook.php(308): mcsfw_atcpro_qty_val('')
+#7 E:\xampp\htdocs\rose_and_rabbit\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#8 E:\xampp\htdocs\rose_and_rabbit\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#9 E:\xampp\htdocs\rose_and_rabbit\wp-admin\admin-ajax.php(188): do_action('wp_ajax_mcsfw_a...')
+#10 {main}
+  thrown in E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php on line 225
+
+2023-08-03T10:02:54+00:00 CRITICAL Uncaught Error: Call to a member function get_tax_class() on null in E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php:225
+Stack trace:
+#0 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(651): WC_Cart_Totals->get_items_from_cart()
+#1 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(143): WC_Cart_Totals->calculate_item_totals()
+#2 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php(134): WC_Cart_Totals->calculate()
+#3 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1401): WC_Cart_Totals->__construct(Object(WC_Cart))
+#4 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart.php(1360): WC_Cart->calculate_totals()
+#5 E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\add-to-cart-item-sidebar\inc\sidebar-frontend.php(1100): WC_Cart->set_quantity('4e732ced3463d06...', '1')
+#6 E:\xampp\htdocs\rose_and_rabbit\wp-includes\class-wp-hook.php(308): mcsfw_atcpro_qty_val('')
+#7 E:\xampp\htdocs\rose_and_rabbit\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#8 E:\xampp\htdocs\rose_and_rabbit\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#9 E:\xampp\htdocs\rose_and_rabbit\wp-admin\admin-ajax.php(188): do_action('wp_ajax_mcsfw_a...')
+#10 {main}
+  thrown in E:\xampp\htdocs\rose_and_rabbit\wp-content\plugins\woocommerce\includes\class-wc-cart-totals.php on line 225
+

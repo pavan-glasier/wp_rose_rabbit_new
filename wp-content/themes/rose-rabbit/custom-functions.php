@@ -1450,25 +1450,25 @@ function woocommerce_cart_items()
         <div class="tit">
             <div class="product_title">
                 <?php if (!$product_permalink) {
-									echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<h4 class="post-title product_title">%s</h4>', $_product->get_name()), $cart_item, $cart_item_key) . '&nbsp;');
-								} else {
-									echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s"><h4 class="post-title product_title">%s</h4></a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
-								}
-								do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
-								echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
-								if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
-									echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
-								} ?>
+						echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<h4 class="post-title product_title">%s</h4>', $_product->get_name()), $cart_item, $cart_item_key) . '&nbsp;');
+					} else {
+						echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s"><h4 class="post-title product_title">%s</h4></a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
+					}
+					do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
+					echo wc_get_formatted_cart_item_data($cart_item); // PHPCS: XSS ok.
+					if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
+						echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
+					} ?>
             </div>
 
             <?php echo apply_filters('woocommerce_cart_item_remove_link', sprintf(
-								'<a href="%s" class="remove-product" aria-label="%s" data-product_id="%s" data-product_sku="%s" data-cart_item_key="%s"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0,0,256,256"><g fill-rule="evenodd" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(0.05905,0.05905)"><path d="M2841,1240l260,266l5,4l-5,5l-682,663l615,614l67,59l5,4l-5,5l-260,266l-5,4l-5,-5l-660,-706l-1,1v-8v-2h-2v2v8l-1,-1l-660,706l-4,5l-5,-4l-261,-266l-4,-5l4,-4l68,-59l615,-614l-683,-663l-4,-5l4,-4l261,-266l5,-5l4,5l661,709v1h2v-1l661,-709l5,-5z"></path></g></g></svg></a>',
-								esc_url(WC()->cart->get_remove_url($cart_item_key)),
-								esc_html__('Remove this item', 'woocommerce'),
-								esc_attr($product_id),
-								esc_attr($_product->get_sku()),
-								esc_attr($cart_item_key)
-							), $cart_item_key); ?>
+				'<a href="%s" class="remove-product" aria-label="%s" data-product_id="%s" data-product_sku="%s" data-cart_item_key="%s"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0,0,256,256"><g fill-rule="evenodd" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(0.05905,0.05905)"><path d="M2841,1240l260,266l5,4l-5,5l-682,663l615,614l67,59l5,4l-5,5l-260,266l-5,4l-5,-5l-660,-706l-1,1v-8v-2h-2v2v8l-1,-1l-660,706l-4,5l-5,-4l-261,-266l-4,-5l4,-4l68,-59l615,-614l-683,-663l-4,-5l4,-4l261,-266l5,-5l4,5l661,709v1h2v-1l661,-709l5,-5z"></path></g></g></svg></a>',
+				esc_url(WC()->cart->get_remove_url($cart_item_key)),
+				esc_html__('Remove this item', 'woocommerce'),
+				esc_attr($product_id),
+				esc_attr($_product->get_sku()),
+				esc_attr($cart_item_key)
+			), $cart_item_key); ?>
         </div>
 
         <span class="sideml">
@@ -1492,6 +1492,7 @@ function woocommerce_cart_items()
 						'max_value' => $max_quantity,
 						'min_value' => $min_quantity,
 						'product_name' => $_product->get_name(),
+						'classes' => 'qty pqty_total'
 					),
 					$_product,
 					false
@@ -1521,6 +1522,7 @@ function enqueue_cart_scripts() {
 		wp_enqueue_script('cart-scripts', get_template_directory_uri() . '/js/cart-scripts.js', array('jquery'), '1.0', true);
 		$passarray =  array( 
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'is_cart' => is_cart(),
 			// 'product' => get_option('atcaiofw_product'),
 			// 'basekt_position' => get_option('basekt_position'),
 		);
@@ -1580,9 +1582,9 @@ function register_user_with_billing_details() {
 		// wc_add_notice($errors['billing_first_name'], 'error');
         // If there are validation errors, return the error messages
 		if ( $errors ) { ?>
-<?php foreach($errors as $key => $value){ ?>
-<small id="<?php echo $key;?>_error" class="text-danger"><?php echo $value; ?></small>
-<?php } 
+		<?php foreach($errors as $key => $value){ ?>
+		<small id="<?php echo $key;?>_error" class="text-danger"><?php echo $value; ?></small>
+		<?php } 
 			
 			$errors_html= ob_get_contents();
 			ob_end_clean();
@@ -1794,6 +1796,10 @@ function login_user_by_phone_number() {
         )
     );
     if ($user_id) {
+		$user_avatar = get_the_author_meta( 'user_avatar', $user_id );
+		if( empty( $user_avatar ) ){
+			update_user_meta( $user_id, 'user_avatar', 'http://1.gravatar.com/avatar/af315902cac2c05d76a03f8cca1b90cf?s=32&f=y&r=g' );
+		}
         $user = get_userdata($user_id);
 		wp_set_auth_cookie($user_id);
 		wp_set_current_user($user_id);
@@ -1807,9 +1813,14 @@ function login_user_by_phone_number() {
 			'role' => 'customer' // Set the user role as a customer
 		]);
 		update_user_meta($user_id, 'user_phone', $phone_number);
+		$user_avatar = get_the_author_meta( 'user_avatar', $user_id );
+		if( empty( $user_avatar ) ){
+			update_user_meta( $user_id, 'user_avatar', 'http://1.gravatar.com/avatar/af315902cac2c05d76a03f8cca1b90cf?s=32&f=y&r=g' );
+		}
 		$user = get_userdata($user_id);
 		wp_set_auth_cookie($user_id);
 		wp_set_current_user($user_id);
+
         echo json_encode( array( 'status' => true, 'user' => get_user_meta($user_id) ) );
 		exit();
 	}
@@ -1856,8 +1867,83 @@ function read_csv(){
 	}
 }
 
-function csv_list(){ ?>
+function csv_list(){ 
+	if (isset($_POST['submit'])) {
+		if ($_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
+			echo '<ul class="woocommerce-message" role="alert">CSV file uploaded successfully and csv posts have been created.</ul>';
+		}
+		else{
+			echo '<ul class="woocommerce-error" role="alert">Failed!</ul>';
+		}
+	}
+	if (isset($_POST['delete'])) {
+		if ( isset( $_POST['post_id'] ) ) {
+			if ( $_SESSION['deleted'] ) {
+				echo '<ul class="woocommerce-message" role="alert">Delete Successfully.</ul>';
+			}else{
+				echo '<ul class="woocommerce-error" role="alert">Already Deleted!</ul>';
+			}
+		}
+		else{
+			echo '<ul class="woocommerce-error" role="alert">Failed!</ul>';
+		}
+	} ?>
+
+<form method="post" enctype="multipart/form-data" class="mb-3" style="display: flex;align-items: center;flex-wrap: wrap;">
+    <input type="file" name="csv_file" accept=".csv" class="h-auto m-0 p-2 w-25">
+    <button type="submit" name="submit" value="Upload CSV" class="vs-btn style7">Upload CSV</button>
+</form>
 <div class="table-responsive">
+<table class="table table-bordered table-striped text-center">
+	<thead>
+		<tr>
+			<th>Sno.</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Date</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php 
+$args = array(
+    'post_type' => 'csv_data', // Replace with your custom post type slug
+    'posts_per_page' => -1, // Retrieve all posts
+);
+
+$query = new WP_Query($args);
+
+if ($query->have_posts()) { ?>
+    <?php $i=1; while ($query->have_posts()) { $query->the_post(); ?>
+		<tr>
+			<td><?php echo $i++;?></td>
+			<td><?php echo get_post_meta( get_the_ID(), '_fname_field', true ); ?></td>
+			<td><?php echo get_post_meta( get_the_ID(), '_lname_field', true ); ?></td>
+			<td><?php echo get_post_meta( get_the_ID(), '_email_field', true ); ?></td>
+			<td><?php echo get_post_meta( get_the_ID(), '_date_field', true ); ?></td>
+			<td>
+				<form method="post">
+					<input type="hidden" name="post_id" value="<?php echo esc_attr(get_the_ID())?>" />
+					<button type="submit" name="delete" class="p-2 vs-btn">Delete</button>
+				</form>
+			</td>
+		</tr>
+   <?php }
+    // Restore original post data
+    wp_reset_postdata(); ?>
+
+<?php } else {
+	// No posts found
+	echo "<tr><td colspan='6' class=''>No Data Found!</td></tr>";
+}
+?>
+	</tbody>
+	</table>
+</div>
+<!-- csv data post type data -->
+
+<div class="table-responsive mt-5 d-none">
 <table class="table table-bordered table-striped">
 <?php
 $csv_data = read_csv();
@@ -1866,7 +1952,7 @@ $k = 0;
 foreach( $csv_data as $data){
     if (is_array($data)) {
         $j = 0;
-        foreach ($data as $key => $value) {
+        foreach ($data as $value) {
             $savekey = explode(";", $data[0]);
             $savedata = explode(";", $value);
                 foreach( $savedata as $col ){
@@ -1877,7 +1963,7 @@ foreach( $csv_data as $data){
     } ?>
 <tr>
 <?php
-foreach($arr as $key => $val){
+foreach($arr as $val){
     if($k == 0) { ?>
     <th><?php echo $val; ?></th>
     <?php } else{ ?>
@@ -1892,3 +1978,423 @@ $k++; }
 </div>
 <?php }
 add_shortcode('csv_list', 'csv_list');
+
+
+// Example csv post type registration
+function custom_post_type_csv_data() {
+    $labels = array(
+        'name'               => _x( 'CSV Data', 'post type general name', 'textdomain' ),
+        'singular_name'      => _x( 'CSV Data', 'post type singular name', 'textdomain' ),
+        'menu_name'          => _x( 'CSV Data', 'admin menu', 'textdomain' ),
+        'name_admin_bar'     => _x( 'CSV Data', 'add new on admin bar', 'textdomain' ),
+        'add_new'            => _x( 'Add New', 'CSV Data', 'textdomain' ),
+        'add_new_item'       => __( 'Add New CSV Data', 'textdomain' ),
+        'new_item'           => __( 'New CSV Data', 'textdomain' ),
+        'edit_item'          => __( 'Edit CSV Data', 'textdomain' ),
+        'view_item'          => __( 'View CSV Data', 'textdomain' ),
+        'all_items'          => __( 'All CSV Data', 'textdomain' ),
+        'search_items'       => __( 'Search CSV Data', 'textdomain' ),
+        'parent_item_colon'  => __( 'Parent CSV Data:', 'textdomain' ),
+        'not_found'          => __( 'No CSV Data found.', 'textdomain' ),
+        'not_found_in_trash' => __( 'No CSV Data found in Trash.', 'textdomain' )
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        // 'publicly_queryable' => true,
+        // 'show_ui'            => true,
+        // 'show_in_menu'       => true,
+        // 'query_var'          => true,
+        // // 'rewrite'            => array( 'slug' => 'csv-data' ),
+        // 'capability_type'    => 'post',
+        // 'has_archive'        => true,
+        'hierarchical'       => true,
+        // 'menu_position'      => null,
+        // 'menu_icon' => 'dashicons-id',
+        'supports' => array('title', 'editor'),
+    );
+
+    register_post_type( 'csv_data', $args );
+}
+add_action( 'init', 'custom_post_type_csv_data' );
+
+
+function add_csv_meta_boxes() {
+    add_meta_box(
+		'csv_data_meta_box', 
+		'CSV Data', 
+		'display_csv_meta_box', 
+		'csv_data', 
+		'normal', 
+		'high'
+	);
+}
+add_action('add_meta_boxes', 'add_csv_meta_boxes');
+function display_csv_meta_box($post) {
+    // Retrieve existing meta field values if any
+    $email_field_value = get_post_meta($post->ID, '_email_field', true);
+    $fname_field_value = get_post_meta($post->ID, '_fname_field', true);
+    $lname_field_value = get_post_meta($post->ID, '_lname_field', true);
+    $date_field_value = get_post_meta($post->ID, '_date_field', true);
+	?>
+	<label for="fname_field" style="width: 8%;display: inline-block;"><strong>First Name:</strong></label>
+    <input type="text" id="fname_field" name="fname_field" value="<?php echo esc_attr($fname_field_value); ?>" style="width: 25%;">
+	<br>
+	<br>
+	<label for="lname_field" style="width: 8%;display: inline-block;"><strong>Last Name:</strong></label>
+    <input type="text" id="lname_field" name="lname_field" value="<?php echo esc_attr($lname_field_value); ?>" style="width: 25%;">
+	<br>
+	<br>
+    <label for="email_field" style="width: 8%;display: inline-block;"><strong>Email:</strong></label>
+    <input type="text" id="email_field" name="email_field" value="<?php echo esc_attr($email_field_value); ?>" style="width: 25%;">
+	<br>
+	<br>
+    <label for="date_field" style="width: 8%;display: inline-block;"><strong>Date:</strong></label>
+    <input type="date" id="date_field" name="date_field" value="<?php echo esc_attr( date('Y-m-d', strtotime($date_field_value)) ); ?>" style="width: 25%;">
+    <?php
+}
+
+function add_custom_image_meta_box() {
+    add_meta_box(
+        'custom_image_meta_box', // Unique ID
+        'Custom Image Upload', // Meta Box title
+        'render_custom_image_meta_box', // Callback function to render the meta box content
+        'csv_data', // Post type where the meta box will be shown
+        'side', // Context (normal, side, advanced)
+        'high' // Priority (high, default, low, core)
+    );
+}
+add_action('add_meta_boxes', 'add_custom_image_meta_box');
+
+function render_custom_image_meta_box($post) {
+    // Retrieve existing meta field values if any
+	$csv_file_url = get_post_meta( $post->ID, '_csv_file_url', true );
+	?>
+	<label for="custom-image-button" style="width: 25%;display: inline-block;"><strong>Upload:</strong></label>
+	<input type="hidden" id="custom-image" name="csv_file_url" value="<?php echo esc_attr($csv_file_url); ?>" size="60">
+    <input type="button" class="button button-secondary" value="Upload File" id="custom-image-button">
+	<div id="custom-image-preview">
+		<?php if( !empty( $csv_file_url ) ) : ?>
+		<img src="<?php echo esc_attr($csv_file_url); ?>" style="max-width: 100%;max-height: 100%;object-fit: cover;border-radius: 8px;margin-top: 12px;" />
+		<?php endif; ?>
+	</div>
+	<script>
+        jQuery(document).ready(function ($) {
+            // Media uploader
+            var customImageUploader;
+            $('#custom-image-button').click(function (e) {
+                e.preventDefault();
+                if (customImageUploader) {
+                    customImageUploader.open();
+                    return;
+                }
+                customImageUploader = wp.media.frames.file_frame = wp.media({
+                    title: 'Choose Image',
+                    button: {
+                        text: 'Choose Image'
+                    },
+                    multiple: false
+                });
+                customImageUploader.on('select', function () {
+                    var attachment = customImageUploader.state().get('selection').first().toJSON();
+                    $('#custom-image').val(attachment.url);
+                    $('#custom-image-preview').html('<img src="'+attachment.url+'" style="max-width:100%;max-height:100%;object-fit:cover;border-radius:8px;margin-top:12px;" />');
+                    // $('#custom-image-preview').attr('src', attachment.url);
+                });
+                customImageUploader.open();
+            });
+        });
+    </script>
+	<?php
+}
+
+function save_csv_meta_data($post_id) {
+	// print_r($post_id);
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+        return;
+    }
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+	if (isset($_POST['fname_field'])) {
+		$fname_field_value = sanitize_text_field($_POST['fname_field']);
+        update_post_meta($post_id, '_fname_field', $fname_field_value);
+    }
+	if (isset($_POST['lname_field'])) {
+		$lname_field_value = sanitize_text_field($_POST['lname_field']);
+        update_post_meta($post_id, '_lname_field', $lname_field_value);
+    }
+	if (isset($_POST['email_field'])) {
+		$email_field_value = sanitize_text_field($_POST['email_field']);
+		update_post_meta($post_id, '_email_field', $email_field_value);
+	}
+	if (isset($_POST['date_field'])) {
+		$date_field_value = sanitize_text_field($_POST['date_field']);
+		update_post_meta($post_id, '_date_field', $date_field_value);
+	}
+	if (isset($_POST['csv_file_url'])) {
+		$csv_file_url = sanitize_text_field($_POST['csv_file_url']);
+		update_post_meta($post_id, '_csv_file_url', $csv_file_url);
+	}
+}
+add_action('save_post', 'save_csv_meta_data');
+
+function process_csv_upload() {
+    if (isset( $_POST['submit'] )) {
+		if( isset( $_FILES['csv_file'] ) ){
+			if ($_FILES['csv_file']['error'] === UPLOAD_ERR_OK) {
+				// Get the uploaded file details
+				$csvFile = $_FILES['csv_file']['tmp_name'];
+				$handle = fopen($csvFile, 'r');
+	
+				$excelData = array();
+				$finalData = array();
+				$i = 0;
+	
+				// Check if the file was opened successfully
+				if ($handle) {
+					// Loop through each row of the CSV file
+					while (($data = fgetcsv($handle)) !== false) {
+						// Create a new csv post with CSV data
+						$c = 0;
+						foreach($data as $col) {
+							$excelData[$c] = $col;
+							$c++;
+						}
+						foreach($excelData as $val){
+							if( $i > 0 ){
+								$savekey = explode(";", $val);
+								$finalData['post_title'] = $savekey[2];
+								$finalData['post_type'] = 'csv_data';
+								$finalData['post_status'] = 'publish';
+								$post_id = wp_insert_post($finalData);
+								update_post_meta($post_id, '_fname_field', $savekey[2]);
+								update_post_meta($post_id, '_lname_field', $savekey[3]);
+								update_post_meta($post_id, '_email_field', $savekey[0]);
+								update_post_meta($post_id, '_date_field', date('Y-m-d'));
+								
+							}
+						}
+						$i++;
+					}
+					// Close the CSV file
+					fclose($handle);
+				}
+			}
+		}
+    }
+}
+add_action('init', 'process_csv_upload');
+
+function csv_data_delete(){
+	if (isset($_POST['delete'])) {
+		if( isset( $_POST['post_id'] ) ){
+			$delete = wp_delete_post( $_POST['post_id'], true );
+			if( $delete ){
+				$_SESSION['deleted'] = true;
+			}else{
+				$_SESSION['deleted'] = false;
+			}
+		}
+	}
+}
+add_action('init', 'csv_data_delete');
+
+
+
+
+
+
+// Add a filter to modify the avatar output
+add_filter('get_avatar', 'custom_avatar_title', 10, 5);
+function custom_avatar_title($avatar, $id_or_email, $size, $default, $alt) {
+    // Get the user ID from the provided argument
+    $user_id = '';
+    if (is_numeric($id_or_email)) {
+        $user_id = $id_or_email;
+    } elseif (is_string($id_or_email)) {
+        $user = get_user_by('email', $id_or_email);
+        if ($user) {
+            $user_id = $user->ID;
+        }
+    }
+    // Get the user's display name
+    $user_display_name = '';
+    if ($user_id) {
+        $user_display_name = get_the_author_meta('display_name', $user_id);
+    }
+    // Add the title attribute to the avatar HTML
+    $avatar = str_replace('<img', '<img title="' . esc_attr($user_display_name) . '"', $avatar);
+    return $avatar;
+}
+
+
+
+
+// password reset link send to user via mail 
+add_filter( 'retrieve_password_message', 'my_retrieve_password_message', 10, 4 );
+function my_retrieve_password_message( $message, $key, $user_login, $user_data ) {
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+    $site_name = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
+	$message = '<div class="main-box" style="border: 1px solid #dddddd;border-radius: 5px; width: 650px;float: none;text-align: center; margin:40px 10px 0px 6px; overflow: hidden;">
+	<div class="mb-header" style="background:#f2a5a2; padding: 20px 30px;">
+	<a href="'.network_site_url().'"><img src="'.$image[0].'" width="200" height="auto"></a>
+	</div>
+	<div class="mb-content" style="background:#fff; padding: 25px;text-align: center;">
+	<table cellpadding="5" border="0" cellspacing="0" width="100%">
+	<tr><td> <b>Username : </b>'.$user_login.'</td></tr>';
+	// <tr><th valign="top">Email :</th><td>'.$user_data->user_email.'</td></tr>
+	$message .= '<tr><td colspan="1">&nbsp;</td></tr>
+	<tr><td colspan="1"><a href="'.network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' ).'" style="background:#f2a5a2; padding: 10px 20px;display:inline-block;font-size:16px;">Reset</a></td></tr>
+	<tr><td colspan="1">&nbsp;</td></tr>
+	<tr><td colspan="1">This e-mail was sent from '.$site_name.'</td></tr>
+	</table>
+	</div>
+	</div>';
+	return $message;
+}
+
+
+// function se13911452_set_avatar_url($avatar_url, $user_id) {
+// 	global $wpdb;
+// 	$file = upload_product_image($avatar_url);
+// 	$wp_filetype = wp_check_filetype($file['file']);
+// 	$attachment = array(
+// 		'guid' => $file['url'],
+// 		'post_mime_type' => $wp_filetype['type'],
+// 		'post_title' => preg_replace('/\.[^.]+$/', '', basename($file['file'])),
+// 		'post_content' => '',
+// 		'post_status' => 'inherit'
+// 	);
+// 	$attach_id = wp_insert_attachment($attachment, $file['file']);
+// 	$attach_data = wp_generate_attachment_metadata($attach_id, $file['file']);
+// 	wp_update_attachment_metadata($attach_id, $attach_data);
+// 	update_user_meta($user_id, $wpdb->get_blog_prefix() . 'user_avatar', $attach_id);
+// }
+
+/* 
+ * Add custom user profile information
+ *
+ */ 
+
+ add_action( 'show_user_profile', 'my_show_extra_profile_fields' );
+ add_action( 'edit_user_profile', 'my_show_extra_profile_fields' );
+ 
+ function my_show_extra_profile_fields( $user ) { ?>
+ <table>
+	<tr>
+		<th><label for="user_avatar"></label></th>
+		<td>
+			<!-- <img id="preview-img" src="<?php echo esc_attr( get_the_author_meta( 'user_avatar', $user->ID ) ); ?>" style="height:50px;"><br> -->
+			<input type="text" name="user_avatar" id="user_avatar" value="<?php echo esc_attr( get_the_author_meta( 'user_avatar', $user->ID ) ); ?>" class="regular-text" />
+			<input type='button' class="button-primary" value="Upload Image" id="uploadimage"/><br />
+			<span class="description">Please upload your image for your profile.</span>
+		</td>
+	</tr>
+	</table>
+ <?php }
+ 
+ /* 
+  * Script for saving profile image
+  *
+  */
+ 
+ add_action('admin_head','my_profile_upload_js');
+ wp_enqueue_script('media-upload');
+ wp_enqueue_script('thickbox');
+ wp_enqueue_style('thickbox'); 
+ 
+ function my_profile_upload_js() { ?>
+	 <script type="text/javascript">
+		 jQuery(document).ready(function() {
+			 jQuery(document).find("input[id^='uploadimage']").on('click', function(){
+				 //var num = this.id.split('-')[1];
+				 formfield = jQuery('#user_avatar').attr('name');
+				 tb_show('', 'media-upload.php?type=image&amp;TB_iframe=true');
+	  
+				 window.send_to_editor = function(html) {
+					 imgurl = jQuery('img', html).attr('src');
+					 jQuery('.avatar').attr('src', imgurl);
+					 jQuery('#user_avatar').val(imgurl);
+					 tb_remove();
+				 }
+				 return false;
+			 });
+		 });
+	 </script>
+ <?php }
+ 
+ function user_profile_image_fields_order() { ?>
+	<script>
+	jQuery(document).ready(function($) {
+		$('.user-profile-picture').after($('#user_avatar').closest('tr'));
+	});
+	</script>
+	<?php
+}
+add_action( 'admin_footer', 'user_profile_image_fields_order' );
+	
+	
+ /*
+  * Save custom user profile data
+  *
+  */
+ 
+ add_action( 'personal_options_update', 'my_save_extra_profile_fields' );
+ add_action( 'edit_user_profile_update', 'my_save_extra_profile_fields' );
+ function my_save_extra_profile_fields( $user_id ) {
+	global $wpdb;
+	 if ( !current_user_can( 'edit_user', $user_id ) )
+		 return false;
+	 /* Copy and paste this line for additional fields. Make sure to change 'twitter' to the field ID. */
+	 update_user_meta( $user_id, 'user_avatar', $_POST['user_avatar'] );	 
+ }
+
+
+add_filter('get_avatar_data', 'ow_change_avatar', 100, 2);
+function ow_change_avatar($args, $user_data) {
+		if(is_object($user_data)){
+			$user_id = $user_data->user_id;
+		} else{
+			$user_id = $user_data;
+		}
+		if($user_id){
+			$author_pic = get_user_meta($user_id, 'user_avatar', true);
+			// echo $author_pic;
+			if(  $author_pic ) {
+				$args['url'] = $author_pic;
+			} else {
+				// $args['url'] = 'tttt';
+			}
+		} else {
+			// $args['url'] = 'ttt';
+		}
+	return $args;
+} 
+
+
+add_filter( 'get_avatar' , 'add_custom_avatar' , 1 , 6 );
+function add_custom_avatar( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+	// print_r($args);
+    $user = false;
+    if ( is_numeric( $id_or_email ) ) {
+        $id = (int) $id_or_email;
+        $user = get_user_by( 'id' , $id );
+    } elseif ( is_object( $id_or_email ) ) {
+        if ( ! empty( $id_or_email->user_id ) ) {
+            $id = (int) $id_or_email->user_id;
+            $user = get_user_by( 'id' , $id );
+        }
+    } else {
+        $user = get_user_by( 'email', $id_or_email );   
+    }
+    if ( $user && is_object( $user ) ) {
+		$avatar = sprintf( '%s', get_user_meta($user->data->ID, 'user_avatar', true) );
+		$classes = sprintf( '%s', $args['class']);
+		$avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo $classes' height='{$size}' width='{$size}' />";
+    }
+    return $avatar;
+}

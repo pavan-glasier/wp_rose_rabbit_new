@@ -37,16 +37,25 @@ do_action( 'woocommerce_before_cart' );
                                     <h2 id="heading">Contact Information</h2>
                                     <div id="msform">
                                         <!-- progressbar -->
+                                        
+                                        <?php if( !is_user_logged_in() ): ?>
                                         <ul id="progressbar">
                                             <li class="active" id="account"><strong>1</strong></li>
                                             <li id="personal"><strong>2</strong></li>
                                             <li id="payments"><strong>3</strong></li>
                                         </ul>
+                                        <?php else: ?>
+                                        <ul id="progressbar">
+                                            <li class="active" id="personal"><strong>1</strong></li>
+                                            <li id="payments"><strong>2</strong></li>
+                                        </ul>
+                                        <?php endif; ?>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped" role="progressbar"
                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                         <br> <!-- fieldsets -->
+                                        <?php if( !is_user_logged_in() ): ?>
                                         <fieldset>
                                             <div class="form-card">
                                                 <div class="row">
@@ -84,6 +93,7 @@ do_action( 'woocommerce_before_cart' );
                                             <button type="button" class="vs-btn style7 d-none" id="otp-verify" name="next" onclick="codeverify();" value="Next">Next</button>
                                             <button type="button" class="next vs-btn style7 d-none" name="next" value="Next">Next</button>
                                         </fieldset>
+                                        <?php endif; ?>
                                         <fieldset>
                                             <div class="form-card">
                                                 <div class="row">
@@ -206,4 +216,5 @@ do_action( 'woocommerce_before_cart' );
     </div>
 </section>
 <!--End Cart-->
+
 <?php do_action( 'woocommerce_after_cart' ); ?>

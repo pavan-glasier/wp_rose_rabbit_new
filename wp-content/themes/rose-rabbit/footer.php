@@ -318,7 +318,6 @@ if( !is_cart() ): ?>
                                     <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1" class="input"
                                         value="" inputtype="numeric" id="otc-6" required>
                                 </div>
-                                <input type="hidden" name="verificationCode" id="verificationCode">
                             </div>
                         </div>
                         <div class="text-center">

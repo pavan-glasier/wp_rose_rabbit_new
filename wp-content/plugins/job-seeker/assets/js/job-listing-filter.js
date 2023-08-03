@@ -19,7 +19,14 @@ jQuery(document).ready(function($) {
             },
             beforeSend: function() {
                 $(".filter-submit").prop("disabled", true);
-                jobsContainer.addClass('loading');
+                // jobsContainer.addClass('loading');
+                jobsContainer.block({
+                    message: null,
+                    // overlayCSS: {
+                    //     background: '#fcebea',
+                    //     opacity: 0.8
+                    // }
+                });
             },
             success:function(response) {
                 // Process the response and update the job listings
@@ -30,12 +37,14 @@ jQuery(document).ready(function($) {
                     jobsContainer.html('<li>No jobs found.</li>');
                 }
                 $(".filter-submit").prop("disabled", false);
-                jobsContainer.removeClass('loading');
+                // jobsContainer.removeClass('loading');
+                jobsContainer.unblock();
             },
             error: function() {
                 alert('Error occurred while filtering job listings.');
                 $(".filter-submit").prop("disabled", false);
-                jobsContainer.removeClass('loading');
+                // jobsContainer.removeClass('loading');
+                jobsContainer.unblock();
             }
         });
     });

@@ -9,7 +9,7 @@ function job_listing_filter_shortcode() { ?>
                     <?php
                     $job_type_taxonomies = get_terms( array(
                         'taxonomy'   => 'job_type',
-                        'hide_empty' => false,
+                        'hide_empty' => 1,
                     ) );
                     if ( $job_type_taxonomies ) : ?>
                     <select id="job-type" class="filter-select">
@@ -22,7 +22,7 @@ function job_listing_filter_shortcode() { ?>
 
                     <?php $industry_taxonomies = get_terms( array(
                         'taxonomy'   => 'industry',
-                        'hide_empty' => false,
+                        'hide_empty' => 1,
                     ) );
                     if ( $industry_taxonomies ) : ?>
                     <select id="industry" class="filter-select">
@@ -35,7 +35,7 @@ function job_listing_filter_shortcode() { ?>
                     
                     <?php $skill_taxonomies = get_terms( array(
                         'taxonomy'   => 'skill',
-                        'hide_empty' => false,
+                        'hide_empty' => 1,
                     ) );
                     if ( $skill_taxonomies ) : ?>
                     <select id="skills" class="filter-select">

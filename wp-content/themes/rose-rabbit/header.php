@@ -231,7 +231,37 @@
                                         <?php 
                                         if ( is_user_logged_in() ) { ?>
                                             <a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>" class="bar-btn d-xl-inline-block">
-                                                <img src="<?php echo get_option( 'user_icon_upload', site_url('/wp-content/uploads/2023/05/User_alt_light.svg') );?>" alt="profile" width="30">
+                                                <?php
+                                                // $theAuthorId = get_the_author_meta('ID');
+
+                                                // echo get_avatar_url($theAuthorId);
+
+                                                // Get the current user object
+                                                $current_user = wp_get_current_user();
+                                                // Get the user's email
+                                                $user_email = $current_user->user_email;
+                                                
+                                                // Specify the size of the avatar (you can change this to fit your requirements)
+                                                $avatar_size = 48;
+
+                                                $args = array(
+                                                    'class' => 'border-2 border-bottom border-end border-start border-top p-1 rounded-circle',
+                                                    'title' => $current_user->display_name,
+                                                );
+                                                $alt = $current_user->user_login;
+                                                // Get the HTML code for the avatar image
+                                                $avatar_image = get_avatar($user_email, $avatar_size, "", $alt, $args);
+                                                if( $avatar_image ): 
+                                                // Display the avatar image 
+                                                echo $avatar_image; ?>
+                                                <!-- <img title="user_8269456145" alt="user_8269456145" src="http://2.gravatar.com/avatar/216651f0794c4ca171d118894a1b010f?s=48&amp;d=mm&amp;r=g" srcset="http://2.gravatar.com/avatar/216651f0794c4ca171d118894a1b010f?s=96&amp;d=mm&amp;r=g 2x" class="border-2 border-bottom border-end border-start border-top p-1 rounded-circle" height="48" width="48" loading="lazy" decoding="async"> -->
+                                                <?php else: ?>
+                                                <?php if( get_option( 'user_icon_upload' ) ): ?>
+                                                <img src="<?php echo esc_url( get_option( 'user_icon_upload' ) );?>" alt="profile" width="27">
+                                                <?php else: ?>
+                                                <img src="<?php echo esc_url(site_url('/wp-content/uploads/2023/05/User_alt_light.svg'));?>" alt="profile" width="35">
+                                                <?php endif; ?>
+                                                <?php endif; ?>
                                             </a>
                                         <?php } else { ?>
                                             <?php if( is_cart() ){ ?>
@@ -257,3 +287,5 @@
             </div>
         </div>
     </header>
+
+    

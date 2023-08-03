@@ -19,12 +19,12 @@ add_filter( 'wpcf7_editor_panels', 'cf7_gi_editor_panels' );
 
 function cf7_gi_admin_after_additional_settings( $cf7 ) {
 	$post_id = sanitize_text_field($_GET['post']);
-    $enable = 						get_post_meta($post_id, "_cf7_gi_enable", true);
+    $enable = 					get_post_meta($post_id, "_cf7_gi_enable", true);
     $cf7_gi_redirect_type = 	get_post_meta($post_id, "_cf7_gi_redirect_type", true);
     $cf7_gi_url = 				get_post_meta($post_id, "_cf7_gi_url", true);
-    $tab = 							get_post_meta($post_id, "_cf7_gi_tab", true);
+    $tab = 						get_post_meta($post_id, "_cf7_gi_tab", true);
     $cf7_gi_page = 				get_post_meta($post_id, "_cf7_gi_page", true);
-    $page_tab = 						get_post_meta($post_id, "_cf7_gi_page_tab", true);
+    $page_tab = 				get_post_meta($post_id, "_cf7_gi_page_tab", true);
 
 	if ($enable == "1") { $checked = "CHECKED"; } else { $checked = ""; }
 	if ($tab == "1") { $tab = "CHECKED"; } else { $tab = ""; }

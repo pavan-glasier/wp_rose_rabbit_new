@@ -121,6 +121,8 @@ fieldset:not(:first-of-type) {
     margin-bottom: 30px;
     overflow: hidden;
     color: lightgrey;
+    display: flex;
+    justify-content: center;
   }
   
   #progressbar .active {

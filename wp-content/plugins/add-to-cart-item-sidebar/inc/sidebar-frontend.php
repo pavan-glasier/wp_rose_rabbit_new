@@ -401,7 +401,8 @@ setTimeout(function() {
 
             <?php //$sub_total = WC()->cart->get_cart_total(); 
                 $mcsfw_totals = WC()->cart->get_totals();
-                $sub_total = $mcsfw_totals['subtotal'];?>
+                $sub_total = $mcsfw_totals['subtotal'];
+                $total = $mcsfw_totals['total'];?>
             <div class="footer-heding-bottom">
                 <?php if($display_subtotal == 'true'){ ?>
                 <div class="bot-heding">
@@ -412,9 +413,9 @@ setTimeout(function() {
                 <?php } ?>
 
                 <div class="bot-heding">
-                    <span class="subside"><?php echo __('SUBTOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
+                    <span class="subside"><?php echo __('TOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
                     <span
-                        class="subside"><?php echo get_woocommerce_currency_symbol().number_format($sub_total, 2); ?></span>
+                        class="subside"><?php echo get_woocommerce_currency_symbol().number_format($total, 2); ?></span>
                 </div>
                 <div class="top-flex">
                     <?php if(!empty($cart_btn_url) && !empty($cart_btn_text)){ ?>
@@ -713,7 +714,9 @@ setTimeout(function() {
 
 <?php
     $mcsfw_totals = WC()->cart->get_totals();
-    $sub_total = $mcsfw_totals['subtotal'];?>
+    $sub_total = $mcsfw_totals['subtotal'];
+    $total = $mcsfw_totals['total'];
+    ?>
 <div class="footer-heding-bottom">
     <?php if($display_subtotal == 'true'){ ?>
     <div class="bot-heding">
@@ -724,9 +727,9 @@ setTimeout(function() {
     <?php } ?>
 
     <div class="bot-heding">
-        <span class="subside"><?php echo __('SUBTOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
+        <span class="subside"><?php echo __('TOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
         <span
-            class="subside"><?php echo get_woocommerce_currency_symbol().number_format($sub_total, 2); ?></span>
+            class="subside"><?php echo get_woocommerce_currency_symbol().number_format($total, 2); ?></span>
     </div>
     <div class="top-flex">
         <?php if(!empty($cart_btn_url) && !empty($cart_btn_text)){ ?>
@@ -956,7 +959,6 @@ setTimeout(function() {
     </div>
     <?php } ?>
 
-
     <?php 
     $product = get_option('mcsfw_product_slider');
     if(!empty($product)){ ?>
@@ -1027,7 +1029,8 @@ setTimeout(function() {
 </div>
 <?php
 $mcsfw_totals = WC()->cart->get_totals();
-$sub_total = $mcsfw_totals['subtotal'];?>
+$sub_total = $mcsfw_totals['subtotal'];
+$total = $mcsfw_totals['total'];?>
 <div class="footer-heding-bottom">
     <?php if($display_subtotal == 'true'){ ?>
     <div class="bot-heding">
@@ -1038,9 +1041,9 @@ $sub_total = $mcsfw_totals['subtotal'];?>
     <?php } ?>
 
     <div class="bot-heding">
-        <span class="subside"><?php echo __('SUBTOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
+        <span class="subside"><?php echo __('TOTAL','mini-cart-sidebar-for-woocommerce'); ?></span>
         <span
-            class="subside"><?php echo get_woocommerce_currency_symbol().number_format($sub_total, 2); ?></span>
+            class="subside"><?php echo get_woocommerce_currency_symbol().number_format($total, 2); ?></span>
     </div>
     <div class="top-flex">
         <?php if(!empty($cart_btn_url) && !empty($cart_btn_text)){ ?>

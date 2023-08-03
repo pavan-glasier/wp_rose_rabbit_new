@@ -1,0 +1,28 @@
+2023-08-03T10:06:12+00:00 INFO Called process_payment with params order_id 788
+2023-08-03T10:06:12+00:00 INFO Set transient with key razorpay_wc_order_id params order_id 788
+2023-08-03T10:06:14+00:00 ERROR Could not enable webhook for localhost
+2023-08-03T10:06:14+00:00 INFO getRazorpayPaymentParams 788
+2023-08-03T10:06:14+00:00 INFO createOrGetRazorpayOrderId 788 and is1ccCheckout is set to no
+2023-08-03T10:06:14+00:00 INFO Called createOrGetRazorpayOrderId with params orderId 788 and is_magic_checkout_order is set to no
+2023-08-03T10:06:14+00:00 INFO razorpayOrderId  | sessionKey razorpay_order_id788
+2023-08-03T10:06:14+00:00 INFO Called createRazorpayOrderId with params orderId 788 and sessionKey razorpay_order_id788
+2023-08-03T10:06:14+00:00 INFO Called getOrderCreationData with params orderId 788
+2023-08-03T10:06:14+00:00 INFO Called getOrderCreationData with params orderId 788 and is1ccOrder is set to no
+2023-08-03T10:06:14+00:00 INFO For order 788
+2023-08-03T10:06:14+00:00 INFO {"receipt":788,"amount":23600,"currency":"INR","payment_capture":1,"app_offer":0,"notes":{"woocommerce_order_number":"788"}}
+2023-08-03T10:06:15+00:00 INFO For order session key razorpay_order_id788
+2023-08-03T10:06:36+00:00 INFO Called check_razorpay_response: wc_order_ZDt1IdqIjHoqe
+2023-08-03T10:06:36+00:00 INFO Get order id in check_razorpay_response: orderId 788
+2023-08-03T10:06:36+00:00 INFO handleErrorCase
+2023-08-03T10:06:36+00:00 INFO getErrorMessage orderId: 788
+2023-08-03T10:06:36+00:00 INFO returning An error occured. Please contact administrator for assistance
+2023-08-03T10:06:36+00:00 INFO updateOrder orderId: 788 , razorpayPaymentId:  , success: 
+2023-08-03T10:06:36+00:00 INFO Woocommerce orderId: 788 processed through callback
+2023-08-03T10:33:45+00:00 ERROR cURL error 28: Resolving timed out after 10014 milliseconds
+2023-08-03T10:34:03+00:00 ERROR cURL error 6: Could not resolve host: api.razorpay.com
+2023-08-03T10:34:05+00:00 ERROR cURL error 6: Could not resolve host: api.razorpay.com
+2023-08-03T10:34:10+00:00 ERROR cURL error 28: Resolving timed out after 10000 milliseconds
+2023-08-03T10:34:52+00:00 ERROR cURL error 6: Could not resolve host: api.razorpay.com
+2023-08-03T10:35:24+00:00 ERROR cURL error 6: Could not resolve host: api.razorpay.com
+2023-08-03T10:35:24+00:00 ERROR cURL error 28: Resolving timed out after 10013 milliseconds
+2023-08-03T10:35:36+00:00 ERROR cURL error 28: Resolving timed out after 10006 milliseconds

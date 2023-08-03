@@ -753,23 +753,46 @@ do_settings_sections( 'mcsfw_settings' );
                     <tr>
                         <th scope="row"><?php echo __('Cart Url','mini-cart-sidebar-for-woocommerce'); ?></th>
                         <td>
-                            <input type="text" name="cart_btn_url"
-                                value="<?php echo esc_attr(get_option('cart_btn_url',wc_get_cart_url())); ?>" />
+                            <select name="cart_btn_url">
+                                <option value="0">Select Page</option>
+                                <?php foreach ( get_pages() as $page ) { ?>
+                                    <option value="<?php echo get_page_link( $page->ID ); ?>" <?php echo ( get_option('cart_btn_url') == get_page_link( $page->ID ) ) ? "selected" : "";?>>
+                                    <?php echo $page->post_title;?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php echo __('Checkout Url','mini-cart-sidebar-for-woocommerce'); ?></th>
                         <td>
-                            <input type="text" name="checkout_btn_url"
-                                value="<?php echo esc_attr(get_option('checkout_btn_url',wc_get_checkout_url())); ?>" />
+                            <!-- <input type="text" name="checkout_btn_url"
+                                value="<?php echo esc_attr(get_option('checkout_btn_url',wc_get_checkout_url())); ?>" /> -->
+                            <select name="checkout_btn_url">
+                                <option value="0">Select Page</option>
+                                <?php foreach ( get_pages() as $page ) { ?>
+                                    <option value="<?php echo get_page_link( $page->ID ); ?>" <?php echo ( get_option('checkout_btn_url') == get_page_link( $page->ID ) ) ? "selected" : "";?>>
+                                    <?php echo $page->post_title;?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php echo __('Continue Shopping','mini-cart-sidebar-for-woocommerce'); ?>
                         </th>
                         <td>
-                            <input type="text" name="continue_shopping_btn_url"
-                                value="<?php echo esc_attr(get_option('continue_shopping_btn_url','#')); ?>" /><label><?php echo __('Use # to close side cart & remain on the same page','mini-cart-sidebar-for-woocommerce'); ?></label>
+                            <!-- <input type="text" name="continue_shopping_btn_url"
+                                value="<?php echo esc_attr(get_option('continue_shopping_btn_url','#')); ?>" />
+                                <label><?php echo __('Use # to close side cart & remain on the same page','mini-cart-sidebar-for-woocommerce'); ?></label> -->
+                            <select name="continue_shopping_btn_url">
+                                <option value="0">Select Page</option>
+                                <?php foreach ( get_pages() as $page ) { ?>
+                                    <option value="<?php echo get_page_link( $page->ID ); ?>" <?php echo ( get_option('continue_shopping_btn_url') == get_page_link( $page->ID ) ) ? "selected" : "";?>>
+                                    <?php echo $page->post_title;?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </td>
                     </tr>
                 </table>
